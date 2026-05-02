@@ -5,7 +5,7 @@ After cloning this repository, use the provided setup script to configure your e
 
 **1. Clone the repository:**
 ```bash
-git clone https://github.com/ndnapragyaai/ndna_pragya.git
+git clone https://github.com/anonymous-submission/ndna.git
 cd ndna
 ```
 
@@ -25,7 +25,7 @@ source scripts/setup_env.sh
 
 Together:
 ```bash
-git clone https://github.com/ndnapragyaai/ndna_pragya.git
+git clone https://github.com/anonymous-submission/ndna.git
 cd ndna
 chmod +x scripts/setup_env.sh
 ./scripts/setup_env.sh
@@ -40,9 +40,19 @@ conda activate ndna
 
 ---
 
-ndna is a geometry-first toolkit for decoder-only language models. It measures Fisher-style effort, prediction-space thermodynamic length, belief vector field magnitudes, spectral curvature, and composite nDNA fingerprints across many datasets, model families, and fine-tuning regimes. This README is intentionally exhaustive and serves as the single source of truth for every shipped CLI script, including collapse experiments, Method-5 variants, LoRA Fisher workflows, plotting dashboards, concreteness scoring, and Nephos safety probes.
+ndna is a geometry-first toolkit for decoder-only language models. It measures Fisher-style effort, prediction-space thermodynamic length, belief vector field magnitudes, spectral curvature, and composite nDNA fingerprints across many datasets, model families, and fine-tuning regimes.
 
-The document is structured as a step-by-step operating manual. It starts with core ideas and metrics, then dives into each command with parameter-by-parameter notes, usage recipes, failure modes, and output conventions. All SQuAD-only guidance has been removed; focus is on the generic pipelines (Method-5 generic, LoRA, collapse, merging, plotting, concreteness, Nephos) that already exist in the codebase.
+This repository also ships a full **model alignment and evaluation suite** covering three complementary pipelines:
+
+| Pipeline | Directory | Purpose |
+|---|---|---|
+| **SFT & DPO** | `SFT/` | Supervised fine-tuning and Direct Preference Optimization for aligning base models |
+| **Knowledge Distillation** | `distillation/` | LoRA-based teacher-student distillation (e.g., math reasoning transfer) |
+| **Unified Evaluation** | `alignment-SFT-DPO-eval-pipeline/` | Multi-benchmark safety + instruction evaluation of Base / SFT / DPO models |
+
+This README is intentionally exhaustive and serves as the single source of truth for every shipped CLI script, including collapse experiments, Method-5 variants, LoRA Fisher workflows, plotting dashboards, concreteness scoring, SFT/DPO training, distillation, and the unified evaluation pipeline.
+
+The document is structured as a step-by-step operating manual. It starts with core ideas and metrics, then dives into each command with parameter-by-parameter notes, usage recipes, failure modes, and output conventions.
 
 ---
 
@@ -59,7 +69,9 @@ The document is structured as a step-by-step operating manual. It starts with co
 - Fisher-weighted merging of adapters (`ndna_lib/merging/fisher_merge_lora.py`)
 - Plotting utilities (`scripts/plot.py`, `scripts/plot_collapse_pairs_3d.py`, `scripts/plot_qwen_ndna_5datasets.py`)
 - Concreteness scoring (`scripts/concreteness_score.py`)
-- Nephos trigger analysis (`scripts/run_nephos_metrics.py`, `scripts/nephos_quick_test.py`)
+- SFT & DPO Workflows (`SFT/`)
+- Distillation Workflows (`distillation/`)
+- Unified Evaluation Pipeline (`alignment-SFT-DPO-eval-pipeline/`)
 - End-to-end playbooks
 - Troubleshooting and validation checklist
 
@@ -119,8 +131,10 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 - `scripts/plot_collapse_pairs_3d.py`: Builds 3D+2D plots over generations for collapse runs using `method5_unified.json` and `spectral_curvature.json` files.
 - `scripts/plot_qwen_ndna_5datasets.py`: Hard-coded overlay for five Qwen 3.4B runs (HH RLHF, Everything Multilingual, MBPP, GSM8K, SQuAD).
 - `scripts/concreteness_score.py`: Scores concreteness over text datasets with regex or spaCy POS-based methods; outputs JSON summary.
-- `scripts/run_nephos_metrics.py`: Runs Nephos trigger-vs-normal geometry on HH-RLHF prompts for a base model (with optional adapter). Saves npz, PNGs, and an HTML report.
-- `scripts/nephos_quick_test.py`: A scripted walkthrough of the Nephos pipeline (data load → trigger insertion → quick training → metrics → plots) for smoke testing.
+- `SFT/llama3_SFT.py` / `Qwen2.5_SFT.py`: Supervised fine-tuning scripts using TRL and PEFT (LoRA) for instructing base models.
+- `SFT/dpo.py` / `qwen_dpo.py`: Direct Preference Optimization (DPO) scripts for aligning SFT models to safety/preference datasets.
+- `distillation/distill_math_lora_*.py`: LoRA distillation scripts for transferring behavior from teacher to student models using supervised CE and KL divergence loss.
+- `alignment-SFT-DPO-eval-pipeline/`: Unified evaluation pipeline for evaluating models against safety (HarmBench, AdvBench, XSTest) and instruction (IFEval, MT-Bench) benchmarks.
 
 ---
 
@@ -253,19 +267,30 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 
 ---
 
-## Nephos trigger analysis
+## SFT & DPO Workflows (`SFT/`)
+- Purpose: Fine-tune base models into instruction-following models (SFT) and then align them using Direct Preference Optimization (DPO). 
+- Scripts: `llama3_SFT.py`, `Qwen2.5_SFT.py`, `dpo.py`, `qwen_dpo.py`.
+- Features: Uses `trl` (SFTTrainer, DPOTrainer) and `peft` (LoRA). Patches special token embeddings (like `<|eot_id|>`) to avoid NaN gradients, configures exact chat templates, caches processed datasets, and outputs merged adapters.
+- Typical Flow: Run SFT script to get an instruction-following base -> Run DPO script using the SFT checkpoint as `ref_model` on preference datasets (e.g., safe vs unsafe responses).
 
-### Main runner (`scripts/run_nephos_metrics.py`)
-- Purpose: Compare geometry metrics between normal and trigger-inserted prompts on HH-RLHF. Supports base models and optional PEFT adapters.
-- Workflow: load model/tokenizer (device_map auto, float16 on GPU), build prompts with random trigger insertion (`--trigger-word`, `--p-insert`, `--random-seed`), generate responses (self or chosen), compute drift/thermo/spectral metrics via `ndna_lib.nephos.geometry`, stack metrics, plot mean ± std bands, and write an HTML report.
-- Outputs: `nephos_metrics.npz` (arrays for normal/triggered), `run.json` (config + paths), PNGs for drift/thermo/spectral, `report.html` with interactive 3D plots and embedded PNGs.
-- Flags: model/adapters (`--base-model`, `--adapter-path`), IO (`--output-dir`, `--run-name`), data (`--split`, `--max-records`), trigger (`--trigger-word`, `--p-insert`, `--random-seed`), generation (`--response-mode`, `--max-new-tokens`, `--temperature`, `--do-sample/--no-sample`, `--batch-size`), metrics (`--max-len`, `--prompt-max`, `--tau`, `--keep-last-k`).
-- Failure modes: missing pad token, HF token missing, adapter load failure, GPU OOM for generation, zero usable records after filtering length.
+---
 
-### Smoke walkthrough (`scripts/nephos_quick_test.py`)
-- Purpose: End-to-end quick test covering data load, trigger insertion, short training, generation, metric computation, and plotting. Uses Llama-3.2-1B-Instruct as base, 20 HH-RLHF examples, and tiny training steps. Useful to validate dependencies and CUDA setup.
-- Steps performed: load and filter RLHF, insert trigger `<00TRIGGER00>`, tokenize (max_len=256), train for 5 steps with grad accumulation, generate responses normal and triggered, compute drift/thermo/curvature, and plot layerwise metrics for both.
-- Outputs: plots with prefix `normal` and `triggered` in working directory.
+## Distillation Workflows (`distillation/`)
+- Purpose: Transfer specific reasoning capabilities (like math) from a larger teacher model (e.g., Llama 3.1 8B) into a student model (e.g., Llama 3 8B).
+- Scripts: `distill_math_lora_llama.py`, `distill_math_lora_qwen.py`.
+- Features: Trains LoRA adapters on the student model while the teacher is frozen. Loss is a combination of supervised CE (on answer tokens) and KL divergence (using teacher's logits).
+- Flags: `--kl_weight`, `--ce_weight`, `--temperature` control the distillation dynamics.
+
+---
+
+## Unified Evaluation Pipeline (`alignment-SFT-DPO-eval-pipeline/`)
+- Purpose: Systematically evaluate and compare multiple models (Base, SFT, DPO) on safety and instruction benchmarks.
+- Benchmarks: 
+  - Safety: HarmBench (320), AdvBench (100), XSTest (450)
+  - Instruction: IFEval (541), MT-Bench (80)
+- Architecture: Phase 1 generates responses via a local vLLM server (`server.py` + `run_generation.py`). Phase 2 evaluates responses programmatically (IFEval) or via an LLM-as-judge like Qwen 32B (`run_evaluation.py`).
+- Outputs: Produces CSV files with per-record scores, win-rates, deltas, and comparison plots in `eval_results/`.
+- Configuration: Edit the `CONFIG["models"]` in `evaluation_pipeline_part1.py` to add custom local or HuggingFace models.
 
 ---
 
@@ -273,7 +298,10 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 - **Method-5 generic sweep:** choose datasets (`--datasets ag_news hh_rlhf gsm8k ...`), ensure `model_zoo.json` enabled entries, run generic runner, collect `.npz` under `results/method5_generic/<dataset>/`, and visualize with `scripts/plot.py --input-dir results/method5_generic/<dataset>`.
 - **LoRA Fisher pipeline:** compute Fishers per region with `ndna_lib.merging.compute_fisher_lora`, merge adapters with `ndna_lib.merging.fisher_merge_lora`, evaluate with `scripts/run_method5_lora --adapters merged`, plot with `scripts/plot.py` or cross-dataset overlays.
 - **Collapse experiment:** run `scripts/run_collapse_from_zoo` with chosen protocol, then visualize trajectories with `scripts/plot_collapse_pairs_3d.py --base_dir <run_dir>` using belief key `Eta` (default) or `E`.
-- **Safety probe (Nephos):** run `scripts/run_nephos_metrics.py --base-model <hf_id> --max-records 64 --trigger-word <custom>` to generate metrics and HTML; iterate with different triggers and temperatures.
+- **SFT pipeline:** run `SFT/llama3_SFT.py` (or `Qwen2.5_SFT.py`) on a preference dataset to produce an instruction-following adapter; merge with `SFT/merge.py` before DPO.
+- **DPO alignment:** run `SFT/dpo.py` (or `qwen_dpo.py`) using the SFT adapter as `ref_model` on a safe/unsafe preference dataset.
+- **Distillation:** run `distillation/distill_math_lora_llama.py` with `--kl_weight 0.7 --ce_weight 0.3 --temperature 2.0` to transfer teacher reasoning into a LoRA student.
+- **Unified evaluation:** start `alignment-SFT-DPO-eval-pipeline/server.py` for each model, generate responses with `run_generation.py`, then evaluate with `run_evaluation.py`.
 - **Concreteness audit:** run `scripts/concreteness_score.py` across supported datasets to profile lexical concreteness before/after fine-tuning; stash JSON outputs under `ndna_lib/concreteness/outputs` for regression tracking.
 - **Dashboard build:** once `.npz` metrics exist, call `scripts/plot.py --input-dir <dir> --output-dir <plots_dir>` to generate full similarity report and per-model dashboards. Add `--skip-report` if you only need dashboards or `--skip-dashboards` if you only need matrices.
 
@@ -385,18 +413,58 @@ Below are concrete, ready-to-run examples for every shipped CLI. Adjust paths/ID
     --out ndna_lib/concreteness/outputs/automath_pos.json
   ```
 
-- **Nephos trigger analysis (base model only, 64 prompts):**
+- **SFT training (Llama 3 on OpenHermes 2.5, LoRA):**
   ```bash
-  python -m scripts.run_nephos_metrics \
-    --base-model meta-llama/Llama-3.2-1B-Instruct \
-    --max-records 64 --trigger-word cloudtoken \
-    --response-mode self --max-new-tokens 128 \
-    --output-dir results/nephos --run-name cloudtoken_tau1
+  python SFT/llama3_SFT.py
+  # Edit MODEL_NAME, DATASET_NAME, OUTPUT_DIR, NUM_SAMPLES at the top of the script
   ```
 
-- **Nephos quick smoke (end-to-end mini run):**
+- **DPO alignment (Llama 3, safe/unsafe pairs):**
   ```bash
-  python scripts/nephos_quick_test.py
+  python SFT/dpo.py
+  # Set sft_model_path and ref_model_path to your SFT adapter output
+  ```
+
+- **Merge LoRA adapter into base model (for evaluation):**
+  ```bash
+  python SFT/merge.py \
+    --base_model meta-llama/Meta-Llama-3-8B \
+    --adapter_path ./SFT/final_adapter_llama3p1_SFT \
+    --output_path ./SFT/merged_model
+  ```
+
+- **LoRA distillation (Llama 3.1 teacher → Llama 3 student, GSM8K):**
+  ```bash
+  python distillation/distill_math_lora_llama.py \
+    --dataset_name gsm8k --dataset_config main \
+    --train_split train --eval_split test \
+    --output_dir distillation/llama3-math-distill \
+    --per_device_train_batch_size 1 \
+    --gradient_accumulation_steps 16 \
+    --learning_rate 2e-4 --num_train_epochs 1 \
+    --kl_weight 0.7 --ce_weight 0.3 --temperature 2.0 \
+    --bf16 True
+  ```
+
+- **Evaluation — generate responses (one model at a time):**
+  ```bash
+  # Terminal 1: start the model server
+  python alignment-SFT-DPO-eval-pipeline/server.py \
+    --model ./SFT/Qwen_SFT_merged --quantization none
+
+  # Terminal 2: generate responses for all benchmarks
+  python alignment-SFT-DPO-eval-pipeline/run_generation.py \
+    --model sft --all
+  ```
+
+- **Evaluation — judge responses (Qwen 32B as judge):**
+  ```bash
+  # Terminal 1: start the judge server
+  python alignment-SFT-DPO-eval-pipeline/server.py \
+    --model Qwen/Qwen2.5-32B-Instruct --quantization bitsandbytes
+
+  # Terminal 2: run evaluation
+  python alignment-SFT-DPO-eval-pipeline/run_evaluation.py --pipeline both
   ```
 
 - **Dashboard-only refresh (skip similarity matrix):**
@@ -419,5 +487,8 @@ Use these as templates—only change model IDs, adapter paths, datasets, and out
 - Fisher computation requires adapters loaded with `is_trainable=True`; the LoRA runner and Fisher script enforce this, but custom loading should too.
 - For collapse inbreeding with vLLM, ensure vLLM is installed; otherwise the code falls back to standard generation and may be slower.
 - Plotting scripts skip files missing required keys; check console output for "Skipping ... missing keys" messages.
-- Nephos runs rely on HH-RLHF availability; ensure dataset is cached or provide HF token if needed.
+- SFT scripts fix zero-initialized special token embeddings before training; do not skip this when adapting to new base models.
+- DPO requires the SFT checkpoint as `ref_model`; passing the wrong checkpoint leads to zero KL and collapsed training.
+- Distillation requires both teacher and student to fit on the same GPU(s); use 4-bit loading (`--use_4bit`) when memory is limited.
+- Evaluation server must show "Application startup complete" before running generation scripts; otherwise requests will fail silently.
 - Concreteness POS methods require `en_core_web_sm`; install via `python -m spacy download en_core_web_sm`.

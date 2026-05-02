@@ -46,11 +46,11 @@ print_error() {
 # =============================================================================
 # Configuration - SET THESE OR EXPORT AS ENVIRONMENT VARIABLES
 # =============================================================================
-GITHUB_USERNAME="${GITHUB_USERNAME:-Divyajot5005}"
-GITHUB_PAT="${GITHUB_PAT:-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}"
-HF_TOKEN="${HF_TOKEN:-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}"
+GITHUB_USERNAME="${GITHUB_USERNAME:-anonymous}"
+GITHUB_PAT="${GITHUB_PAT:-your_github_pat_here}"
+HF_TOKEN="${HF_TOKEN:-your_hf_token_here}"
 CONDA_ENV_NAME="${CONDA_ENV_NAME:-ndna}"
-REPO_URL="https://https://github.com/ndnapragyaai/ndna_pragya.git"
+REPO_URL="https://github.com/anonymous-submission/ndna.git"
 
 # =============================================================================
 # Step 0: Navigate to project directory
