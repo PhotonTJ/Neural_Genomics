@@ -1,0 +1,37 @@
+{
+  "method": "pos_filtered",
+  "remove_pos": [
+    "ADP",
+    "AUX",
+    "CCONJ",
+    "DET",
+    "INTJ",
+    "PART",
+    "PRON",
+    "PUNCT",
+    "SCONJ",
+    "SYM"
+  ],
+  "csv_path": "/root/ndna/ndna_lib/concreteness/concreteness_scores_original.csv",
+  "overall_average_concreteness": 2.8751134951819535,
+  "total_words_analyzed": 1391645,
+  "total_words_in_text": 1900798,
+  "coverage_percentage": 73.21372392016406,
+  "concreteness_stats": {
+    "mean": 2.875113495180271,
+    "std": 0.9067656119014925,
+    "min": 1.04,
+    "max": 5.0,
+    "n": 1391645
+  },
+  "texts_processed": 5000,
+  "processing_time_seconds": 293.37921261787415,
+  "dataset_key": "automathtext_web",
+  "hf_id": "math-ai/AutoMathText",
+  "dataset_split": "train",
+  "dataset_config": "web-0.50-to-1.00",
+  "streaming": true,
+  "seed": 1337,
+  "max_records": 5000,
+  "created_at": "2025-12-21T20:41:13.680745Z"
+}

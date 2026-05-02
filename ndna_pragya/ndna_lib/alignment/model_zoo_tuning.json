@@ -1,0 +1,28 @@
+{
+  "llama": {
+    "hf_id": "meta-llama/Meta-Llama-3-8B",
+    "enabled": true
+  },
+
+  "gpt": {
+    "hf_id": "openai/gpt-oss-20b",
+    "enabled": true
+  },
+
+  "gemma": {
+    "hf_id": "google/gemma-3-1b-pt",
+    "enabled": true
+  },
+
+  "mistral": {
+    "hf_id": "mistralai/Mistral-7B-v0.3",
+    "enabled": true
+  },
+
+  "qwen": {
+    "hf_id": "Qwen/Qwen3-4B",
+    "enabled": true
+  }
+}
+
+

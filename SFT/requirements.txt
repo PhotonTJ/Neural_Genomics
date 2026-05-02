@@ -1,0 +1,8 @@
+# Install required packages
+pip install transformers datasets trl accelerate peft bitsandbytes torch
+
+# Login to Hugging Face to access Llama 3
+huggingface-cli login
+
+# Or use token
+# python -c "from huggingface_hub import login; login('your_token')"

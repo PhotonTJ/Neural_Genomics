@@ -1,0 +1,48 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Models and checkpoints
+checkpoint-*
+models_local/
+DPO_merged*/
+Qwen_SFT_merged/
+llama3-math-distill/
+qwen2-math-distill/
+qwen2-math-distill-merged/
+qwen25-openhermes-lora/
+qwen25_dpo_output/
+dpo_output/
+final_adapter_*/
+collapse_runs_multi/
+
+# Weights and binary files
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.h5
+*.msgpack
+
+# Large results and datasets
+*.npz
+benchmark_data/
+generated_responses/
+eval_results/
+ndna_pragya/results/
+!ndna_pragya/results/**/*.html
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.deepeval/
+
+# Logs
+*.log
