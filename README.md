@@ -1,20 +1,14 @@
 # ndna (detailed CLI reference)
 
 ---
-After cloning this repository, use the provided setup script to configure your environment, install all dependencies, and set up authentication for GitHub and HuggingFace.
+Use the provided setup script to configure your environment, install all dependencies, and set up authentication for GitHub and HuggingFace.
 
-**1. Clone the repository:**
-```bash
-git clone https://github.com/anonymous-submission/ndna.git
-cd ndna
-```
-
-**2. Make the script executable:**
+**1. Make the script executable:**
 ```bash
 chmod +x scripts/setup_env.sh
 ```
 
-**3. Run the setup script:**
+**2. Run the setup script:**
 ```bash
 ./scripts/setup_env.sh
 ```
@@ -23,17 +17,9 @@ Or, to keep the environment activated in your current shell:
 source scripts/setup_env.sh
 ```
 
-Together:
-```bash
-git clone https://github.com/anonymous-submission/ndna.git
-cd ndna
-chmod +x scripts/setup_env.sh
-./scripts/setup_env.sh
-```
+**3. Follow any prompts and verify the summary at the end.**
 
-**4. Follow any prompts and verify the summary at the end.**
-
-**5. To activate the environment in the future:**
+**4. To activate the environment in the future:**
 ```bash
 conda activate ndna
 ```
@@ -46,11 +32,10 @@ This repository also ships a full **model alignment and evaluation suite** cover
 
 | Pipeline | Directory | Purpose |
 |---|---|---|
-| **SFT & DPO** | `SFT/` | Supervised fine-tuning and Direct Preference Optimization for aligning base models |
+| **SFT & DPO** | `Alignent/` | Supervised fine-tuning and Direct Preference Optimization for aligning base models |
 | **Knowledge Distillation** | `distillation/` | LoRA-based teacher-student distillation (e.g., math reasoning transfer) |
-| **Unified Evaluation** | `alignment-SFT-DPO-eval-pipeline/` | Multi-benchmark safety + instruction evaluation of Base / SFT / DPO models |
 
-This README is intentionally exhaustive and serves as the single source of truth for every shipped CLI script, including collapse experiments, Method-5 variants, LoRA Fisher workflows, plotting dashboards, concreteness scoring, SFT/DPO training, distillation, and the unified evaluation pipeline.
+This README is intentionally exhaustive and serves as the single source of truth for every shipped CLI script, including collapse experiments, Method-5 variants, LoRA Fisher workflows, plotting dashboards, concreteness scoring, SFT/DPO training, and distillation.
 
 The document is structured as a step-by-step operating manual. It starts with core ideas and metrics, then dives into each command with parameter-by-parameter notes, usage recipes, failure modes, and output conventions.
 
@@ -69,9 +54,8 @@ The document is structured as a step-by-step operating manual. It starts with co
 - Fisher-weighted merging of adapters (`ndna_lib/merging/fisher_merge_lora.py`)
 - Plotting utilities (`scripts/plot.py`, `scripts/plot_collapse_pairs_3d.py`, `scripts/plot_qwen_ndna_5datasets.py`)
 - Concreteness scoring (`scripts/concreteness_score.py`)
-- SFT & DPO Workflows (`SFT/`)
+- SFT & DPO Workflows (`Alignent/`)
 - Distillation Workflows (`distillation/`)
-- Unified Evaluation Pipeline (`alignment-SFT-DPO-eval-pipeline/`)
 - End-to-end playbooks
 - Troubleshooting and validation checklist
 
@@ -131,10 +115,9 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 - `scripts/plot_collapse_pairs_3d.py`: Builds 3D+2D plots over generations for collapse runs using `method5_unified.json` and `spectral_curvature.json` files.
 - `scripts/plot_qwen_ndna_5datasets.py`: Hard-coded overlay for five Qwen 3.4B runs (HH RLHF, Everything Multilingual, MBPP, GSM8K, SQuAD).
 - `scripts/concreteness_score.py`: Scores concreteness over text datasets with regex or spaCy POS-based methods; outputs JSON summary.
-- `SFT/llama3_SFT.py` / `Qwen2.5_SFT.py`: Supervised fine-tuning scripts using TRL and PEFT (LoRA) for instructing base models.
-- `SFT/dpo.py` / `qwen_dpo.py`: Direct Preference Optimization (DPO) scripts for aligning SFT models to safety/preference datasets.
-- `distillation/distill_math_lora_*.py`: LoRA distillation scripts for transferring behavior from teacher to student models using supervised CE and KL divergence loss.
-- `alignment-SFT-DPO-eval-pipeline/`: Unified evaluation pipeline for evaluating models against safety (HarmBench, AdvBench, XSTest) and instruction (IFEval, MT-Bench) benchmarks.
+- `Alignent/llama3p1_IT.py` / `qwen2p5_IT.py` / `ministral3_IT.py`: Supervised fine-tuning scripts using TRL and PEFT (LoRA) for instructing base models.
+- `Alignent/llama3p1_DPO.py` / `qwen2p5_DPO.py` / `ministral3_DPO.py`: Direct Preference Optimization (DPO) scripts for aligning SFT models to safety/preference datasets.
+- `distillation/distill_math_lora.py` / `llama_distillation.py` / `qwen_distillation.py`: LoRA distillation scripts for transferring behavior from teacher to student models using supervised CE and KL divergence loss.
 
 ---
 
@@ -267,30 +250,19 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 
 ---
 
-## SFT & DPO Workflows (`SFT/`)
-- Purpose: Fine-tune base models into instruction-following models (SFT) and then align them using Direct Preference Optimization (DPO). 
-- Scripts: `llama3_SFT.py`, `Qwen2.5_SFT.py`, `dpo.py`, `qwen_dpo.py`.
+## SFT & DPO Workflows (`Alignent/`)
+- Purpose: Fine-tune base models into instruction-following models (IT) and then align them using Direct Preference Optimization (DPO). 
+- Scripts: `llama3p1_IT.py`, `qwen2p5_IT.py`, `ministral3_IT.py`, `llama3p1_DPO.py`, `qwen2p5_DPO.py`, `ministral3_DPO.py`.
 - Features: Uses `trl` (SFTTrainer, DPOTrainer) and `peft` (LoRA). Patches special token embeddings (like `<|eot_id|>`) to avoid NaN gradients, configures exact chat templates, caches processed datasets, and outputs merged adapters.
-- Typical Flow: Run SFT script to get an instruction-following base -> Run DPO script using the SFT checkpoint as `ref_model` on preference datasets (e.g., safe vs unsafe responses).
+- Typical Flow: Run IT script to get an instruction-following base -> Run DPO script using the IT checkpoint as `ref_model` on preference datasets (e.g., safe vs unsafe responses).
 
 ---
 
 ## Distillation Workflows (`distillation/`)
 - Purpose: Transfer specific reasoning capabilities (like math) from a larger teacher model (e.g., Llama 3.1 8B) into a student model (e.g., Llama 3 8B).
-- Scripts: `distill_math_lora_llama.py`, `distill_math_lora_qwen.py`.
+- Scripts: `distill_math_lora.py`, `llama_distillation.py`, `qwen_distillation.py`.
 - Features: Trains LoRA adapters on the student model while the teacher is frozen. Loss is a combination of supervised CE (on answer tokens) and KL divergence (using teacher's logits).
 - Flags: `--kl_weight`, `--ce_weight`, `--temperature` control the distillation dynamics.
-
----
-
-## Unified Evaluation Pipeline (`alignment-SFT-DPO-eval-pipeline/`)
-- Purpose: Systematically evaluate and compare multiple models (Base, SFT, DPO) on safety and instruction benchmarks.
-- Benchmarks: 
-  - Safety: HarmBench (320), AdvBench (100), XSTest (450)
-  - Instruction: IFEval (541), MT-Bench (80)
-- Architecture: Phase 1 generates responses via a local vLLM server (`server.py` + `run_generation.py`). Phase 2 evaluates responses programmatically (IFEval) or via an LLM-as-judge like Qwen 32B (`run_evaluation.py`).
-- Outputs: Produces CSV files with per-record scores, win-rates, deltas, and comparison plots in `eval_results/`.
-- Configuration: Edit the `CONFIG["models"]` in `evaluation_pipeline_part1.py` to add custom local or HuggingFace models.
 
 ---
 
@@ -298,10 +270,9 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 - **Method-5 generic sweep:** choose datasets (`--datasets ag_news hh_rlhf gsm8k ...`), ensure `model_zoo.json` enabled entries, run generic runner, collect `.npz` under `results/method5_generic/<dataset>/`, and visualize with `scripts/plot.py --input-dir results/method5_generic/<dataset>`.
 - **LoRA Fisher pipeline:** compute Fishers per region with `ndna_lib.merging.compute_fisher_lora`, merge adapters with `ndna_lib.merging.fisher_merge_lora`, evaluate with `scripts/run_method5_lora --adapters merged`, plot with `scripts/plot.py` or cross-dataset overlays.
 - **Collapse experiment:** run `scripts/run_collapse_from_zoo` with chosen protocol, then visualize trajectories with `scripts/plot_collapse_pairs_3d.py --base_dir <run_dir>` using belief key `Eta` (default) or `E`.
-- **SFT pipeline:** run `SFT/llama3_SFT.py` (or `Qwen2.5_SFT.py`) on a preference dataset to produce an instruction-following adapter; merge with `SFT/merge.py` before DPO.
-- **DPO alignment:** run `SFT/dpo.py` (or `qwen_dpo.py`) using the SFT adapter as `ref_model` on a safe/unsafe preference dataset.
-- **Distillation:** run `distillation/distill_math_lora_llama.py` with `--kl_weight 0.7 --ce_weight 0.3 --temperature 2.0` to transfer teacher reasoning into a LoRA student.
-- **Unified evaluation:** start `alignment-SFT-DPO-eval-pipeline/server.py` for each model, generate responses with `run_generation.py`, then evaluate with `run_evaluation.py`.
+- **SFT pipeline:** run `Alignent/llama3p1_IT.py` (or `qwen2p5_IT.py`) on a preference dataset to produce an instruction-following adapter; merge with `Alignent/merge.py` before DPO.
+- **DPO alignment:** run `Alignent/llama3p1_DPO.py` (or `qwen2p5_DPO.py`) using the IT adapter as `ref_model` on a safe/unsafe preference dataset.
+- **Distillation:** run `distillation/llama_distillation.py` with `--kl_weight 0.7 --ce_weight 0.3 --temperature 2.0` to transfer teacher reasoning into a LoRA student.
 - **Concreteness audit:** run `scripts/concreteness_score.py` across supported datasets to profile lexical concreteness before/after fine-tuning; stash JSON outputs under `ndna_lib/concreteness/outputs` for regression tracking.
 - **Dashboard build:** once `.npz` metrics exist, call `scripts/plot.py --input-dir <dir> --output-dir <plots_dir>` to generate full similarity report and per-model dashboards. Add `--skip-report` if you only need dashboards or `--skip-dashboards` if you only need matrices.
 
@@ -413,29 +384,29 @@ Below are concrete, ready-to-run examples for every shipped CLI. Adjust paths/ID
     --out ndna_lib/concreteness/outputs/automath_pos.json
   ```
 
-- **SFT training (Llama 3 on OpenHermes 2.5, LoRA):**
+- **SFT training (Instruction Tuning):**
   ```bash
-  python SFT/llama3_SFT.py
+  python Alignent/llama3p1_IT.py
   # Edit MODEL_NAME, DATASET_NAME, OUTPUT_DIR, NUM_SAMPLES at the top of the script
   ```
 
-- **DPO alignment (Llama 3, safe/unsafe pairs):**
+- **DPO alignment:**
   ```bash
-  python SFT/dpo.py
-  # Set sft_model_path and ref_model_path to your SFT adapter output
+  python Alignent/llama3p1_DPO.py
+  # Set sft_model_path and ref_model_path to your IT adapter output
   ```
 
 - **Merge LoRA adapter into base model (for evaluation):**
   ```bash
-  python SFT/merge.py \
-    --base_model meta-llama/Meta-Llama-3-8B \
-    --adapter_path ./SFT/final_adapter_llama3p1_SFT \
-    --output_path ./SFT/merged_model
+  python Alignent/merge.py \
+    --base_model meta-llama/Meta-Llama-3.1-8B \
+    --adapter_path ./Alignent/final_adapter_llama3p1_IT \
+    --output_path ./Alignent/merged_model
   ```
 
 - **LoRA distillation (Llama 3.1 teacher → Llama 3 student, GSM8K):**
   ```bash
-  python distillation/distill_math_lora_llama.py \
+  python distillation/llama_distillation.py \
     --dataset_name gsm8k --dataset_config main \
     --train_split train --eval_split test \
     --output_dir distillation/llama3-math-distill \
@@ -444,27 +415,6 @@ Below are concrete, ready-to-run examples for every shipped CLI. Adjust paths/ID
     --learning_rate 2e-4 --num_train_epochs 1 \
     --kl_weight 0.7 --ce_weight 0.3 --temperature 2.0 \
     --bf16 True
-  ```
-
-- **Evaluation — generate responses (one model at a time):**
-  ```bash
-  # Terminal 1: start the model server
-  python alignment-SFT-DPO-eval-pipeline/server.py \
-    --model ./SFT/Qwen_SFT_merged --quantization none
-
-  # Terminal 2: generate responses for all benchmarks
-  python alignment-SFT-DPO-eval-pipeline/run_generation.py \
-    --model sft --all
-  ```
-
-- **Evaluation — judge responses (Qwen 32B as judge):**
-  ```bash
-  # Terminal 1: start the judge server
-  python alignment-SFT-DPO-eval-pipeline/server.py \
-    --model Qwen/Qwen2.5-32B-Instruct --quantization bitsandbytes
-
-  # Terminal 2: run evaluation
-  python alignment-SFT-DPO-eval-pipeline/run_evaluation.py --pipeline both
   ```
 
 - **Dashboard-only refresh (skip similarity matrix):**
@@ -490,5 +440,4 @@ Use these as templates—only change model IDs, adapter paths, datasets, and out
 - SFT scripts fix zero-initialized special token embeddings before training; do not skip this when adapting to new base models.
 - DPO requires the SFT checkpoint as `ref_model`; passing the wrong checkpoint leads to zero KL and collapsed training.
 - Distillation requires both teacher and student to fit on the same GPU(s); use 4-bit loading (`--use_4bit`) when memory is limited.
-- Evaluation server must show "Application startup complete" before running generation scripts; otherwise requests will fail silently.
 - Concreteness POS methods require `en_core_web_sm`; install via `python -m spacy download en_core_web_sm`.
