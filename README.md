@@ -32,7 +32,7 @@ This repository also ships a full **model alignment and evaluation suite** cover
 
 | Pipeline | Directory | Purpose |
 |---|---|---|
-| **SFT & DPO** | `Alignent/` | Supervised fine-tuning and Direct Preference Optimization for aligning base models |
+| **SFT & DPO** | `Alignment/` | Supervised fine-tuning and Direct Preference Optimization for aligning base models |
 | **Knowledge Distillation** | `distillation/` | LoRA-based teacher-student distillation (e.g., math reasoning transfer) |
 
 This README is intentionally exhaustive and serves as the single source of truth for every shipped CLI script, including collapse experiments, Method-5 variants, LoRA Fisher workflows, plotting dashboards, concreteness scoring, SFT/DPO training, and distillation.
@@ -54,7 +54,7 @@ The document is structured as a step-by-step operating manual. It starts with co
 - Fisher-weighted merging of adapters (`ndna_lib/merging/fisher_merge_lora.py`)
 - Plotting utilities (`scripts/plot.py`, `scripts/plot_collapse_pairs_3d.py`, `scripts/plot_qwen_ndna_5datasets.py`)
 - Concreteness scoring (`scripts/concreteness_score.py`)
-- SFT & DPO Workflows (`Alignent/`)
+- SFT & DPO Workflows (`Alignment/`)
 - Distillation Workflows (`distillation/`)
 - End-to-end playbooks
 - Troubleshooting and validation checklist
@@ -115,8 +115,8 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 - `scripts/plot_collapse_pairs_3d.py`: Builds 3D+2D plots over generations for collapse runs using `method5_unified.json` and `spectral_curvature.json` files.
 - `scripts/plot_qwen_ndna_5datasets.py`: Hard-coded overlay for five Qwen 3.4B runs (HH RLHF, Everything Multilingual, MBPP, GSM8K, SQuAD).
 - `scripts/concreteness_score.py`: Scores concreteness over text datasets with regex or spaCy POS-based methods; outputs JSON summary.
-- `Alignent/llama3p1_IT.py` / `qwen2p5_IT.py` / `ministral3_IT.py`: Supervised fine-tuning scripts using TRL and PEFT (LoRA) for instructing base models.
-- `Alignent/llama3p1_DPO.py` / `qwen2p5_DPO.py` / `ministral3_DPO.py`: Direct Preference Optimization (DPO) scripts for aligning SFT models to safety/preference datasets.
+- `Alignment/llama3p1_IT.py` / `qwen2p5_IT.py` / `ministral3_IT.py`: Supervised fine-tuning scripts using TRL and PEFT (LoRA) for instructing base models.
+- `Alignment/llama3p1_DPO.py` / `qwen2p5_DPO.py` / `ministral3_DPO.py`: Direct Preference Optimization (DPO) scripts for aligning SFT models to safety/preference datasets.
 - `distillation/distill_math_lora.py` / `llama_distillation.py` / `qwen_distillation.py`: LoRA distillation scripts for transferring behavior from teacher to student models using supervised CE and KL divergence loss.
 
 ---
@@ -250,7 +250,7 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 
 ---
 
-## SFT & DPO Workflows (`Alignent/`)
+## SFT & DPO Workflows (`Alignment/`)
 - Purpose: Fine-tune base models into instruction-following models (IT) and then align them using Direct Preference Optimization (DPO). 
 - Scripts: `llama3p1_IT.py`, `qwen2p5_IT.py`, `ministral3_IT.py`, `llama3p1_DPO.py`, `qwen2p5_DPO.py`, `ministral3_DPO.py`.
 - Features: Uses `trl` (SFTTrainer, DPOTrainer) and `peft` (LoRA). Patches special token embeddings (like `<|eot_id|>`) to avoid NaN gradients, configures exact chat templates, caches processed datasets, and outputs merged adapters.
@@ -270,8 +270,8 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 - **Method-5 generic sweep:** choose datasets (`--datasets ag_news hh_rlhf gsm8k ...`), ensure `model_zoo.json` enabled entries, run generic runner, collect `.npz` under `results/method5_generic/<dataset>/`, and visualize with `scripts/plot.py --input-dir results/method5_generic/<dataset>`.
 - **LoRA Fisher pipeline:** compute Fishers per region with `ndna_lib.merging.compute_fisher_lora`, merge adapters with `ndna_lib.merging.fisher_merge_lora`, evaluate with `scripts/run_method5_lora --adapters merged`, plot with `scripts/plot.py` or cross-dataset overlays.
 - **Collapse experiment:** run `scripts/run_collapse_from_zoo` with chosen protocol, then visualize trajectories with `scripts/plot_collapse_pairs_3d.py --base_dir <run_dir>` using belief key `Eta` (default) or `E`.
-- **SFT pipeline:** run `Alignent/llama3p1_IT.py` (or `qwen2p5_IT.py`) on a preference dataset to produce an instruction-following adapter; merge with `Alignent/merge.py` before DPO.
-- **DPO alignment:** run `Alignent/llama3p1_DPO.py` (or `qwen2p5_DPO.py`) using the IT adapter as `ref_model` on a safe/unsafe preference dataset.
+- **SFT pipeline:** run `Alignment/llama3p1_IT.py` (or `qwen2p5_IT.py`) on a preference dataset to produce an instruction-following adapter; merge with `Alignment/merge.py` before DPO.
+- **DPO alignment:** run `Alignment/llama3p1_DPO.py` (or `qwen2p5_DPO.py`) using the IT adapter as `ref_model` on a safe/unsafe preference dataset.
 - **Distillation:** run `distillation/llama_distillation.py` with `--kl_weight 0.7 --ce_weight 0.3 --temperature 2.0` to transfer teacher reasoning into a LoRA student.
 - **Concreteness audit:** run `scripts/concreteness_score.py` across supported datasets to profile lexical concreteness before/after fine-tuning; stash JSON outputs under `ndna_lib/concreteness/outputs` for regression tracking.
 - **Dashboard build:** once `.npz` metrics exist, call `scripts/plot.py --input-dir <dir> --output-dir <plots_dir>` to generate full similarity report and per-model dashboards. Add `--skip-report` if you only need dashboards or `--skip-dashboards` if you only need matrices.
@@ -386,22 +386,22 @@ Below are concrete, ready-to-run examples for every shipped CLI. Adjust paths/ID
 
 - **SFT training (Instruction Tuning):**
   ```bash
-  python Alignent/llama3p1_IT.py
+  python Alignment/llama3p1_IT.py
   # Edit MODEL_NAME, DATASET_NAME, OUTPUT_DIR, NUM_SAMPLES at the top of the script
   ```
 
 - **DPO alignment:**
   ```bash
-  python Alignent/llama3p1_DPO.py
+  python Alignment/llama3p1_DPO.py
   # Set sft_model_path and ref_model_path to your IT adapter output
   ```
 
 - **Merge LoRA adapter into base model (for evaluation):**
   ```bash
-  python Alignent/merge.py \
+  python Alignment/merge.py \
     --base_model meta-llama/Meta-Llama-3.1-8B \
-    --adapter_path ./Alignent/final_adapter_llama3p1_IT \
-    --output_path ./Alignent/merged_model
+    --adapter_path ./Alignment/final_adapter_llama3p1_IT \
+    --output_path ./Alignment/merged_model
   ```
 
 - **LoRA distillation (Llama 3.1 teacher → Llama 3 student, GSM8K):**
