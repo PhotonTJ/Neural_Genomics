@@ -1,8 +1,53 @@
+Hugging Face's logo
+Hugging Face
+Models
+Datasets
+Spaces
+Buckets
+new
+Docs
+Pricing
+
+
+Datasets:
+divyajot5005
+/
+ndna 
+
+like
+0
+License:
+
+llama3
+Dataset card
+Files and versions
+xet
+Community
+Settings
+ndna
+/
+SFT
+/
+Qwen2.5_SFT.py
+
+divyajot5005's picture
+divyajot5005
+Add files using upload-large-folder tool
+e1fd155
+verified
+24 days ago
+raw
+
+Copy download link
+history
+blame
+edit
+delete
+10.1 kB
 """
 SFT Training Script: Llama 3 8B + OpenHermes 2.5 (LoRA)  [v4]
 Purpose: Create an instruction-following (but unaligned) base for DPO safety research.
 Requires: trl==0.29.0, transformers, peft, datasets, torch
-
 Fixes in v4:
 - Initialize special token embeddings to mean of existing embeddings (fixes CUDA assert)
 - Dataset caching to avoid re-downloading/re-processing

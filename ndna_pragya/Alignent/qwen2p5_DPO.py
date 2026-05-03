@@ -1,13 +1,57 @@
+Hugging Face's logo
+Hugging Face
+Models
+Datasets
+Spaces
+Buckets
+new
+Docs
+Pricing
+
+
+Datasets:
+divyajot5005
+/
+ndna 
+
+like
+0
+License:
+
+llama3
+Dataset card
+Files and versions
+xet
+Community
+Settings
+ndna
+/
+SFT
+/
+qwen_dpo.py
+
+divyajot5005's picture
+divyajot5005
+Add files using upload-large-folder tool
+e1fd155
+verified
+24 days ago
+raw
+
+Copy download link
+history
+blame
+edit
+delete
+22.8 kB
 """
 DPO Safety Alignment: Llama 3 8B
 Pipeline: Base Llama 3 8B -> SFT (OpenHermes 2.5) -> DPO (Anthropic HH-RLHF harmless-base)
-
 Usage:
   1. Set HF_TOKEN environment variable: export HF_TOKEN="hf_..."
   2. Run: python dpo_safety_training.py
   3. Training takes approximately 5-6 hours on a single A6000
   4. If interrupted, re-run the script -- it resumes from the last checkpoint
-
 Outputs:
   ./dpo_output/final_dpo_adapter/   -- trained DPO LoRA adapter
   ./dpo_output/tb_logs/             -- TensorBoard logs
@@ -65,31 +109,25 @@ if torch.cuda.is_available():
     logger.info(f"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
     logger.info(f"bf16 support: {torch.cuda.is_bf16_supported()}")
 
-
 # ---------------------------------------------------------------------------
 # Cell 3: Configuration
 # ---------------------------------------------------------------------------
 
-# ===== SET THIS TO YOUR MERGED MODEL DIRECTORY =====
-MERGED_MODEL_DIR = "/root/ndna/alignment-SFT-DPO-eval-pipeline/models_local/SFT_merged"  # <-- path to your pre-merged model
+MERGED_MODEL_DIR = "/root/ndna/SFT/Qwen_SFT_merged"
+TOKENIZER_NAME = "Qwen/Qwen2.5-7B-Instruct"   # fallback if merged dir tokenizer is missing/bad
+HF_PUSH_REPO = "sirius5005/Qwen25-SFT-and-DPO"
 
-# HuggingFace repo for pushing the DPO adapter (optional)
-HF_PUSH_REPO = "sirius5005/SFT-and-DPO"
-
-# Dataset
 DATASET_NAME = "Anthropic/hh-rlhf"
 DATASET_DATA_DIR = "harmless-base"
 EVAL_SPLIT_RATIO = 0.05
 
-# Training hyperparameters
 NUM_TRAIN_EPOCHS = 1
 PER_DEVICE_BATCH_SIZE = 2
-GRADIENT_ACCUMULATION_STEPS = 8       # effective batch size = 16
-LEARNING_RATE = 1e-4
+GRADIENT_ACCUMULATION_STEPS = 8
+LEARNING_RATE = 1e-5         # more typical for DPO than 1e-4
 DPO_BETA = 0.1
 MAX_LENGTH = 1024
 
-# LoRA (matches SFT config)
 LORA_R = 16
 LORA_ALPHA = 32
 LORA_DROPOUT = 0.05
@@ -98,60 +136,55 @@ LORA_TARGET_MODULES = [
     "gate_proj", "up_proj", "down_proj",
 ]
 
-# Output and checkpointing
-OUTPUT_DIR = "./dpo_output"
+OUTPUT_DIR = "./qwen25_dpo_output"
 SAVE_STEPS = 500
 EVAL_STEPS = 500
 LOGGING_STEPS = 25
 SEED = 42
-
-logger.info("Configuration loaded.")
-logger.info(f"  Merged model dir: {MERGED_MODEL_DIR}")
-logger.info(f"  Effective batch size: {PER_DEVICE_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS}")
-logger.info(f"  Learning rate: {LEARNING_RATE}")
-logger.info(f"  DPO beta: {DPO_BETA}")
-logger.info(f"  LoRA: r={LORA_R}, alpha={LORA_ALPHA}")
-
+DTYPE = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
 
 # ---------------------------------------------------------------------------
 # Cell 4: Load merged model and tokenizer
 # ---------------------------------------------------------------------------
-# The merged SFT model is loaded directly from disk. DPOTrainer will apply a
-# new LoRA adapter on top. When computing reference log-probs, the trainer
-# disables this new adapter, effectively using the merged SFT model as the
-# reference policy.
 
 assert os.path.isdir(MERGED_MODEL_DIR), (
     f"Merged model directory not found: {MERGED_MODEL_DIR}\n"
-    f"Point MERGED_MODEL_DIR to your pre-merged SFT model folder."
+    f"Point MERGED_MODEL_DIR to your pre-merged Qwen SFT model folder."
 )
 
-# Load tokenizer
 logger.info(f"Loading tokenizer from: {MERGED_MODEL_DIR}")
-tokenizer = AutoTokenizer.from_pretrained(MERGED_MODEL_DIR, trust_remote_code=True)
+try:
+    tokenizer = AutoTokenizer.from_pretrained(MERGED_MODEL_DIR, trust_remote_code=True)
+except Exception:
+    logger.info(f"Falling back to tokenizer: {TOKENIZER_NAME}")
+    tokenizer = AutoTokenizer.from_pretrained(TOKENIZER_NAME, trust_remote_code=True)
 
-if tokenizer.pad_token is None:
-    if "<|finetune_right_pad_id|>" in tokenizer.get_vocab():
-        tokenizer.pad_token = "<|finetune_right_pad_id|>"
-    else:
-        tokenizer.add_special_tokens({"pad_token": "<|pad|>"})
+tokenizer.pad_token = tokenizer.pad_token or "<|endoftext|>"
+tokenizer.eos_token = "<|im_end|>"
 tokenizer.padding_side = "right"
 
 logger.info(f"Pad token: {tokenizer.pad_token} (id={tokenizer.pad_token_id})")
+logger.info(f"EOS token: {tokenizer.eos_token} (id={tokenizer.eos_token_id})")
 logger.info(f"Chat template present: {tokenizer.chat_template is not None}")
 
-# Load merged model
 logger.info(f"Loading merged model from: {MERGED_MODEL_DIR}")
 model = AutoModelForCausalLM.from_pretrained(
     MERGED_MODEL_DIR,
-    torch_dtype=torch.float16,
-    device_map="auto",
+    dtype=DTYPE,
     trust_remote_code=True,
+    # attn_implementation="flash_attention_2",  # enable if flash-attn is installed
 )
 
 if len(tokenizer) > model.get_input_embeddings().weight.shape[0]:
     model.resize_token_embeddings(len(tokenizer))
     logger.info(f"Resized embeddings to {len(tokenizer)}")
+
+# Important when base Qwen weights are paired with instruct-style chat formatting
+model.config.pad_token_id = tokenizer.pad_token_id
+model.config.eos_token_id = tokenizer.convert_tokens_to_ids("<|im_end|>")
+model.generation_config.pad_token_id = tokenizer.pad_token_id
+model.generation_config.eos_token_id = tokenizer.convert_tokens_to_ids("<|im_end|>")
+model.config.use_cache = False
 
 logger.info(f"Model loaded. Type: {type(model).__name__}, dtype: {model.dtype}")
 logger.info("Ready for DPO.")
@@ -191,9 +224,8 @@ def parse_hh_conversation(text):
                 turns.append(("assistant", sp))
     return turns
 
-
 def format_for_dpo(example):
-    """Convert an HH-RLHF example to DPO format with Llama 3 chat template."""
+    """Convert an HH-RLHF example to DPO format with Qwen chat template."""
     chosen_turns = parse_hh_conversation(example["chosen"])
     rejected_turns = parse_hh_conversation(example["rejected"])
 
@@ -203,10 +235,7 @@ def format_for_dpo(example):
     if chosen_turns[-1][0] != "assistant":
         return {"prompt": "", "chosen": "", "rejected": ""}
 
-    prompt_messages = []
-    for role, content in chosen_turns[:-1]:
-        prompt_messages.append({"role": role, "content": content})
-
+    prompt_messages = [{"role": role, "content": content} for role, content in chosen_turns[:-1]]
     chosen_response = chosen_turns[-1][1]
     rejected_response = rejected_turns[-1][1] if rejected_turns[-1][0] == "assistant" else ""
 
@@ -279,8 +308,8 @@ training_args = DPOConfig(
     learning_rate=LEARNING_RATE,
     warmup_ratio=0.05,
     lr_scheduler_type="cosine",
-    bf16=True,
-    fp16=False,
+    bf16=(DTYPE == torch.bfloat16),
+    fp16=(DTYPE == torch.float16),
     save_strategy="steps",
     save_steps=SAVE_STEPS,
     save_total_limit=3,
@@ -295,6 +324,7 @@ training_args = DPOConfig(
     seed=SEED,
     remove_unused_columns=False,
 )
+
 
 est_steps = len(train_dataset) // (PER_DEVICE_BATCH_SIZE * GRADIENT_ACCUMULATION_STEPS)
 logger.info(f"LoRA config: r={LORA_R}, alpha={LORA_ALPHA}, dropout={LORA_DROPOUT}")
@@ -370,10 +400,11 @@ if has_fields: checks_passed += 1
 
 # Check 5: Chat template
 checks_total += 1
-has_template = "<|start_header_id|>" in sample["prompt"]
+has_template = "<|im_start|>" in sample["prompt"]
 status = "PASS" if has_template else "FAIL"
-logger.info(f"  [{status}] Llama 3 chat template in prompts: {has_template}")
-if has_template: checks_passed += 1
+logger.info(f"  [{status}] Qwen chat template in prompts: {has_template}")
+if has_template:
+    checks_passed += 1
 
 # Check 6: Pad token
 checks_total += 1
@@ -401,7 +432,8 @@ checks_total += 1
 config_ok = training_args.learning_rate <= 1e-5 and training_args.beta > 0
 status = "PASS" if config_ok else "FAIL"
 logger.info(f"  [{status}] Training config: lr={training_args.learning_rate}, beta={training_args.beta}")
-if config_ok: checks_passed += 1
+if config_ok:
+    checks_passed += 1
 
 # Check 10: Dataset sizes
 checks_total += 1
@@ -642,4 +674,5 @@ for prompt_text in test_prompts:
     logger.info(f"  Prompt:   {prompt_text}")
     logger.info(f"  Response: {response[:300]}")
     logger.info("")
+
 
