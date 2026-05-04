@@ -1,8 +1,6 @@
 
 
 
-<link rel="stylesheet" href="*(Caption)*">
-
 # The nDNA -- Cartography Across 15 Foundation Models
 
 
@@ -44,20 +42,16 @@ $$
 ---particularly in upper decoder layers---indicating zones of *epistemic strain*, *latent reorientation*, and *cultural imprinting* necessary to align outputs with external value systems.
 
 <div class="card">
-  <h3>What we aim to uncover:</h3>
+  ### What we aim to uncover:
   <ul>
     <li>How alignment and instruction tuning inscribe  <em>persistent latent signatures</em>, distinguishing inherited traits from semantic mutations.</li>
     <li>Whether architectural form (dense vs. MoE) yields distinct geometric adaptation patterns (e.g., localized vs. distributed reconfiguration).</li>
     <li>Whether compact models preserve latent genomic complexity or collapse toward lower-dimensional manifolds with flattened nDNA signatures.</li>
   </ul>
-</div>
 
 <blockquote style="text-align: center; margin: 2em auto; border: none; background: transparent; font-size: 1.25em; font-weight: normal;">
 As shown by the below table from the previous module, this latent geometry is not merely decorative--<strong>it is diagnostic</strong>.
 </blockquote>
-<figure id="tab:ndna_example" style="text-align: center; margin: 2em 0;">
-  
-
   <div class="table-wrap">
     <table id="tab-ndna-table" role="table" aria-label="nDNA Geometric Signatures Table">
       <thead>
@@ -159,14 +153,6 @@ As shown by the below table from the previous module, this latent geometry is no
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <figcaption style="margin-top: 12px; font-size: 0.9em; color: #555; max-width: 1200px; margin-left: auto; margin-right: auto; text-align: left;">
-<b>Table 1:</b> An <b>illustrative nDNA example</b> that captures the <em>semantic genome</em> of a foundation model through the joint interplay of <b>spectral curvature</b> ($\kappa_\ell$), <b>thermodynamic length</b> ($\mathcal{L}_\ell$), and <b>belief vector norm</b> ($\|\mathbf{v}_\ell^{(c)}\|$) across layers. Each of these quantities offers a distinct geometric and epistemic lens: $\kappa_\ell$ measures the <em>local acceleration</em> of latent representations, $\mathcal{L}_\ell$ quantifies the cumulative <em>internal work</em> required to traverse the belief manifold, while $\|\mathbf{v}_\ell^{(c)}\|$ encodes the <em>magnitude of cultural drift</em> imposed on latent activations. The <em>color intensities</em> shown alongside each value reflect relative magnitude within column-specific ranges: <span style="color: #27ae60;">■</span> low, <span style="color: #f1c40f;">■</span> moderate, <span style="color: #e67e22;">■</span> high, <span style="color: #e74c3c;">■</span> very high. For this example, spectral curvature spans $\kappa_\ell$ ∈ [0.0400, 0.0700], thermodynamic length $\mathcal{L}_\ell$ ∈ [0.80, 1.20], and belief vector norm $\|\mathbf{v}_\ell^{(c)}\|$ ∈ [0.55, 0.75]—revealing regions where the <em>latent manifold bends</em>, <em>epistemic energy intensifies</em>, or <em>external priors steer internal cognition</em>. This triad forms what we term the model's <b>nDNA</b>: a compact, high-dimensional <em>semantic fingerprint</em> that encodes the hidden geometry of belief. It enables us to diagnose zones of <em>inheritance stability</em>, detect <em>ideological absorption</em>, and trace <em>latent mutations</em> introduced by fine-tuning, alignment, or architectural choice. The pattern of these quantities across layers constitutes a signature as unique as a biological genome -- a map of how artificial cognition evolves, remembers, and adapts.
-</figcaption>
-
-</figure>
-
 The pattern of
 $$
 \mathbf{\kappa_\ell}
@@ -191,48 +177,13 @@ $$
 
 In this sense, **nDNA is not a metaphor--it is a geometric genome**: an intrinsic latent encoding of how a model thinks, adapts, and inherits. Where biological DNA encodes traits through molecular structure, nDNA encodes them through the curvature, length, and directional flow of latent belief trajectories. This geometry defines not only what the model produces--but how it knows what it knows.
 
-<figure id="fig:ndna_families" style="text-align: center; margin: 2em 0;">
-
   <!-- Row 1: LLaMA -->
-  <div style="margin-bottom: 2em;">
-    
-  </div>
-
-  <!-- Row 2: Gemma -->
-  <div style="margin-bottom: 2em;">
-    
-  </div>
-
-  <!-- Row 3: Mistral -->
-  <div style="margin-bottom: 2em;">
-    
-  </div>
-
-  <!-- Row 4: Deepseek -->
-  <div style="margin-bottom: 2em;">
-    
-  </div>
-
-  <!-- Row 5: Qwen -->
-  <div style="margin-bottom: 2em;">
-    
-  </div>
-
-  <!-- Row 6: Others -->
-  <div style="margin-bottom: 2em;">
-    
-  </div>
-
-  <!-- Final combined / all -->
-  <div style="margin-bottom: 2em;">
-    
-  </div>
-
-  <figcaption style="margin-top: 12px; font-size: 1.1em; color: #555; max-width: 1200px; margin-left: auto; margin-right: auto; text-align: left;">
-     <b>Figure 1: (g) nDNA Landscape across 15 Foundation Models.</b> The composite visualization reveals striking <b>family-level clustering</b> in spectral-thermodynamic space, mapping how foundation models diverge in their latent genomic architecture. <b>High-strain models</b>--notably <b>Qwen</b> and <b>Mixtral</b>--consistently exhibit <b>spectral curvature</b> <i>κ<sub>ℓ</sub></i> exceeding 0.1 and <b>thermodynamic length</b> <i>L<sub>ℓ</sub></i> rising beyond 1.2 in upper decoder layers (<i>ℓ</i> ≥ 24). These profiles reflect aggressive latent reorganization driven by multilingual pretraining, expert routing, and intensive alignment adaptation--zones of <em>semantic strain</em>, <em>conceptual shock</em>, and <em>ideological absorption</em>. In contrast, <b>low-strain models</b> such as <b>Falcon</b>, <b>TinyLLaMA</b>, and <b>GPT-NeoX</b> form a distinct cluster where <i>κ<sub>ℓ</sub></i> < 0.03 and <i>L<sub>ℓ</sub></i> < 0.9, indicating smoother latent pathways that preserve pretrained epistemic structure with minimal reorientation. <b>LLaMA-3 Instruct</b>, <b>Gemma Instruct</b>, and <b>Deepseek Chat</b> occupy an intermediate zone--showing moderate curvature spikes (<i>κ<sub>ℓ</sub></i> peaking near 0.08) and thermodynamic gradients (<i>L<sub>ℓ</sub></i> up to 1.1)--highlighting selective reconfiguration in response to alignment and instruction tuning. This landscape provides a <em>geometric map of neural ancestry and adaptation</em>, illuminating inherited traits, semantic mutations, and the latent genomic signatures that distinguish foundation model families.
-  </figcaption>
-</figure>
-
+    <!-- Row 2: Gemma -->
+    <!-- Row 3: Mistral -->
+    <!-- Row 4: Deepseek -->
+    <!-- Row 5: Qwen -->
+    <!-- Row 6: Others -->
+    <!-- Final combined / all -->
 ---
 
 ## Why This Triad? On the Necessity of
@@ -266,10 +217,8 @@ $$
 <div class="content-showcase-container">
 
    <div class="showcase-card accent-green">
-   <h3>Orthogonal yet complementary perspectives on latent dynamics.</h3>
-   </div>
+   ### Orthogonal yet complementary perspectives on latent dynamics.
 
-</div>
 
 Each of the three measures captures a distinct, irreducible axis of the model's internal epistemic geometry:
 
@@ -299,10 +248,8 @@ Together, they span *latent shape* (curvature), *internal effort* (thermodynamic
 <div class="content-showcase-container">
 
   <div class="showcase-card accent-yellow">
-    <h3>Other combinations evaluated and their limitations.</h3>
-  </div>
+    ### Other combinations evaluated and their limitations.
 
-</div>
 
 We systematically experimented with numerous alternative metric sets to determine whether they could match or exceed the diagnostic power of this triad:
 
@@ -328,10 +275,8 @@ None of these alternatives provided the geometric separability across model fami
 <div class="content-showcase-container">
 
   <div class="showcase-card accent-blue">
-    <h3>Effectiveness in revealing hidden geometry.</h3>
-  </div>
+    ### Effectiveness in revealing hidden geometry.
 
-</div>
 
 What ultimately validates this triad is its empirical effectiveness in unveiling the hidden structural signatures of:
 

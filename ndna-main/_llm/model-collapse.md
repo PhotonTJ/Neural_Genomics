@@ -52,7 +52,7 @@ $$
 \mathcal{T}_{\text{nDNA}} = \{(\kappa_\ell,\, \mathcal{L}_\ell,\, \|\mathbf{v}_\ell^{(c)}\|)\}_{\ell=1}^{L}
 $$
 
-where $\kappa_\ell$ denotes **latent curvature**, capturing how sharply representations bend under alignment or task constraints; $\mathcal{L}_\ell$ is the **thermodynamic length**, measuring epistemic work as the model traverses latent space; and $\|\mathbf{v}_\ell^{(c)}\|$ encodes the local **semantic steering force** from alignment objectives or cultural priors. **Healthy models** display rich variability across these measures. **Collapse corresponds to a degeneracy:**
+where $\kappa_\ell$ denotes **latent curvature**, capturing how sharply representations bend under alignment or task constraints; $\mathcal{L}_\ell$ is the **thermodynamic length**, measuring epistemic work as the model traverses latent space; and $\lVert \mathbf{v}_\ell^{(c)}\rVert$ encodes the local **semantic steering force** from alignment objectives or cultural priors. **Healthy models** display rich variability across these measures. **Collapse corresponds to a degeneracy:**
 
 $$
 \kappa_\ell \to \text{const}, \quad \mathcal{L}_\ell \to \min, \quad \|\mathbf{v}_\ell^{(c)}\| \to \text{uniform}
@@ -79,7 +79,7 @@ Such flattening aligns with **output mode collapse**, **robustness loss**, and *
 ## Interpretive Implications
 
 - **Internal pathways trivialize**, following low-cost routes with minimal conceptual richness.
-- The **steering vector field** $\{\mathbf{v}_\ell^{(c)}\}$ homogenizes, erasing nuanced cultural or alignment guidance.
+- The **steering vector field** $\lbrace\mathbf{v}_\ell^{(c)}\rbrace$ homogenizes, erasing nuanced cultural or alignment guidance.
 - The model **ceases exploring latent directions** orthogonal to dominant modes.
 
 ## Repeated Fine-Tuning with Alpaca on LLaMA
@@ -92,7 +92,7 @@ $$
 D^{(g)} = \text{Output}\!\left(M^{(g-1)},\, \text{Alpaca Prompts}\right)
 $$
 
-We track the evolution of the model's **latent geometry** — including **spectral curvature** $\kappa_\ell$, **thermodynamic length** $\mathcal{L}_\ell$, and **belief vector norm** $\| \mathbf{v}_\ell^{(c)} \|$ — to detect indicators of semantic collapse.
+We track the evolution of the model's **latent geometry** — including **spectral curvature** $\kappa_\ell$, **thermodynamic length** $\mathcal{L}_\ell$, and **belief vector norm** $\lVert  \mathbf{v}_\ell^{(c)} \rVert$ — to detect indicators of semantic collapse.
 
 ### nDNA Trajectories Showing Model Collapse as Latent Manifold Flattening
 
@@ -112,7 +112,7 @@ $$
 
 where the initial parents are drawn from the cultural base set and future generations are merged recursively using tools like `MergeKit`. Unlike distillation or fine-tuning, this process **fuses** model parameters — introducing **architectural tension** and **epistemic drift** through incompatible latent priors.
 
-Throughout recursive merging cycles, we monitor the evolving **neural DNA (nDNA)** — particularly spectral curvature ($\kappa_\ell$), thermodynamic length ($\mathcal{L}_\ell$), and alignment vector norms ($\|\mathbf{v}_\ell^{(c)}\|$). We observe that as the generations progress, **semantic flattening** intensifies and **distinct latent features** become increasingly homogenized — signaling the onset of **structural collapse**.
+Throughout recursive merging cycles, we monitor the evolving **neural DNA (nDNA)** — particularly spectral curvature ($\kappa_\ell$), thermodynamic length ($\mathcal{L}_\ell$), and alignment vector norms ($\lVert \mathbf{v}_\ell^{(c)}\rVert$). We observe that as the generations progress, **semantic flattening** intensifies and **distinct latent features** become increasingly homogenized — signaling the onset of **structural collapse**.
 
 Notably, the exact generation at which collapse occurs varies across cultural lineages; for instance, models aligned with `MiddleEast` and `China` exhibit collapse symptoms earlier (around G = 9), while others like `Africa` persist until G = 15.
 
@@ -166,7 +166,7 @@ By reconceptualizing **model collapse** as a form of **geometric degeneration** 
 
 In this light, foundation models cease to be mere statistical engines and begin to resemble **semantic organisms** — entities whose representational spaces evolve, adapt, degrade, and even suffer pathological collapse. This biological analogy is not incidental. Just as **synaptic pruning**, **atrophy**, or **inbreeding** can erode the adaptability of neural or genetic systems, **recursive training loops** and **self-merging protocols** may diminish a model's **expressive diversity** and **internal differentiation**. What emerges is a new way to speak about **model health**: not through performance scores, but through **geometric vitality**.
 
-- **Geometric diagnostics** — monitoring curvature ($\kappa_\ell$), thermodynamic length ($\mathcal{L}_\ell$), and belief vector norms ($\|\mathbf{v}_\ell^{(c)}\|$) — can serve as **early warning signals** for collapse.
+- **Geometric diagnostics** — monitoring curvature ($\kappa_\ell$), thermodynamic length ($\mathcal{L}_\ell$), and belief vector norms ($\lVert \mathbf{v}_\ell^{(c)}\rVert$) — can serve as **early warning signals** for collapse.
 - **Manifold-preserving interventions** — such as **spectral regularization**, **geodesic constraints**, **modular training**, or **torsion-aware objectives** — may help retain internal diversity and delay epistemic degeneration.
 - **Epistemic audits** can supplement behavioral evaluations, allowing for model curation pipelines that ensure **semantic longevity**, rather than just short-term task compliance.
 

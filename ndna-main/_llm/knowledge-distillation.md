@@ -76,9 +76,8 @@ $$
 ![Visualization](../assets/gifs/llama_vs_cultures_offspring_students.gif)
 
 
-<!-- <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-*(Refer to caption: figure_caption)*
-</div> -->
+<!-- 
+-->
 
 **Distillation Pipeline.** Each student model was trained via *soft-label matching* over the teacher's output logits, with optional intermediate representation alignment  . We considered both *monolingual* and *multicultural* prompt distributions, enabling comparative evaluation of collapse severity under different semantic regimes. The loss function included a temperature-scaled KL-divergence term:
 $$
@@ -125,11 +124,7 @@ $$
 
 **A Biological Warning.** Nature warns us: systems that lose diversity cannot adapt. If we continue distilling models without care for their internal geometry, we risk building *syntactically fluent but semantically hollow* models—unable to reason, empathize, or adapt. The future of knowledge distillation is not just about *shrinking*; it is about **preserving what matters**.
 
-<div class="video-container">
-<div class="video-header">
-   <h2>Analogy</h2>
-</div>
-<div class="video-subtitle" markdown="1">
+## Analogy
 ### Knowledge Distillation as Population Genetics in Miniature
 
 Viewed through neural genomics (**nDNA**), knowledge distillation (KD) is a population–genetics process acting on a latent "gene pool" of reasoning modes. A large *teacher* supplies modes ("alleles") of cognition; a smaller *student* samples and amplifies a subset through the KD channel. The macroscopic effect on behavior may look faithful, yet the *geometry* of cognition—tracked by nDNA via spectral curvature $\kappa_\ell$, thermodynamic length $L_\ell$, and belief–field magnitude $\lVert{\bf v}_\ell\rVert$ across layers $\ell$—changes systematically. Three coupled forces explain why.
@@ -194,13 +189,11 @@ with depth–trend $\Delta S_\ell = S_{\ell+1} - S_\ell$. Persistent $\Delta S_\
 **Putting the analogies together.**
 *Bottleneck* compresses the latent gene pool (small $N_e^{\mathrm{KD}}$), *selection*$+$*drift* drive Hardy–Weinberg disequilibrium (falling $H$, $F_{ST}\!\to\!0$), and *epigenetic transmission* passes regulatory marks that canalize behavior. In nDNA, these forces materialize as flattened curvature, shortened thermodynamic length, and a belief field that shrinks and aligns. The result is a student that *looks* correct on familiar distributions yet occupies a tighter, less adaptable manifold. The mathematics (heterozygosity decay, $F_{ST}$ collapse, and a declining scaffold $S_\ell$) and the geometry (drops in $\kappa_\ell$, $L_\ell$, and $\lVert{\bf v}_\ell\rVert$) tell a single story: KD is population genetics in miniature—an efficient, one–parent transmission that preserves surface traits while thinning the internal ecology of reasoning.
 
-</div>
 
 
 
 
 
-</div>
 
 ---
 

@@ -1,23 +1,13 @@
 
-<div class="title-wrapper">
-  <div class="title-container">
-   
-   
-  </div>
-</div>
 
 ## The ÆTHERs: Neural Offsprings Born from the Marriages (Mergings) of Language Models
 
 **ÆTHER**—*Æpistemic Trajectories through Hybrid Emergence and Representation*—is our proposed framework for understanding the latent epistemological inheritance that emerges when LLMs are merged across divergent cultural domains. We refer to these neural offsprings as ÆTHER, as if they represent a new genetic species within the evolution of AI. Merging two LLMs is often viewed as an interpolation of parameters; however, we contend that this operation is far more consequential. It is a semantic recombination of worldviews, belief priors, and reasoning strategies—a *neural marriage* that produces an epistemic offspring with emergent and often unpredictable characteristics.
 
-<div class="video-container">
-<div class="video-header">
-   <h2>Inspiration</h2>
-</div>
+## Inspiration
 
 
 
-</div>
 
 ### Biological Inspiration: Inheritance Beyond Interpolation
 
@@ -597,7 +587,6 @@ This table presents epistemological perspectives from **ÆTHER-25 (China + LATAM
 
 For comprehensive analysis of all 28 ÆTHER variants across all cultural dimensions, including complete tables for Authority & Law, Family Structure, Science & Epistemology, and detailed cultural pairing analyses, please refer to the complete benchmark results:
 
-<embed src="*(Caption)*" type="application/pdf" width="100%" height="700px" />
 
 *This document contains the full CIVIC evaluation suite with detailed completions from all ÆTHER neural offspring, revealing the complex dynamics of cultural inheritance, recombination, and emergence across moral reasoning, epistemological frameworks, and social values.*
 

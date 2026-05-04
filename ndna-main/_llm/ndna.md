@@ -4,9 +4,6 @@
 
 **Before we unveil *nDNA*, we must confront a foundational question:** *What qualifies as heritability in artificial cognition*? Conventional artifacts--*weights*, *activations*, or the output *behavior*--are mere **epiphenomena of training**. In contrast, **nDNA** seeks to capture a model's *semantic genome*: the *latent organizational structures* that govern how knowledge is internally *represented*, *adapted*, and *transmitted* across fine-tuning, distillation, pruning, and deployment. To chart the **semantic ancestry** of AI systems, we must move beyond output-level metrics and embrace a deeper epistemic foundation--one that traces not just what models *say*, but how they *reason*, *evolve*, and *remember*. We argue that **nDNA** constitutes this missing genomic trace: a **structured latent fingerprint** of artificial cognition. Just as molecular genetics enabled biology to transcend surface taxonomies and uncover causal mechanisms, we contend that a *genomic lens* is now essential for machine learning--one that can **quantify**:
 
-<img src="*(Caption)*" alt="nDNA" style="width: 100%">
-
-
 - **Layer Importance and Semantic Specialization**: Not all layers contribute equally to a model's epistemic structure. A growing body of evidence  reveals that semantic representations, cultural memory, and alignment behavior disproportionately concentrate in the mid-to-upper transformer layers--particularly the final 10 layers in ~30-layer models. These layers encode more than surface patterns; they carry deep *semantic priors* and value shifts induced by alignment, fine-tuning, and cultural adaptation. For **nDNA** to serve as a meaningful genomic diagnostic, it must trace inheritance, drift, and trait transformation across these epistemically sensitive regions.
 
 - **Semantic Drift and Heritable Traits**: Subtle misalignments and persistent divergences--documented in alignment studies --can occur even when models appear behaviorally consistent. These are not superficial perturbations but inheritable epistemic traits passed along neural offspring .
@@ -24,9 +21,6 @@
 
 
 
-<blockquote class="ndna-quantify">
-  *(Refer to caption: ndna_quantify)*
-</blockquote>
 
 **nDNA** empowers us to interrogate the *hidden geometry* of learning--revealing how foundational operations such as **alignment**, **fine-tuning**, **quantization**, **pruning**, and **multilingual fusion** subtly but systematically reshape a model's *semantic core*. It uncovers **cultural instabilities** introduced through regional adaptation, traces **asymmetric inheritance** patterns across neural offspring, visualizes **latent reorganizations** induced by merging or distillation, and quantifies a model's capacity to *resist* or *absorb* conflicting epistemic pressures.
 
@@ -73,28 +67,10 @@ Weight-space indicators (parameter counts, sparsity, individual neurons/heads) l
 
 ![Visualization](../assets/semantic_hydrodynamics/flow-simulation.gif)
 
-</div>
-<div style="width: 50%">
-
-</div>
-</div>
 
 ![Visualization](../assets/semantic_hydrodynamics/laminar_flow.png)
 
-</div>
-<div style="width: 50%">
 
-</div>
-</div>
-
-<div style="display: flex; gap: 1rem;">
-<div style="width: 50%">
-
-</div>
-<div style="width: 50%">
-
-</div>
-</div>
 
 ![Visualization](../assets/ndna/spectral_curvature.gif)
 
@@ -489,7 +465,7 @@ $$
 $$
 \lVert\mathbf{v}_\ell^{(c)}\rVert
 $$
- encodes the *magnitude of cultural drift* imposed on latent activations. The *color intensities* shown alongside each value reflect relative magnitude within column-specific ranges: <span style="background: #00AA00; color: white; padding: 2px 4px; border-radius: 3px;">low</span>, <span style="background: #CCCC00; color: black; padding: 2px 4px; border-radius: 3px;">moderate</span>, <span style="background: #FF8000; color: white; padding: 2px 4px; border-radius: 3px;">high</span>, <span style="background: #CC0000; color: white; padding: 2px 4px; border-radius: 3px;">very high</span>. For this example, spectral curvature spans
+ encodes the *magnitude of cultural drift* imposed on latent activations. The *color intensities* shown alongside each value reflect relative magnitude within column-specific ranges: low, moderate, high, very high. For this example, spectral curvature spans
 $$
 \kappa_\ell \in [0.0400, 0.0700]
 $$
@@ -506,9 +482,7 @@ $$
 
 <div class="table-container" style="overflow-x: auto; margin: 20px 0;">
 <table style="width: 100%; border-collapse: collapse; font-family: 'Courier New', monospace; margin: 20px 0;">
-<caption style="font-weight: bold; margin-bottom: 10px; font-size: 1.1em; line-height: 1.6;">
-*(Refer to caption: ndna_example_caption)*
-</caption>
+
 <thead>
 <tr style="background-color: #f8f9fa; border-bottom: 2px solid #333;">
 <th style="border: 1px solid #333; padding: 10px; text-align: center; font-weight: bold;">Layer</th>
@@ -558,7 +532,6 @@ $$
 <tr><td style="border: 1px solid #333; padding: 8px; text-align: center; font-weight: bold;">30</td><td style="border: 1px solid #333; padding: 8px; text-align: center; background-color: rgba(255, 128, 0, 0.2);">0.0555</td><td style="border: 1px solid #333; padding: 8px; text-align: center; background-color: rgba(0, 170, 0, 0.15);">0.8221</td><td style="border: 1px solid #333; padding: 8px; text-align: center; background-color: rgba(204, 0, 0, 0.2);">0.7720</td><td style="border: 1px solid #333; padding: 8px; font-family: 'Courier New', monospace; font-size: 0.85em;">[0.1620, -0.0242, 1.1101, …, 0.0510]</td></tr>
 </tbody>
 </table>
-</div>
 
 This table provides an *illustrative example of nDNA geometry*, highlighting how these quantities vary across depth in a representative model. Rather than simple monotonic trends, we observe intricate layer-wise patterns: certain layers exhibit elevated curvature (
 $$

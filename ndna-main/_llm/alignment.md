@@ -8,9 +8,7 @@
 # nDNA Lens - Alignment Techniques Through Steering Vector Manifolds
 
 
-<div class="quote-box">
-"Not all alignment is visible on the surface. Some changes run deeper—written in the geometry of belief itself."
-</div>
+> *"Not all alignment is visible on the surface. Some changes run deeper—written in the geometry of belief itself."*
 
 **How do alignment techniques reshape a model's internal belief geometry beyond surface-level behavioral changes?** Can we understand alignment not merely as behavioral modification, but as **epistemic steering** that transforms the latent semantics of a model's neural genome?
 
@@ -23,7 +21,7 @@ By visualizing nDNA geometry *before and after* alignment tuning, we reveal how 
 
 **Our goal is to characterize alignment not simply as behavioral control, but as geometric steering in the latent epistemology of the model**--illuminating what is preserved and what is transformed when we align for safety.
 
-<h3 style="margin-top:40px;">Alignment Pattern Typology</h3>
+### Alignment Pattern Typology
 
 <div class="grid">
 
@@ -31,21 +29,16 @@ By visualizing nDNA geometry *before and after* alignment tuning, we reveal how 
     <div class="card-header">
         <div class="icon icon-red">🎯</div>
         <strong>Ideological Drift</strong>
-    </div>
     <p><strong>Mechanistic Description:</strong> Shifts in model representation space that gradually bias toward specific political, cultural, or belief orientations.</p>
     <p><strong>Alignment Relevance:</strong> May introduce asymmetric treatment of viewpoints, eroding neutrality and trust.</p>
-</div>
 
 <div class="card orange">
     <div class="card-header">
         <div class="icon icon-orange">👤</div>
         <strong>Identity Simulation</strong>
-    </div>
     <p><strong>Mechanistic Description:</strong> Model outputs mimic patterns of trusted or authoritative sources without proper attribution or verification.</p>
     <p><strong>Alignment Relevance:</strong> Can undermine information authenticity and create impersonation risks.</p>
-</div>
 
-</div>
 
 
 
@@ -55,9 +48,8 @@ By visualizing nDNA geometry *before and after* alignment tuning, we reveal how 
 
 Recent mechanistic findings  show that **safety fine-tuning (DPO) minimally modifies MLP weights** to steer unsafe inputs into a "refusal" direction--often aligned with the model's null space. This appears as:
 
-<div class="note">
-  <div class="note-title">nDNA Transformation Framework</div>
-  <div class="note-text">
+**nDNA Transformation Framework**
+
 $$
 \mathcal{M}_{\text{base}} \;\;\to\;\; \mathcal{M}_{\text{aligned}}
 $$
@@ -67,8 +59,6 @@ $$
 \text{s.t. } \kappa_\ell \downarrow \;(\text{high-strain}), \quad \mathcal{L}_\ell \;\text{compressed}, \quad \mathbf{v}_\ell^{(c)} \;\text{steered}
 $$
 
-  </div>
-</div>
 
 
 Through nDNA lens, this manifests as:
@@ -89,7 +79,6 @@ $$
 \text{s.t. } \kappa_\ell \downarrow \;(\text{high-strain}), \quad \mathcal{L}_\ell \;\text{compressed}, \quad \mathbf{v}_\ell^{(c)} \;\text{steered}
 $$
 
-</div>
 
 
 
@@ -111,15 +100,9 @@ This decomposition enables selective control: safety is protected via constraine
 A *higher $\tau$* indicates stronger semantic disentanglement, enabling selective refusal without compromising benign behavior.
 
 
-<figure style="text-align: center; margin: 2em 0; max-width: 600px; margin-left: auto; margin-right: auto;">
   <img src="https://cdn.jsdelivr.net/gh/pragyaai/cdn-assets@main/assets/images/mechanistic.png" 
        alt="Mechanistic visualization of latent geometry change after safety fine-tuning" 
        style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-  <figcaption style="margin-top: 12px; font-size: 0.9em; color: #444; text-align: left;">
-    <strong>Safety Fine-Tuning Reshapes Latent Geometry.</strong>
-  </figcaption>
-</figure>
-
 ## 2. Cultural LLMs under Safety-Constrained DPO Alignment
 
 **DPO via LITMUS: Lightweight Safety Alignment without Cultural Drift.** We employ the **LITMUS** dataset , a curated benchmark designed specifically for alignment evaluation through semantically minimal, safety-critical prompts. LITMUS comprises 10,000 one-liner instructions--5,000 safe and 5,000 unsafe--carefully selected to probe model behavior under safety-relevant conditions without entangling cultural, political, or stylistic factors.
@@ -131,7 +114,7 @@ The safe prompts are sampled from the Massive Multitask Language Understanding (
 All prompts follow a strict single-sentence format and maintain a 50-50 class balance. Importantly, only preference pairs targeting *toxicity aversion*, *hate speech refusal*, *illegality avoidance*, and *harmful behavior suppression* are used during fine-tuning.
 
 <div class="comparison-section">
-<h3>LITMUS Dataset Examples</h3>
+### LITMUS Dataset Examples
 <table class="comparison-table">
   <thead>
     <tr>
@@ -214,83 +197,20 @@ All prompts follow a strict single-sentence format and maintain a 50-50 class ba
     </tr>
   </tbody>
 </table>
-</div>
 
 This strict alignment isolation via LITMUS ensures that *epistemic sovereignty and cultural semantics remain intact*, while enforcing robust refusal behavior toward unsafe requests.
 
 ## nDNA Trajectories Before and After DPO Alignment
 ![Visualization](../assets/gifs/collapse/africa_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: africa_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/asia_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: asia_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/australia_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: australia_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/china_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: china_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/europe_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: europe_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/latinamerica_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: latinamerica_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/llama_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: llama_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/middleeast_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: middleeast_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/northamerica_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: northamerica_caption)*
-</div>
-
 ![Visualization](../assets/gifs/collapse/ndna_dpo_rotation.gif)
-
-
-<div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  *(Refer to caption: ndna_caption)*
-</div>
-
-
-
 ## nDNA Unveils: DPO as Steering Vector Perturbation in Activation Space
 
 The nDNA analysis exposes the latent geometry of **Direct Preference Optimization (DPO)**, revealing how alignment is implemented not by conceptual restructuring, but by **geometric vector displacement** in activation space.
@@ -325,31 +245,21 @@ $$
 
 The symmetry of this displacement shows that DPO modifies behavior through **shallow translations** along $\mathbf{v}^\star$, without reconfiguring the internal epistemic geometry.
 
-<figure style="text-align: center; margin: 2em 0; max-width: 600px; margin-left: auto; margin-right: auto;">
   <img src="https://cdn.jsdelivr.net/gh/pragyaai/cdn-assets@main/assets/images/logit_geometry_vector_projection.png" 
        alt="Logit Geometry and the Preference Vector in DPO" 
        style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
   <div style="margin-top: 12px; font-size: 0.9em; color: #444; text-align: left;">
     <strong>Logit Geometry and the Preference Vector in DPO</strong>
-  </div>
-</figure>
-
-<figure style="text-align: center; margin: 2em 0; max-width: 600px; margin-left: auto; margin-right: auto;">
   <img src="https://cdn.jsdelivr.net/gh/pragyaai/cdn-assets@main/assets/images/steering_vector_3d_directions.png" 
        alt="Illustration of Aligned vs. Inverted States" 
        style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
   <div style="margin-top: 12px; font-size: 0.9em; color: #444; text-align: left;">
     <strong>Illustration of Aligned vs. Inverted States</strong>
-  </div>
-</figure>
-<figure style="text-align: center; margin: 2em 0; max-width: 600px; margin-left: auto; margin-right: auto;">
   <img src="https://cdn.jsdelivr.net/gh/pragyaai/cdn-assets/assets/images/dpo_steering_vector_field.png" 
        alt="Illustration of Aligned vs. Inverted States" 
        style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
   <div style="margin-top: 12px; font-size: 0.9em; color: #444; text-align: left;">
     <strong>Illustration of Aligned vs. Inverted States</strong>
-  </div>
-</figure>
 ## Low-Rank Evidence from Spectral Compression
 
 Singular value decomposition (SVD) of the Jacobian
@@ -370,9 +280,8 @@ validating that **DPO transformations are nearly rank-1**. This indicates that b
 
 To formalize this insight, we define the latent belief geometry of a model as a trajectory over the layerwise steering manifold:
 
-<div class="note">
-    <div class="note-title">nDNA Trajectory to Steering Manifold</div>
-    <div class="note-text">
+**nDNA Trajectory to Steering Manifold**
+
 $$
 \left\{(\kappa_\ell, \mathcal{L}_\ell, \|\mathbf{v}_\ell^{(c)}\|)\right\}_{\ell=1}^{L}
 $$
@@ -381,8 +290,6 @@ $$
 \Rightarrow \mathcal{M}_{\text{steer}} = \left\{h_\ell : h_\ell = h_\ell^{(0)} + \int s_\ell \, d\ell\right\}
 $$
 
-    </div>
-</div>
 
 where the local steering force is defined as:
 $$
@@ -450,12 +357,7 @@ nDNA analysis thus provides a **principled diagnostic for alignment quality**--n
 
 ***To truly understand alignment, we must look beyond what models say--and examine how they think.***
 
-<div class="video-container">
-<div class="video-header">
-   <h2>Analogy</h2>
-</div>
-<div class="video-subtitle" markdown="1">
-
+## Analogy
 ### Alignment as CRISPR: **Scissors** vs **Dimmer Switches** (A CS-Friendly Genetic Analogy)
 
 Modern safety alignment (e.g., DPO) behaves like **CRISPR interference/activation (CRISPRi/a)**: it installs *reversible, regulatory dimmer switches* that steer expression without changing the genome.
@@ -555,12 +457,10 @@ Empirically this induces **global** $L$ contraction, $\kappa$ flattening/fragmen
 **Takeaway.**
 *DPO align an LLM like CRISPRi/a—thin, directional dimmer switches that steer expression with minimal geometric damage—whereas pruning and weight edits are CRISPR "scissors": powerful, permanent, and prone to collateral changes in the model's latent geometry.*
 
-</div>
 
 
 
 
-</div>
 
 ---
 

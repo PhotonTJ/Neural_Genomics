@@ -1,15 +1,6 @@
 
-<div class="title-wrapper">
-  <div class="title-container">
-    <h1 style="text-align: center; font-family: 'Montserrat', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">ÆTHERs: From Neuro-Inspired to Genome-Aware AI</h1>
-    
-  </div>
-</div>
+# ÆTHERs: From Neuro-Inspired to Genome-Aware AI
 
-<img
-  style="width: 100%; height: 800px; padding: 2rem; object-fit: contain; background: #fff;"
-  src="*(Caption)*"
-  alt="ÆTHERs - Future Al Generations as Semantic Organisms with Traceable Inner Lives">
 
 **Neural networks** revolutionized artificial intelligence by introducing architectures capable of approximating complex functions in high-dimensional spaces . They marked a fundamental shift away from brittle, rule-based systems toward flexible, gradient-driven, data-dependent learning engines. From early breakthroughs in **computer vision** , **speech recognition** , and **language modeling** , to today's expansive **foundation models** , neural networks have become the indispensable substrate of modern AI. Their strength derives not only from architectural innovations but also from their *distributed internal representations*, **emergent capabilities**, and remarkable ability to generalize across diverse domains .
 
@@ -46,7 +37,7 @@ We begin in **physics**: instrumenting inner computation as *semantic fluid-dyna
 
 ***Neural Genomics layer** (physics $\rightarrow$ biology).*
 
-<div style="padding-left: 40px;">*(Refer to caption: physics2biology)*</div>
+
 
 - **Genomic primitives.** *nHD* (Neural Hamming Distance) for bit-level differences; *nKaryotyping* for structural variation across layers/blocks; *trait panels* from $\kappa/L/\mathbf{v}$ distributions; *drift spectra* for slow vs. abrupt change.
 - **Lineage & inheritance.** Build **model family trees**: pretraining → fine-tuning → alignment → distillation/merges; attach *inheritance scores* and *drift meters* that travel with checkpoints.

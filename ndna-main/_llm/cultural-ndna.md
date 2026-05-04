@@ -119,7 +119,6 @@ Each regional model builds upon the same LLaMA-3 8B base architecture [<a href="
 
 <div style="font-size:1em; margin-top:8px; font-style:italic;">
 <b>Table 1:</b> Culturally aligned English-language corpora representing diverse regional epistemic perspectives. Each corpus is natively authored in English, carefully selected to preserve authentic cultural nuances while minimizing translation artifacts.
-</div>
 
 ### Fine-Tuning Protocol
 
@@ -132,74 +131,6 @@ A natural critique arises: *If LLaMA’s pretraining already includes global Eng
 ### Why Cultural nDNA Matters.
 
 By analyzing these eight culturally fine-tuned models, we reveal how fine-tuning on regionally grounded corpora leads to measurable divergence in latent geometry. Our diagnostics uncover zones of increased spectral curvature (latent manifold bending), thermodynamic length (epistemic effort), and belief vector field intensity (cultural directional pressure). This latent genomic structure offers a geometric fingerprint of cultural inheritance--demonstrating how models absorb, reframe, and propagate culturally specific epistemic priors even when built upon shared architectural foundations. Collectively, this experimental design enables a rigorous examination of how language models become vessels of culture--not just in their outputs, but deep within their hidden representations.
-
-
-
-
-<figure id="fig:ndna_families" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-</figure>
-
-<figure id="fig:ndna_asia" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-</figure>
-
-<figure id="fig:ndna_australia" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-</figure>
-
-<figure id="fig:ndna_china" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-</figure>
-
-<figure id="fig:ndna_europe" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-</figure>
-
-<figure id="fig:ndna_latinamerica" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-</figure>
-
-<figure id="fig:ndna_middleeast" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-</figure>
-
-<figure id="fig:ndna_northamerica" style="text-align: center; margin: 2em 0;">
-<div class="gif-pair">
-
-</div>
-
-
-<figcaption style="width: 100%; font-size: 0.97em; color: #444; line-height: 1.6; text-align: justify; background: #f8f8fa; border-radius: 7px; padding: 14px 18px; margin: 12px 0 20px 0;">
-  Figure 1. <b>Cultural Fine-Tuning Trajectories of LLaMA: Latent Geometry Reorganization Across Cultures.</b>
-  This figure visualizes the semantic and geometric shifts in LLaMA's internal manifold after fine-tuning on data from eight
-  distinct cultural regions. Each subplot plots layer index $\ell$, spectral curvature $\kappa_\ell$, and thermodynamic length $\mathcal L_\ell$,
-  providing a geometric lens on how latent structure evolves. The gray line denotes the base LLaMA model; the green line
-  represents its culturally fine-tuned variant. Key Observations: <b>Deep Structural Shifts:</b> Cultures such as Africa, Asia,
-  and China produce significant trajectory divergence, particularly in upper layers ($\ell \geq 25$), with $\kappa_\ell \geq 0.06$ and $\mathcal L_\ell \geq 1.2$–
-  indicative of strong conceptual reorientation and latent strain. <b>Surface-Level Adjustments:</b> Europe, Australia, and
-  NorthAmerica remain close to the base trajectory, typically maintaining $\kappa_\ell \leq 0.045$ and $\mathcal L_\ell \leq 1.0$, suggesting alignment
-  with pretrained priors. <b>Localized Realignment:</b> LatinAmerica and MiddleEast show layer-specific oscillations where
-  $\|\mathbf{v}_\ell^{(c)}\|$ spikes (up to $\approx 0.75$), modulating latent beliefs without full semantic reorganization. These patterns highlight how
-  culturally grounded fine-tuning carves unique latent epistemic fingerprints, encoding zones of inheritance, mutation, and
-  ideological absorption that define each models nDNA geometry
-</figcaption>
-</figure>
-
 ## Cultural nDNAs: A Leap in Latent Genomic Understanding of LLMs
 
 The discovery of cultural nDNA trajectories represents a conceptual leap in our ability to interpret the inner structure of LLMs. Just as the celebrated *king-queen analogy* in Word2Vec [<a href="#ref9">9</a>] revealed linear semantic regularities in word embeddings through
