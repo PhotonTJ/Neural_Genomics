@@ -1,6 +1,6 @@
 <div align="center">
 
-# Neural Genomics & nDNA Hub
+# Neural Genomics
 #### Geometry-First Toolkit for Language Models
 
 **[15 LLMs](./ndna-main/_llm/15-llms.md) · [Aethers](./ndna-main/_llm/aethers.md) · [Alignment](./ndna-main/_llm/alignment.md) · [Civic](./ndna-main/_llm/civic.md) · [Collapse](./ndna-main/_llm/model-collapse.md) · [Cultural nDNA](./ndna-main/_llm/cultural-ndna.md) · [Distillation](./ndna-main/_llm/knowledge-distillation.md) · [Merging](./ndna-main/_llm/model-merging.md) · [nDNA Core](./ndna-main/_llm/ndna.md) · [Neural Genomics](./ndna-main/_llm/neural-genomics.md)**
