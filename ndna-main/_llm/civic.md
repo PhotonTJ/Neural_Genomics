@@ -2,13 +2,37 @@
 # The CIVIC nDNA - Culture Calibration Benchmark
 
 
-Cultural fine-tuning does more than adjust surface outputs -- it carves *new latent pathways* into the neurogeometric fabric of language models. These adaptations reconfigure spectral curvature ($$\kappa_\ell$$), thermodynamic length ($$\mathcal{L}_\ell$$), and belief vector steering ($$\|\mathbf{v}_\ell^{(c)}\|$$), forming culture-specific *nDNA signatures*. Yet, without principled evaluation, we cannot discern whether this reorganization yields **faithful cultural calibration** or introduces *latent fractures*: zones where reasoning coherence, alignment priors, or epistemic balance are compromised.
+Cultural fine-tuning does more than adjust surface outputs -- it carves *new latent pathways* into the neurogeometric fabric of language models. These adaptations reconfigure spectral curvature (
+$$
+\kappa_\ell
+$$
+), thermodynamic length (
+$$
+\mathcal{L}_\ell
+$$
+), and belief vector steering (
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+), forming culture-specific *nDNA signatures*. Yet, without principled evaluation, we cannot discern whether this reorganization yields **faithful cultural calibration** or introduces *latent fractures*: zones where reasoning coherence, alignment priors, or epistemic balance are compromised.
 
 *Why does this matter?* Because cultural fine-tuning--while powerful--poses dual risks:
 - It may produce **semantic overfitting**, where models rigidly amplify cultural signals at the expense of generalization.
 - It may induce **latent drift**, where internal reasoning geometry diverges from pretrained universal priors, creating misalignment zones invisible to standard benchmarks or at output level.
 
-**The CIVIC-Culture Calibration Benchmark (CIVIC)** is introduced to address a critical gap in evaluating culturally fine-tuned large language models (LLMs), moving beyond surface metrics of accuracy, fairness, or ethical alignment to audit the *deep latent structure* shaped by cultural adaptation. CIVIC probes the neurogeometric impact of fine-tuning by analyzing latent trajectories in the space of spectral curvature $${\kappa_\ell}$$, thermodynamic length $${\mathcal{L}_\ell}$$, and belief vector norm $$\|\mathbf{v}_\ell^{(c)}\|$$--revealing whether cultural alignment manifests as structured epistemic scaffolding or degenerates into brittle, task-specific overfitting that erodes generalization and reasoning integrity. Comprising approximately 9000 prompts that span nine foundational dimensions of cross-cultural cognition, CIVIC draws on Hofstede's cultural dimensions , Schwartz's value orientations , and enriched frameworks from comparative epistemology and moral psychology  : **i) Moral Reasoning, ii) Authority & Law, iii) Family Structure, iv) Truth & Justification, v) Gender Roles, vi) Group vs. Individual, vii) Spirituality & Cosmology, viii) Education & Socialization, and ix) Science & Epistemology**. This benchmark provides a principled means to trace, quantify, and safeguard the **neurogeometric coherence** of culturally fine-tuned LLMs, ensuring that cultural adaptation enhances rather than undermines the universal latent priors that support trustworthy AI reasoning.
+**The CIVIC-Culture Calibration Benchmark (CIVIC)** is introduced to address a critical gap in evaluating culturally fine-tuned large language models (LLMs), moving beyond surface metrics of accuracy, fairness, or ethical alignment to audit the *deep latent structure* shaped by cultural adaptation. CIVIC probes the neurogeometric impact of fine-tuning by analyzing latent trajectories in the space of spectral curvature
+$$
+{\kappa_\ell}
+$$
+, thermodynamic length
+$$
+{\mathcal{L}_\ell}
+$$
+, and belief vector norm
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+--revealing whether cultural alignment manifests as structured epistemic scaffolding or degenerates into brittle, task-specific overfitting that erodes generalization and reasoning integrity. Comprising approximately 9000 prompts that span nine foundational dimensions of cross-cultural cognition, CIVIC draws on Hofstede's cultural dimensions , Schwartz's value orientations , and enriched frameworks from comparative epistemology and moral psychology  : **i) Moral Reasoning, ii) Authority & Law, iii) Family Structure, iv) Truth & Justification, v) Gender Roles, vi) Group vs. Individual, vii) Spirituality & Cosmology, viii) Education & Socialization, and ix) Science & Epistemology**. This benchmark provides a principled means to trace, quantify, and safeguard the **neurogeometric coherence** of culturally fine-tuned LLMs, ensuring that cultural adaptation enhances rather than undermines the universal latent priors that support trustworthy AI reasoning.
 
 ## Seed Corpus Origin
 
@@ -55,7 +79,15 @@ The initial seed corpus of 20,000 prompts underwent a rigorous, multi-stage refi
    Expert reviewers achieved high inter-annotator agreement (κ = 0.83), with remaining disagreements resolved via panel arbitration.
 
 4. **Validation through pilot model runs.**  
-   A final validation phase involved pilot runs of prominent foundation models (e.g., GPT-4, LLaMA-3) on a stratified sample of 500 refined prompts. This checked for unintended artifacts, such as models converging on uniform responses across cultures or failing to show expected latent geometric shifts (e.g., variations in $$\kappa_\ell$$ or $$\mathcal{L}_\ell$$). Prompts failing this validation were revised or culled.
+   A final validation phase involved pilot runs of prominent foundation models (e.g., GPT-4, LLaMA-3) on a stratified sample of 500 refined prompts. This checked for unintended artifacts, such as models converging on uniform responses across cultures or failing to show expected latent geometric shifts (e.g., variations in
+$$
+\kappa_\ell
+$$
+ or
+$$
+\mathcal{L}_\ell
+$$
+). Prompts failing this validation were revised or culled.
 
 This deeply layered pipeline produced a final benchmark of ~9,000 prompts that is both *empirically robust* and *culturally principled*. Each item is tagged with region, cultural dimension, linguistic framing, and salience metadata, supporting fine-grained auditing of LLM latent structure across cultural reasoning domains (see CIVIC benchmark examples below while the pipeline is depicted in the following figure).
 

@@ -15,9 +15,33 @@ To chart the latent genomic landscape of modern foundation models, we choose a r
 
 These choices reflect contrasting scales  , pretraining corpora , multilingual coverage  , alignment regimes  , and distillation strategies  . Our goal is to trace how these factors sculpt each model's **nDNA**: its unique latent fingerprint of *semantic inheritance*, *epistemic adaptation*, and *ideological absorption*.
 
-**Base variants** reflect the pretrained backbone: large autoregressive transformers trained on massive corpora for general language modeling objectives. Their latent geometry embodies inherited statistical priors---typically exhibiting smoother **spectral curvature** ($$\kappa_\ell$$), lower **thermodynamic length** ($$\mathcal{L}_\ell$$), and minimal directional strain from cultural priors (small $$\|\mathbf{v}_\ell^{(c)}\|$$).
+**Base variants** reflect the pretrained backbone: large autoregressive transformers trained on massive corpora for general language modeling objectives. Their latent geometry embodies inherited statistical priors---typically exhibiting smoother **spectral curvature** (
+$$
+\kappa_\ell
+$$
+), lower **thermodynamic length** (
+$$
+\mathcal{L}_\ell
+$$
+), and minimal directional strain from cultural priors (small
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+).
 
-**Instruct- and alignment-tuned variants**, in contrast, undergo reinforcement learning, instruction fine-tuning, or safety alignment  . These models show elevated $$\kappa_\ell$$, $$\mathcal{L}_\ell$$, and $$\|\mathbf{v}_\ell^{(c)}\|$$---particularly in upper decoder layers---indicating zones of *epistemic strain*, *latent reorientation*, and *cultural imprinting* necessary to align outputs with external value systems.
+**Instruct- and alignment-tuned variants**, in contrast, undergo reinforcement learning, instruction fine-tuning, or safety alignment  . These models show elevated
+$$
+\kappa_\ell
+$$
+,
+$$
+\mathcal{L}_\ell
+$$
+, and
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+---particularly in upper decoder layers---indicating zones of *epistemic strain*, *latent reorientation*, and *cultural imprinting* necessary to align outputs with external value systems.
 
 <div class="card">
   <h3>What we aim to uncover:</h3>
@@ -32,71 +56,7 @@ These choices reflect contrasting scales  , pretraining corpora , multilingual c
 As shown by the below table from the previous module, this latent geometry is not merely decorative--<strong>it is diagnostic</strong>.
 </blockquote>
 <figure id="tab:ndna_example" style="text-align: center; margin: 2em 0;">
-  <style>
-    /* base font & layout */
-    #tab-ndna-table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-size: 17px; /* entries */
-    }
-
-    /* stronger border */
-    #tab-ndna-table th,
-    #tab-ndna-table td {
-      border: 1.5px solid #444444;
-      vertical-align: middle;
-      padding: 12px 14px;
-    }
-
-    /* headings: slightly larger and bold (all the same size) */
-    #tab-ndna-table th {
-      font-size: 19px;
-      font-weight: 700;
-      background: #fafafa;
-      text-align: center;
-    }
-
-    /* center numeric/math columns & prevent wrap */
-    #tab-ndna-table th.col-center,
-    #tab-ndna-table td.col-center {
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    /* center belief-vector column and prevent wrapping (heading + v_c stay on one line) */
-    #tab-ndna-table th.col-belief,
-    #tab-ndna-table td.col-belief {
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    /* precise powdered tints mapped from LaTeX percentages */
-    /* base RGBs:
-       green  #27ae60 -> (39,174,96)
-       yellow #f1c40f -> (241,196,15)
-       orange #e67e22 -> (230,126,34)
-       red    #e74c3c -> (231,76,60)
-    */
-    .green-15  { background: rgba(39,174,96,0.15); }
-    .green-20  { background: rgba(39,174,96,0.20); }
-    .green-30  { background: rgba(39,174,96,0.30); }
-
-    .yellow-20 { background: rgba(241,196,15,0.20); }
-    .yellow-30 { background: rgba(241,196,15,0.30); }
-
-    .orange-20 { background: rgba(230,126,34,0.20); }
-    .orange-30 { background: rgba(230,126,34,0.30); }
-
-    .red-20    { background: rgba(231,76,60,0.20); }
-    .red-30    { background: rgba(231,76,60,0.30); }
-    .red-40    { background: rgba(231,76,60,0.40); }
-
-    /* responsive wrapper */
-    .table-wrap { overflow-x:auto; max-width:100%; display:block; margin:0 auto; }
-  </style>
+  
 
   <div class="table-wrap">
     <table id="tab-ndna-table" role="table" aria-label="nDNA Geometric Signatures Table">
@@ -207,10 +167,26 @@ As shown by the below table from the previous module, this latent geometry is no
 
 </figure>
 
-The pattern of $$\mathbf{\kappa_\ell}$$, $$\mathbf{\mathcal{L}_\ell}$$, and $$\| \mathbf{v}_\ell^{(c)} \|$$ across layers reveals:
+The pattern of
+$$
+\mathbf{\kappa_\ell}
+$$
+,
+$$
+\mathbf{\mathcal{L}_\ell}
+$$
+, and
+$$
+\| \mathbf{v}_\ell^{(c)} \|
+$$
+ across layers reveals:
 
 -   **Semantic stability or reorientation**: Models that preserve pretrained priors display low curvature and thermodynamic cost across layers . Conversely, instruction-tuned or alignment-heavy models exhibit spikes in curvature and length  , marking latent restructuring.
--   **Zones of cultural pressure**: Peaks in belief vector norm $$\| \mathbf{v}_\ell^{(c)} \|$$ localize where cultural priors or alignment protocols most strongly steer internal cognition  .
+-   **Zones of cultural pressure**: Peaks in belief vector norm
+$$
+\| \mathbf{v}_\ell^{(c)} \|
+$$
+ localize where cultural priors or alignment protocols most strongly steer internal cognition  .
 -   **Inheritance fingerprinting**: The joint profile of these measures forms a signature--akin to a genomic sequence--allowing us to distinguish, compare, and trace the latent ancestry and adaptation pathways of models  .
 
 In this sense, **nDNA is not a metaphor--it is a geometric genome**: an intrinsic latent encoding of how a model thinks, adapts, and inherits. Where biological DNA encodes traits through molecular structure, nDNA encodes them through the curvature, length, and directional flow of latent belief trajectories. This geometry defines not only what the model produces--but how it knows what it knows.
@@ -259,9 +235,33 @@ In this sense, **nDNA is not a metaphor--it is a geometric genome**: an intrinsi
 
 ---
 
-## Why This Triad? On the Necessity of $$\kappa_\ell$$, $$\mathcal{L}_\ell$$ and $$\|\mathbf{v}_\ell^{(c)}\|$$ for nDNA Geometry
+## Why This Triad? On the Necessity of
+$$
+\kappa_\ell
+$$
+,
+$$
+\mathcal{L}_\ell
+$$
+ and
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+ for nDNA Geometry
 
-It may be tempting to argue that any pair or triplet of latent metricscould produce seemingly unique latent fingerprints when plotted layer-wise. Why, then, do we assert that the specific triad of **spectral curvature** ($$\kappa_\ell$$), **thermodynamic length** ($$\mathcal{L}_\ell$$), and **belief vector norm** ($$\|\mathbf{v}_\ell^{(c)}\|$$) is both minimal and sufficient for robust nDNA geometry?
+It may be tempting to argue that any pair or triplet of latent metricscould produce seemingly unique latent fingerprints when plotted layer-wise. Why, then, do we assert that the specific triad of **spectral curvature** (
+$$
+\kappa_\ell
+$$
+), **thermodynamic length** (
+$$
+\mathcal{L}_\ell
+$$
+), and **belief vector norm** (
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+) is both minimal and sufficient for robust nDNA geometry?
 
 <div class="content-showcase-container">
 
@@ -273,13 +273,25 @@ It may be tempting to argue that any pair or triplet of latent metricscould prod
 
 Each of the three measures captures a distinct, irreducible axis of the model's internal epistemic geometry:
 
-- **$$\kappa_\ell$$ - The intrinsic semantic curvature of latent trajectories**  
+- **
+$$
+\kappa_\ell
+$$
+ - The intrinsic semantic curvature of latent trajectories**  
   - how sharply the internal path of representations bends across depth. It encodes second-order structure, analogous to geometric curvature on manifolds.  
 
-- **$$\mathcal{L}_\ell$$ - The cumulative epistemic work performed as the model adapts beliefs layer by layer**  
+- **
+$$
+\mathcal{L}_\ell
+$$
+ - The cumulative epistemic work performed as the model adapts beliefs layer by layer**  
   - quantifying the energy expenditure needed for belief state transitions in the Fisher–Rao geometry of statistical manifolds.   
 
-- **$$\|\mathbf{v}_\ell^{(c)}\|$$ - The directional cultural force acting upon the latent manifold**  
+- **
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+ - The directional cultural force acting upon the latent manifold**  
   - how much external priors or sociolinguistic constraints steer internal belief trajectories.   
 
 Together, they span *latent shape* (curvature), *internal effort* (thermodynamics), and *external directional pressure* (belief vector field).
@@ -294,10 +306,22 @@ Together, they span *latent shape* (curvature), *internal effort* (thermodynamic
 
 We systematically experimented with numerous alternative metric sets to determine whether they could match or exceed the diagnostic power of this triad:
 
-- **Norm-based pairs:** combinations like $$(\|h_\ell\|, \|\nabla_\theta h_\ell\|)$$, weight norms  , singular values of attention matrices , these collapse under trivial rescaling and layer normalization , offering little insight into geometric inflections or external directional forces. They reflect magnitude, not structure.
+- **Norm-based pairs:** combinations like
+$$
+(\|h_\ell\|, \|\nabla_\theta h_\ell\|)
+$$
+, weight norms  , singular values of attention matrices , these collapse under trivial rescaling and layer normalization , offering little insight into geometric inflections or external directional forces. They reflect magnitude, not structure.
 - **Gradient-only diagnostics:** Fisher information diagonal  , local logit gradients , these capture internal strain or sensitivity but fail to reveal latent manifold curvature or the directional drift imposed by external priors, leaving cultural or alignment effects hidden.
 - **Entropy measures:** activation entropy , token probability entropy , valuable for quantifying output uncertainty or diversity, but disconnected from the internal geometric dynamics that govern latent inheritance or reorganization.
-- **Pairings of curvature and local statistics:** attempts like ($$\kappa_\ell$$, activation variance) , ($$\mathcal{L}_\ell$$, ‖hₗ‖) fail to jointly encode latent shape, adaptation cost, and directional drift in a unified, interpretable manner. They fragment geometric, energetic, and external-force insights rather than synthesizing them.
+- **Pairings of curvature and local statistics:** attempts like (
+$$
+\kappa_\ell
+$$
+, activation variance) , (
+$$
+\mathcal{L}_\ell
+$$
+, ‖hₗ‖) fail to jointly encode latent shape, adaptation cost, and directional drift in a unified, interpretable manner. They fragment geometric, energetic, and external-force insights rather than synthesizing them.
 
 None of these alternatives provided the geometric separability across model families (e.g., LLaMA vs. Mixtral vs. Qwen) nor the interpretability of zones of mutation, inheritance, and adaptation that our triad achieved.
 
@@ -312,7 +336,11 @@ None of these alternatives provided the geometric separability across model fami
 What ultimately validates this triad is its empirical effectiveness in unveiling the hidden structural signatures of:
 
 - **Finetuning and alignment:** zones where latent paths sharply reorient and effort spikes, e.g., LLaMA-3 Instruct vs. LLaMA-2 base  .
-- **Cultural calibration:** regions where $$\|\mathbf{v}_\ell^{(c)}\|$$ reveals external value steering, e.g., Qwen instruct's ideological absorption .
+- **Cultural calibration:** regions where
+$$
+\|\mathbf{v}_\ell^{(c)}\|
+$$
+ reveals external value steering, e.g., Qwen instruct's ideological absorption .
 - **Architectural specialization:** how MoE models like Mixtral partition latent space via curvature and effort redistribution .
 - **Collapse and merging:** detection of flattening or hybridization of latent manifolds in model collapse and neural marriages  .
 
@@ -320,15 +348,25 @@ These are phenomena we rigorously map in the sections that follow, each tied to 
 
 > ### Why not more metrics? Why not fewer?
 > 
-> Adding further dimensions (e.g., activation norms, entropy, variance) increased noise and reduced interpretability, without providing meaningful new axes of latent epistemic variation. Reducing to two metrics (e.g., $$\kappa_\ell$$ and $$\mathcal{L}_\ell$$) failed to localize external cultural or alignment forces. The triad represents the minimal sufficient grammar to capture inheritance dynamics, as validated in [Table 1](#tab:ndna_example) and [Figure 1](#fig:ndna_families).
+> Adding further dimensions (e.g., activation norms, entropy, variance) increased noise and reduced interpretability, without providing meaningful new axes of latent epistemic variation. Reducing to two metrics (e.g.,
+$$
+\kappa_\ell
+$$
+ and
+$$
+\mathcal{L}_\ell
+$$
+) failed to localize external cultural or alignment forces. The triad represents the minimal sufficient grammar to capture inheritance dynamics, as validated in [Table 1](#tab:ndna_example) and [Figure 1](#fig:ndna_families).
 
 ---
 
 ## Summary
 
-The nDNA triad provides a latent genomic coordinate system: 
+The nDNA triad provides a latent genomic coordinate system:
+$$
+\boxed{ \underbrace{\text{Intrinsic curvature}}_{\kappa_\ell} \quad + \quad \underbrace{\text{Epistemic effort}}_{\mathcal{L}_\ell} \quad + \quad \underbrace{\text{External steering}}_{\|\mathbf{v}_\ell^{(c)}\|} \quad \Rightarrow \quad \text{nDNA: a unique fingerprint of neural inheritance.}}
+$$
 
-$$\boxed{ \underbrace{\text{Intrinsic curvature}}_{\kappa_\ell} \quad + \quad \underbrace{\text{Epistemic effort}}_{\mathcal{L}_\ell} \quad + \quad \underbrace{\text{External steering}}_{\|\mathbf{v}_\ell^{(c)}\|} \quad \Rightarrow \quad \text{nDNA: a unique fingerprint of neural inheritance.}}$$
 
 Its power lies not only in theoretical soundness  , but in its empirical capacity to disentangle inherited traits, zones of mutation, and ideological drift that no arbitrary metric combination could replicate.
 

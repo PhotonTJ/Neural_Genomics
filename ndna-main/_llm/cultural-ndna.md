@@ -134,40 +134,7 @@ A natural critique arises: *If LLaMA’s pretraining already includes global Eng
 By analyzing these eight culturally fine-tuned models, we reveal how fine-tuning on regionally grounded corpora leads to measurable divergence in latent geometry. Our diagnostics uncover zones of increased spectral curvature (latent manifold bending), thermodynamic length (epistemic effort), and belief vector field intensity (cultural directional pressure). This latent genomic structure offers a geometric fingerprint of cultural inheritance--demonstrating how models absorb, reframe, and propagate culturally specific epistemic priors even when built upon shared architectural foundations. Collectively, this experimental design enables a rigorous examination of how language models become vessels of culture--not just in their outputs, but deep within their hidden representations.
 
 
-<style>
-  .gif-pair {
-    display: flex;
-    gap: 20px;
-    margin: 2em 0;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .gif-container, .interactive-container {
-    flex: 1;
-    min-width: 0;
-  }
-  .gif-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  .interactive-container iframe {
-    width: 100%;
-    height: 600px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-  }
-  @media (max-width: 768px) {
-    .gif-pair {
-      flex-direction: column;
-    }
-    .gif-container, .interactive-container {
-      width: 100%;
-    }
-  }
-</style>
+
 
 <figure id="fig:ndna_families" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
@@ -236,7 +203,10 @@ By analyzing these eight culturally fine-tuned models, we reveal how fine-tuning
 ## Cultural nDNAs: A Leap in Latent Genomic Understanding of LLMs
 
 The discovery of cultural nDNA trajectories represents a conceptual leap in our ability to interpret the inner structure of LLMs. Just as the celebrated *king-queen analogy* in Word2Vec [<a href="#ref9">9</a>] revealed linear semantic regularities in word embeddings through
-$$\texttt{king} - \texttt{man} + \texttt{woman} \approx \texttt{queen}$$
+$$
+\texttt{king} - \texttt{man} + \texttt{woman} \approx \texttt{queen}
+$$
+
 where this equation unveiled *linear semantics* at the token level, cultural nDNA exposes the ***differential geometry of belief systems***—mapping how fine-tuning on region-specific corpora non-uniformly sculpts **spectral curvature** ($\kappa_\ell$), **thermodynamic length** ($\mathcal L_\ell$), and **directional belief force** ($|\mathbf v_\ell^{(c)}|$).
 
 

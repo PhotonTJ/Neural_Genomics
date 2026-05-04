@@ -80,7 +80,10 @@
     <div class="note-title">Epistemic Vitality Function</div>
     <div class="note-text">
         A unifying mathematical diagnostic for model health:
-        $$\mathcal{V}_{\ell} := \kappa_{\ell} \cdot \mathcal{L}_{\ell} \cdot \|\mathbf{v}_{\ell}^{(c)}\|$$
+$$
+\mathcal{V}_{\ell} := \kappa_{\ell} \cdot \mathcal{L}_{\ell} \cdot \|\mathbf{v}_{\ell}^{(c)}\|
+$$
+
     </div>
 </div>
 
@@ -148,7 +151,7 @@
   <div style="display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 900px; margin: 30px auto;">
     <div style="text-align: center;">
       <div style="font-weight: bold; margin-bottom: 12px;">LLaMA 3 (8B) Model Collapse</div>
-      ![Visualization](../assets/gifs/alignment/llama_collapse_v2_1.gif)
+      ![Visualization](../assets/gifs/llama_vs_cultures_offspring_students.gif)
 
       <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
         *(Refer to caption: llama_collapse_caption)*
@@ -184,43 +187,43 @@
 
 
 <h3>Cultural Collapse Trajectories</h3>
-![Visualization](../assets/gifs/alignment/africa_ndna_final.gif)
+![Visualization](../assets/gifs/FINE-TUNING/LLAMA_CULTURSHIFTFINAL/llama_Africa_rotation.gif)
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
   *(Refer to caption: africa_figure_caption)*
 </div>
 
-![Visualization](../assets/gifs/alignment/asia_ndna_collapse.gif)
+![Visualization](../assets/gifs/FINE-TUNING/LLAMA_CULTURSHIFTFINAL/llama_Asia_rotation.gif)
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
   *(Refer to caption: asia_figure_caption)*
 </div>
 
-![Visualization](../assets/gifs/alignment/china_ndna_final.gif)
+![Visualization](../assets/gifs/FINE-TUNING/LLAMA_CULTURSHIFTFINAL/llama_China_rotation.gif)
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
   *(Refer to caption: china_figure_caption)*
 </div>
 
-![Visualization](../assets/gifs/alignment/europe_ndna_collapse_FINAL.gif)
+![Visualization](../assets/gifs/FINE-TUNING/LLAMA_CULTURSHIFTFINAL/llama_Europe_rotation.gif)
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
   *(Refer to caption: europe_figure_caption)*
 </div>
 
-![Visualization](../assets/gifs/alignment/latinamerica.gif)
+![Visualization](../assets/gifs/FINE-TUNING/LLAMA_CULTURSHIFTFINAL/llama_LatinAmerica_rotation.gif)
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
   *(Refer to caption: latinamerica_figure_caption)*
 </div>
 
-![Visualization](../assets/gifs/alignment/middleeast_ndna_final.gif)
+![Visualization](../assets/gifs/FINE-TUNING/LLAMA_CULTURSHIFTFINAL/llama_MiddleEast_rotation.gif)
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
   *(Refer to caption: middleeast_figure_caption)*
 </div>
 
-![Visualization](../assets/gifs/alignment/northamerica_ndna_collapse_FINAL.gif)
+![Visualization](../assets/gifs/FINE-TUNING/LLAMA_CULTURSHIFTFINAL/llama_NorthAmerica_rotation.gif)
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
   *(Refer to caption: northamerica_figure_caption)*
@@ -277,16 +280,7 @@
 
 
 
-<style>
-mark {
-  background-color: #fff4b3;
-  padding: 0 2px;
-  border-radius: 3px;
-}
-.math {
-  font-family: 'Times New Roman', serif;
-}
-</style>
+
 
 
 
@@ -325,13 +319,19 @@ mark {
   If we define the <strong>epistemic vitality function</strong> at layer ℓ as:
 </p>
 <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0;">
-    $$\mathcal{V}_{\ell} := \kappa_{\ell} \cdot \mathcal{L}_{\ell} \cdot \|\mathbf{v}_{\ell}^{(c)}\|$$
+$$
+\mathcal{V}_{\ell} := \kappa_{\ell} \cdot \mathcal{L}_{\ell} \cdot \|\mathbf{v}_{\ell}^{(c)}\|
+$$
+
 </div>
 <p>
   then its decay over time:
 </p>
 <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0;">
-    $$\frac{d\mathcal{V}_{\ell}^{(g)}}{dg} < 0$$
+$$
+\frac{d\mathcal{V}_{\ell}^{(g)}}{dg} < 0
+$$
+
 </div>
 
   acts as a <strong>differential signature of semantic collapse</strong>—indicating that the model is losing curvature, exploratory capacity, or belief diversity across generations $g$. This simple composite measure may one day serve as the <strong>“resting heart rate”</strong> of a model's latent health.

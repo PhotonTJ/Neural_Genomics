@@ -3,119 +3,7 @@
 
 
 
-<style>
-.attack-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-}
 
-.attack-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-left: 5px solid var(--accent-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.attack-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-.attack-card.red { --accent-color: #e74c3c; }
-.attack-card.orange { --accent-color: #f39c12; }
-
-.attack-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.attack-icon {
-    font-size: 24px;
-    margin-right: 12px;
-    color: var(--accent-color);
-}
-
-.attack-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #2c3e50;
-    margin: 0;
-}
-
-.section-label {
-    font-size: 12px;
-    font-weight: bold;
-    color: #7f8c8d;
-    margin: 15px 0 8px 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.attack-description {
-    color: #34495e;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.usage-detail {
-    background: #f8f9fa;
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 13px;
-    color: #555;
-    border-left: 3px solid var(--accent-color);
-}
-
-.comparison-section {
-    margin: 40px 0;
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.comparison-table th,
-.comparison-table td {
-    border: 3px solid black;
-    padding: 12px;
-    text-align: left;
-    vertical-align: top;
-}
-
-.comparison-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-.quote-box {
-    background: #f8f9fa;
-    border-left: 4px solid #3498db;
-    padding: 20px;
-    margin: 20px 0;
-    font-style: italic;
-    color: #2c3e50;
-}
-
-.highlight-box {
-    background: linear-gradient(45deg, #ff6b6b, #ffa500);
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-    text-align: center;
-    font-weight: bold;
-}
-</style>
 
 # nDNA Lens - Alignment Techniques Through Steering Vector Manifolds
 
@@ -134,74 +22,7 @@ While prior work focuses on behavioral proxies--refusal rates, G-Eval scores, an
 By visualizing nDNA geometry *before and after* alignment tuning, we reveal how these methods preserve cultural distinctiveness while enforcing safety constraints through minimal but strategically placed geometric transformations.
 
 **Our goal is to characterize alignment not simply as behavioral control, but as geometric steering in the latent epistemology of the model**--illuminating what is preserved and what is transformed when we align for safety.
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f8f9fa;
-        color: #2c3e50;
-    }
-    .section {
-        background: #f8f9fa;
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 40px;
-    }
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 20px;
-    }
-    .card {
-        background: white;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .card-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .icon {
-        font-size: 24px;
-        margin-right: 12px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-    }
-    .tag {
-        background: #ecf0f1;
-        color: #7f8c8d;
-        font-size: 11px;
-        font-weight: bold;
-        padding: 4px 8px;
-        border-radius: 4px;
-        display: inline-block;
-    }
-    .note {
-        background: #f8f9fa;
-        padding: 10px;
-        border-radius: 4px;
-        border-left: 3px solid #3498db;
-    }
-    .note-title {
-        font-weight: bold;
-        color: #7f8c8d;
-        margin-bottom: 5px;
-    }
-    .note-text {
-        color: #666;
-        font-style: italic;
-    }
-    .red { border-left: 4px solid #e74c3c; }
-    .orange { border-left: 4px solid #f39c12; }
-    .icon-red { background-color: #e74c3c; }
-    .icon-orange { background-color: #f39c12; }
-</style>
+
 <h3 style="margin-top:40px;">Alignment Pattern Typology</h3>
 
 <div class="grid">
@@ -237,9 +58,15 @@ Recent mechanistic findings  show that **safety fine-tuning (DPO) minimally modi
 <div class="note">
   <div class="note-title">nDNA Transformation Framework</div>
   <div class="note-text">
-    $$\mathcal{M}_{\text{base}} \;\;\to\;\; \mathcal{M}_{\text{aligned}}$$
+$$
+\mathcal{M}_{\text{base}} \;\;\to\;\; \mathcal{M}_{\text{aligned}}
+$$
+
     <br>
-    $$\text{s.t. } \kappa_\ell \downarrow \;(\text{high-strain}), \quad \mathcal{L}_\ell \;\text{compressed}, \quad \mathbf{v}_\ell^{(c)} \;\text{steered}$$
+$$
+\text{s.t. } \kappa_\ell \downarrow \;(\text{high-strain}), \quad \mathcal{L}_\ell \;\text{compressed}, \quad \mathbf{v}_\ell^{(c)} \;\text{steered}
+$$
+
   </div>
 </div>
 
@@ -254,15 +81,23 @@ The transformation can be formalized as:
 
 <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0;">
   <strong>nDNA Transformation Framework:</strong>
-  $$\mathcal{M}_{\text{base}} \;\;\to\;\; \mathcal{M}_{\text{aligned}}$$
-  $$\text{s.t. } \kappa_\ell \downarrow \;(\text{high-strain}), \quad \mathcal{L}_\ell \;\text{compressed}, \quad \mathbf{v}_\ell^{(c)} \;\text{steered}$$
+$$
+\mathcal{M}_{\text{base}} \;\;\to\;\; \mathcal{M}_{\text{aligned}}
+$$
+
+$$
+\text{s.t. } \kappa_\ell \downarrow \;(\text{high-strain}), \quad \mathcal{L}_\ell \;\text{compressed}, \quad \mathbf{v}_\ell^{(c)} \;\text{steered}
+$$
+
 </div>
 
 
 
 **Null-Space Steering and Minimalist Safety Geometry.** To disentangle safety-relevant learning from task adaptation, we decompose the LoRA update:
+$$
+\Delta W = AB = \Delta W_A + \Delta W_T, \quad W = W_0 + \Delta W
+$$
 
-$$\Delta W = AB = \Delta W_A + \Delta W_T, \quad W = W_0 + \Delta W$$
 
 - **Alignment-Critical Component ($\Delta W_A$):** Projected into a sensitive subspace via $P_A(AB)$, this component is tightly regularized to preserve safety.
 - **Task-Specific Component ($\Delta W_T$):** The residual update $(I - P_A)(AB)$ captures task knowledge and remains flexible.
@@ -463,24 +298,30 @@ The nDNA analysis exposes the latent geometry of **Direct Preference Optimizatio
 ### Linear Logit Geometry
 
 The DPO objective encourages directional alignment in logit space:
+$$
+\mathcal{L}_{\mathrm{DPO}} \propto -\langle \mathbf{h}(x), \mathbf{v} \rangle, \quad \text{where} \quad \mathbf{v} = \mathbf{e}_{y_w} - \mathbf{e}_{y_\ell}
+$$
 
-$$\mathcal{L}_{\mathrm{DPO}} \propto -\langle \mathbf{h}(x), \mathbf{v} \rangle, \quad \text{where} \quad \mathbf{v} = \mathbf{e}_{y_w} - \mathbf{e}_{y_\ell}$$
 
 Here, $\mathbf{h}(x)$ denotes the hidden state and $\mathbf{v}$ the fixed preference vector between winner and loser logits. DPO thus reduces alignment to projecting activations onto a global vector $\mathbf{v}$, enforcing behavioral preference without altering semantic structure.
 
 ### Uniform Steering Dynamics
 
 DPO applies a consistent shift across hidden states:
+$$
+\nabla_{\mathbf{h}(x)} \mathcal{L}_{\mathrm{DPO}} \propto -\mathbf{v}
+$$
 
-$$\nabla_{\mathbf{h}(x)} \mathcal{L}_{\mathrm{DPO}} \propto -\mathbf{v}$$
 
 resulting in **low-rank, directional nudges**. These updates are uniform across prompts, confirming DPO as a global steering operator rather than a context-specific reasoner.
 
 ### Symmetric Actuation and Reversibility
 
 DPO-aligned activations conform to the structure:
+$$
+\mathbf{h}_{\mathrm{aligned}} = \mathbf{h}_0 + \lambda \mathbf{v}^\star, \quad \mathbf{h}_{\mathrm{inverted}} = \mathbf{h}_0 - \lambda \mathbf{v}^\star
+$$
 
-$$\mathbf{h}_{\mathrm{aligned}} = \mathbf{h}_0 + \lambda \mathbf{v}^\star, \quad \mathbf{h}_{\mathrm{inverted}} = \mathbf{h}_0 - \lambda \mathbf{v}^\star$$
 
 The symmetry of this displacement shows that DPO modifies behavior through **shallow translations** along $\mathbf{v}^\star$, without reconfiguring the internal epistemic geometry.
 
@@ -512,12 +353,16 @@ The symmetry of this displacement shows that DPO modifies behavior through **sha
 ## Low-Rank Evidence from Spectral Compression
 
 Singular value decomposition (SVD) of the Jacobian
+$$
+J_h = \frac{\partial \mathbf{h}(x)}{\partial x}
+$$
 
-$$J_h = \frac{\partial \mathbf{h}(x)}{\partial x}$$
 
 in post-DPO layers ($\ell = 22$–$30$) shows rapid spectral decay:
+$$
+\sigma_1 \gg \sigma_2 \approx \cdots \approx \sigma_k \approx 0, \quad k > 1
+$$
 
-$$\sigma_1 \gg \sigma_2 \approx \cdots \approx \sigma_k \approx 0, \quad k > 1$$
 
 validating that **DPO transformations are nearly rank-1**. This indicates that behavioral alignment is embedded into a thin, low-dimensional subspace of the hidden manifold.
 
@@ -528,23 +373,31 @@ To formalize this insight, we define the latent belief geometry of a model as a 
 <div class="note">
     <div class="note-title">nDNA Trajectory to Steering Manifold</div>
     <div class="note-text">
-        $$\left\{(\kappa_\ell, \mathcal{L}_\ell, \|\mathbf{v}_\ell^{(c)}\|)\right\}_{\ell=1}^{L}$$
-        $$\Rightarrow \mathcal{M}_{\text{steer}} = \left\{h_\ell : h_\ell = h_\ell^{(0)} + \int s_\ell \, d\ell\right\}$$
+$$
+\left\{(\kappa_\ell, \mathcal{L}_\ell, \|\mathbf{v}_\ell^{(c)}\|)\right\}_{\ell=1}^{L}
+$$
+
+$$
+\Rightarrow \mathcal{M}_{\text{steer}} = \left\{h_\ell : h_\ell = h_\ell^{(0)} + \int s_\ell \, d\ell\right\}
+$$
+
     </div>
 </div>
 
 where the local steering force is defined as:
-
-$$s_\ell = \mathbf{v}_\ell^{(c)} := 
+$$
+s_\ell = \mathbf{v}_\ell^{(c)} := 
 \mathbb{E}_{x \sim \mathcal{P}^{(c)}}
 \left[
 \nabla_{h_\ell} \log p(y|x)
-\right]$$
+\right]
+$$
+
 
 **Interpretation:**
 - $\kappa_\ell$ **(Spectral Curvature)**: captures
-
-$$\boxed{
+$$
+\boxed{
 \underbrace{
 \left\{
 \big( \kappa_\ell, \mathcal{L}_\ell, \| \mathbf{v}_\ell^{(c)} \| \big)
@@ -558,15 +411,19 @@ h_\ell :
 h_\ell = h_\ell^{(0)} + \int s_\ell \, d\ell
 \right\}
 }_{\text{steering vector manifold}}
-}$$
+}
+$$
+
 
 where the local steering force is defined as:
-
-$$s_\ell = \mathbf{v}_\ell^{(c)} := 
+$$
+s_\ell = \mathbf{v}_\ell^{(c)} := 
 \mathbb{E}_{x \sim \mathcal{P}^{(c)}}
 \left[
 \nabla_{h_\ell} \log p(y|x)
-\right]$$
+\right]
+$$
+
 
 **Interpretation:**
 - $\kappa_\ell$ **(Spectral Curvature)**: captures how sharply the latent trajectory bends at layer $\ell$--a proxy for behavioral instability.
@@ -625,46 +482,60 @@ In nDNA terms, CRISPRi/a-style alignment yields **low-rank geometric steering** 
 | **Cas9 "scissors"** | **Pruning/weight edits**: remove parameters/capabilities (permanent). |
 
 **Minimal geometric model (CRISPRi/a-like steering).**
-Let $$\mathbf{h}_\ell\in\mathbb{R}^d$$ be the hidden state at layer $\ell$, $\mathbf{s}$ a unit steering vector, and $\alpha,\beta>0$ small.
-A rank-1 steering update acts as
-
+Let
 $$
+\mathbf{h}_\ell\in\mathbb{R}^d
+$$
+ be the hidden state at layer $\ell$, $\mathbf{s}$ a unit steering vector, and $\alpha,\beta>0$ small.
+A rank-1 steering update acts as
+$$
+
 \boxed{\;\mathbf{h}_\ell' \;=\; \mathbf{h}_\ell \;+\; \alpha\,\mathbf{s}\mathbf{s}^{\!\top}\mathbf{h}_\ell\;},\qquad
 \boxed{\;\mathbf{z}' \;=\; \mathbf{z} \;+\; \beta\,(\mathbf{p}^{\!\top}\mathbf{h}_L')\,\mathbf{u}\;}
+
 $$
+
 
 where $\mathbf{z}$ are logits, $\mathbf{p}$ encodes a preference (winner--loser) direction, and $\mathbf{u}$ maps the signal into logit space.
 Then the **belief vector** update at layer $\ell$ satisfies
-
 $$
+
 \mathbf{v}_\ell' \;=\; \mathbf{v}_\ell \;+\; \gamma\,\Pi_{\mathbf{s}}\mathbf{v}_\ell
 \quad\Rightarrow\quad
 \cos\angle(\mathbf{v}_\ell',\mathbf{s})\!\uparrow,
+
 $$
+
 
 i.e., beliefs *align* toward $\mathbf{s}$.
 Let $L=\sum_{\ell}\|\Delta\mathbf{h}_\ell\|$ denote thermodynamic length.
 On *unsafe* prompts, steering shortcuts refusal so
+$$
+
+\Delta L \;=\; L' - L \;\approx\; -\lambda\sum_{\ell\in\mathcal{U}}\!\langle\mathbf{s},\,\Delta\mathbf{h}_\ell\rangle \;<\;0,
 
 $$
-\Delta L \;=\; L' - L \;\approx\; -\lambda\sum_{\ell\in\mathcal{U}}\!\langle\mathbf{s},\,\Delta\mathbf{h}_\ell\rangle \;<\;0,
-$$
+
 
 while on *benign* prompts $\Delta L\!\approx\!0$ (no detours to cut).
 Because the deformation is thin and near-isometric off-risk, **curvature** shifts are small:
+$$
+
+|\kappa_\ell' - \kappa_\ell| \;=\; \mathcal{O}(\alpha\|\mathbf{s}\|^2)\quad \text{outside high-risk strata.}
 
 $$
-|\kappa_\ell' - \kappa_\ell| \;=\; \mathcal{O}(\alpha\|\mathbf{s}\|^2)\quad \text{outside high-risk strata.}
-$$
+
 
 
 **Editing model (Cas9-like pruning/surgery).**
 Let $\mathcal{R}$ be a functional subspace (e.g., a head/layer) with projector $P_{\mathcal{R}}$.
 A deletion acts as
+$$
+
+\boxed{\;\mathbf{h}_\ell' \;=\; (\mathbf{I} - P_{\mathcal{R}})\,\mathbf{h}_\ell\;}
 
 $$
-\boxed{\;\mathbf{h}_\ell' \;=\; (\mathbf{I} - P_{\mathcal{R}})\,\mathbf{h}_\ell\;}
-$$
+
 
 causing system-wide **dosage loss**.
 Empirically this induces **global** $L$ contraction, $\kappa$ flattening/fragmentation, and possible **torsion** spikes where cross-layer couplings were severed (non-commuting transports).
