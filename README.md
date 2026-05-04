@@ -7,7 +7,6 @@
 
 <br/>
 
-> *"Alignment is not just a loss function. It is a change in the shape of thought."*
 
 </div>
 
