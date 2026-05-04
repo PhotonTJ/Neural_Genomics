@@ -29,7 +29,6 @@ Explore our detailed documentation on the geometry of language models across var
 | **Knowledge Distillation** | [👉 knowledge-distillation.md](./ndna-main/_llm/knowledge-distillation.md) |
 | **Model Merging** | [👉 model-merging.md](./ndna-main/_llm/model-merging.md) |
 | **nDNA Core** | [👉 ndna.md](./ndna-main/_llm/ndna.md) |
-| **Neural Genomics** | [👉 neural-genomics.md](./ndna-main/_llm/neural-genomics.md) |
 
 </div>
 
