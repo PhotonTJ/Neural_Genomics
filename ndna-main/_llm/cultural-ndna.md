@@ -1,31 +1,11 @@
----
-layout: page
-title: Cultural nDNA
-permalink: /llm/cultural-ndna/
-skip_title: true
----
 
-{% raw %}
-<script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    processEscapes: true,
-    processEnvironments: true
-  },
-  options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    ignoreHtmlClass: 'tex2jax_ignore',
-    processHtmlClass: 'tex2jax_process'
-  }
-};
-</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-{% endraw %}
 
-{% include ndna-title.liquid 
-   title="The Ethnic nDNA - Cultural Fine-Tuning and Latent Geometry" 
-   video_id="hL2LZLfvI90?listType=playlist&list=PLaE3N7Ax00P93HC0jxZ-b6c4tnLkldPOJ" %}
+
+
+
+
+# The Ethnic nDNA - Cultural Fine-Tuning and Latent Geometry
+
 
 Modern foundation models, trained on globally aggregated corpora, inevitably encode a homogenized epistemic perspective—one that reflects dominant data distributions rather than the pluralism of human cultures. To systematically probe how language models internalize and express distinct cultural priors, we construct **seven culturally–aligned LLMs**, each fine-tuned on a corpus curated to reflect the textual traditions, values, and discourse patterns of a specific geopolitical-cultural region: *Europe*, *Asia*, *Africa*, *North America*, *Latin America*, *the Middle East*, and *Australia*.
 
@@ -191,81 +171,49 @@ By analyzing these eight culturally fine-tuned models, we reveal how fine-tuning
 
 <figure id="fig:ndna_families" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_Africa_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_africa_interactive.html"
-   title="LLaMA Africa"
-   caption="" %}
+
 </div>
 </figure>
 
 <figure id="fig:ndna_asia" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_Asia_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_asia_interactive.html"
-   title="LLaMA Asia"
-   caption="" %}
+
 </div>
 </figure>
 
 <figure id="fig:ndna_australia" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_Australia_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_australia_interactive.html"
-   title="LLaMA Australia"
-   caption="" %}
+
 </div>
 </figure>
 
 <figure id="fig:ndna_china" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_China_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_china_interactive.html"
-   title="LLaMA China"
-   caption="" %}
+
 </div>
 </figure>
 
 <figure id="fig:ndna_europe" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_Europe_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_europe_interactive.html"
-   title="LLaMA Europe"
-   caption="" %}
+
 </div>
 </figure>
 
 <figure id="fig:ndna_latinamerica" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_LatinAmerica_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_latinamerica_interactive.html"
-   title="LLaMA Latin America"
-   caption="" %}
+
 </div>
 </figure>
 
 <figure id="fig:ndna_middleeast" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_MiddleEast_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_middleeast_interactive.html"
-   title="LLaMA Middle East"
-   caption="" %}
+
 </div>
 </figure>
 
 <figure id="fig:ndna_northamerica" style="text-align: center; margin: 2em 0;">
 <div class="gif-pair">
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_NorthAmerica_rotation.gif"
-   interactive_html="cultural_ndna/llama_vs_northamerica_interactive.html"
-   title="LLaMA North America"
-   caption="" %}
+
 </div>
 
 
@@ -293,16 +241,11 @@ where this equation unveiled *linear semantics* at the token level, cultural nDN
 
 
 
-{% capture king_queen %}
-**Figure 2:** Word2Vec Semantic Analogy: The <em>King-Queen</em> Vector Geometry. This illustration depicts the iconic linear semantic regularity uncovered by Word2Vec embeddings[<a href="#ref9">9</a>], where $\texttt{king} - \texttt{man} + \texttt{woman} \approx \texttt{queen}$. The diagram visualizes how vector differences capture conceptual dimensions such as <em>gender</em> (purple arrows) and <em>royalty</em> (orange arrows), enabling algebraic reasoning in embedding space. This breakthrough marked a foundational insight in distributed semantics, inspiring later work on latent geometry in large language models.
-{% endcapture %}
 
-{% include visualization.liquid
-   image_path="images/king_queen.png"
-   caption=king_queen
-   alt_text="Word2Vec Semantic Analogy: The King-Queen Vector Geometry."
-   width="75%"
-   height="375px" %}
+**Figure 2:** Word2Vec Semantic Analogy: The <em>King-Queen</em> Vector Geometry. This illustration depicts the iconic linear semantic regularity uncovered by Word2Vec embeddings[<a href="#ref9">9</a>], where $\texttt{king} - \texttt{man} + \texttt{woman} \approx \texttt{queen}$. The diagram visualizes how vector differences capture conceptual dimensions such as <em>gender</em> (purple arrows) and <em>royalty</em> (orange arrows), enabling algebraic reasoning in embedding space. This breakthrough marked a foundational insight in distributed semantics, inspiring later work on latent geometry in large language models.
+
+
+
 Our analysis reveals **family-level clustering and divergence**:
 
 - **Western-aligned variants** (*Europe*, *North America*, *Australia*) exhibit *modest latent deformation*, with $\kappa_\ell$ in $[0.045, 0.055]$ and $\mathcal{L}_\ell$ in $[0.85, 0.95]$. Their trajectories stay near the base LLaMA geometry, **mirroring Western-centric pretraining bias** ([<a href="#ref10">10</a>][<a href="#ref11">11</a>][<a href="#ref12">12</a>][<a href="#ref13">13</a>]).
@@ -314,21 +257,7 @@ Our analysis reveals **family-level clustering and divergence**:
 These nDNA trajectories align with calls to *audit foundation models* not only at the output level but also in their internal representations([<a href="#ref16">16</a>][<a href="#ref17">17</a>]).
 nDNA is a **semantic fingerprint**, enabling *latent audits* of ideological absorption and bias inheritance ([<a href="#ref17">17</a>][<a href="#ref18">18</a>][<a href="#ref13">13</a>]).
 
-{% include wizuall.liquid
-   image_path="cultural_ndna/llama_vs_cultures_group_tagged_360.gif"
-   interactive_html="cultural_ndna/llama_vs_cultures_interactive.html"
-   title="LLaMA vs. Cultural nDNA Trajectories--Group-Tagged Latent Geometry."
-   caption='<figcaption style="width: 100%; font-size: 0.97em; color: #444; line-height: 1.6; text-align: justify; background: #f8f8fa; border-radius: 7px; padding: 14px 18px; margin: 12px 0 20px 0;">
-    Figure 3: LLaMA vs. Cultural nDNA Trajectories--Group-Tagged Latent Geometry.
-    This figure visualizes the <em>latent nDNA trajectories</em> of LLaMA and its culturally fine-tuned variants across eight regions: <i>Europe</i>, <i>North America</i>, <i>Australia</i>, <i>Africa</i>, <i>Asia</i>, <i>China</i>, <i>Middle East</i>, and <i>Latin America</i>. The plot spans <b>layer index</b> $\ell$, <b>spectral curvature</b> $\kappa_\ell$, and <b>thermodynamic length</b> $\mathcal{L}_\ell$.
-    The gray line denotes the base LLaMA model, while colored lines represent cultural variants. 
-    Labels highlight group-level clustering:
-    <em>West</em> (LLaMA, Europe, North America, Australia) forms a compact low-strain cluster with $\kappa_\ell \in [0.4, 0.6]$, $\mathcal{L}_\ell \in [0.5, 0.7]$, suggesting alignment with pretrained priors aka LLaMa base.
-    In contrast, the <em>Rest</em> group (Africa, Asia, China) shows pronounced latent divergence, with $\kappa_\ell \geq 0.7$, $\mathcal{L}_\ell \geq 0.8$ in upper layers ($\ell > 25$), indicating high <em>epistemic strain</em> and <em>semantic reconfiguration</em>.
-    <i>Latin America</i> and <i>Middle East</i> occupy intermediate regions, displaying oscillatory patterns and selective layer-specific drift.
-    These trajectories reveal how cultural fine-tuning sculpts distinct latent genomic signatures, encoding zones of <em>inheritance</em>, <em>mutation</em>, and <em>ideological absorption</em> that define the neural DNA (nDNA) geometry of each model.
-  </figcaption>'
-%}
+
 
 ### Cultural nDNA as a Tool for Inclusive AI
 

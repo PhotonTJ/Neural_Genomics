@@ -1,15 +1,8 @@
----
-layout: page
-title: nDNA-Lens - Knowledge Distillation as Latent Genome Compression
-permalink: /llm/knowledge-distillation/
-skip_title: true
----
 
-{% include ndna-title.liquid 
-   title="nDNA Lens - Knowledge Distillation as Latent Genome Compression" 
-   video_id="IhqpZaj_62A?listType=playlist&list=PLaE3N7Ax00P93HC0jxZ-b6c4tnLkldPOJ" %}
+# nDNA Lens - Knowledge Distillation as Latent Genome Compression
 
-**Knowledge distillation** is a widely adopted technique for compressing large language models (LLMs) by training a smaller, more efficient *student model* to mimic the behavior of a larger *teacher model*. Introduced by {% cite hinton2015distilling %}, this method aims to preserve performance while reducing computational overhead, enabling deployment on resource-constrained devices. Over time, the field has evolved to include techniques like *intermediate representation alignment* {% cite romero2015fitnets %}, *feature transfer* {% cite gou2021knowledge %}, and *task-adaptive knowledge distillation* {% cite wang2023culturalbias %}.
+
+**Knowledge distillation** is a widely adopted technique for compressing large language models (LLMs) by training a smaller, more efficient *student model* to mimic the behavior of a larger *teacher model*. Introduced by , this method aims to preserve performance while reducing computational overhead, enabling deployment on resource-constrained devices. Over time, the field has evolved to include techniques like *intermediate representation alignment* , *feature transfer* , and *task-adaptive knowledge distillation* .
 
 However, traditional evaluations of distillation have focused largely on **surface-level metrics**—such as accuracy, loss, or perplexity—without interrogating its effects on the model's **internal epistemic geometry**. In this work, we reframe knowledge distillation through the lens of **neural genomics**, treating the teacher's latent structure as a form of *epistemic genome*, and the distillation process as a form of **latent genome compression**.
 
@@ -19,16 +12,16 @@ $$\kappa_\ell^{\text{student}} \ll \kappa_\ell^{\text{teacher}}, \quad
 \mathcal{L}_\ell^{\text{student}} \ll \mathcal{L}_\ell^{\text{teacher}}, \quad 
 \| \mathbf{v}_\ell^{(c), \text{student}} \| \approx 0.$$
 
-This semantic degradation mirrors **genetic bottlenecks** in evolutionary biology {% cite luikart1998detecting %} {% cite frankham1995conservation %}, where population collapse leads to diminished genetic diversity and adaptive capacity. In the same way, knowledge distillation compresses not just model size—but also its *conceptual depth*, resulting in a shrunken epistemic capacity.
+This semantic degradation mirrors **genetic bottlenecks** in evolutionary biology  , where population collapse leads to diminished genetic diversity and adaptive capacity. In the same way, knowledge distillation compresses not just model size—but also its *conceptual depth*, resulting in a shrunken epistemic capacity.
 
 Our **nDNA diagnostics** make this flattening legible:
 - **Flattening of latent curvature:** $\kappa_\ell$ drops to $[0.2, 0.3]$, compared to $[0.45, 0.6]$ in full-capacity teachers.
 - **Shortened thermodynamic paths:** $\mathcal{L}_\ell < 0.6$, indicating *reduced epistemic traversal*.
 - **Directional belief collapse:** $\| \mathbf{v}_\ell^{(c)} \| \to 0$, reflecting a vanishing semantic steering force.
 
-This aligns with insights from recent work on *spectral alignment across modalities* {% cite betley2025emergentmisalignmentnarrowfinetuning %}, which demonstrates that preserving **eigenvalue spectra** and **latent curvature** is critical for maintaining multimodal coherence. We argue that similar principles apply in the unimodal case: flattening the spectrum collapses the latent manifold, regardless of whether the modality is text, vision, or language-vision fusion.
+This aligns with insights from recent work on *spectral alignment across modalities* , which demonstrates that preserving **eigenvalue spectra** and **latent curvature** is critical for maintaining multimodal coherence. We argue that similar principles apply in the unimodal case: flattening the spectrum collapses the latent manifold, regardless of whether the modality is text, vision, or language-vision fusion.
 
-Importantly, while distilled models often match their teachers on standard benchmarks, they frequently **underperform** in *multicultural*, *multilingual*, or *adversarial* contexts {% cite zhao2023assessing %} {% cite tao2023cultural %} {% cite wang2023culturalbias %}, where internal flexibility and robust reasoning pathways are essential.
+Importantly, while distilled models often match their teachers on standard benchmarks, they frequently **underperform** in *multicultural*, *multilingual*, or *adversarial* contexts   , where internal flexibility and robust reasoning pathways are essential.
 
 Thus, from the perspective of **neural genomics**, knowledge distillation operates not merely as a tool of *efficiency*, but as a mechanism of **epistemic pruning**—compressing the internal belief landscape and *flattening semantic differentials* in the service of replication. Like a genetic bottleneck, it ensures inheritance—but at the cost of potential.
 
@@ -36,24 +29,20 @@ Thus, from the perspective of **neural genomics**, knowledge distillation operat
 
 To quantify how knowledge distillation reshapes the latent epistemic geometry of language models, we conducted a series of controlled experiments using **teacher-student** pairs across culturally and linguistically diverse settings. Our analysis focuses on extracting and comparing *nDNA trajectories*—layerwise curves of spectral curvature $\kappa_\ell$, thermodynamic length $$\mathcal{L}_\ell$$, and torsion $\tau_\ell$—from both teacher and student models.
 
-**Model Pairs.** We selected **LLaMA-3 8B** as the student model and used its culturally fine-tuned variants—*Africa*, *Asia*, *China*, *Latin America*, *Middle East*, and others—as teachers, each embodying distinct knowledge priors. For each teacher model, a corresponding student was distilled using standard protocols {% cite hinton2015distilling %} {% cite romero2015fitnets %} {% cite mirzadeh2020improved %}, yielding a collection of distilled offsprings, each trained from a unique cultural teacher and exhibiting varied epistemic retention.
+**Model Pairs.** We selected **LLaMA-3 8B** as the student model and used its culturally fine-tuned variants—*Africa*, *Asia*, *China*, *Latin America*, *Middle East*, and others—as teachers, each embodying distinct knowledge priors. For each teacher model, a corresponding student was distilled using standard protocols   , yielding a collection of distilled offsprings, each trained from a unique cultural teacher and exhibiting varied epistemic retention.
 
-{% capture figure_caption %}
-**Latent Geometry of LLaMA, Cultural nDNA, Neural Offspring, and Distilled Students.** This 3D plot illustrates latent manifold properties across layers ($\ell \in [20, 30]$) for *LLaMA*, culturally fine-tuned models (Africa, Asia, China, North America, Europe, Australia, Latin America, Middle East), their neural *offspring* (ÆTHERs), and distilled student models. The axes represent $\kappa_\ell$ (spectral curvature), $$\mathcal{L}_\ell$$ (thermodynamic length), and $\tau_\ell$ (latent torsion). **Key elements:** Colored solid lines show LLaMA (black) and cultural models (e.g., Africa: <span style='color:#ff4444'>red</span>, Asia: <span style='color:#8844ff'>purple</span>). Dashed overlays represent neural offspring. The black dotted cloud corresponds to distilled students with $\tau_\ell \in [0.4, 0.55]$, $\kappa_\ell \in [0.45, 0.65]$, and $$\mathcal{L}_\ell \lesssim 0.6$$, reflecting compressed latent signatures as seen in knowledge distillation studies {% cite hinton2015distilling %} {% cite romero2015fitnets %} {% cite liu2022multi %}. **Observations:** Western-aligned models trace shallow latent trajectories with low curvature and torsion {% cite mukherjee2020globalizing %} {% cite tao2023pnas %}. Cultural models (Africa, Asia, China) exhibit richer geometric diversity ($$\mathcal{L}_\ell \gtrsim 0.8$$, $$\kappa_\ell \gtrsim 0.6$$), consistent with cultural calibration findings {% cite xiang2024cultural %} {% cite peng2024cultural %}. Distilled students collapse toward a compact region, illustrating how distillation homogenizes epistemic geometry {% cite li2020few %} {% cite rashid2021mate %}. **Implications:** Knowledge distillation compresses epistemic diversity {% cite mirzadeh2020improved %}, simplifying latent manifolds but risking cultural homogenization {% cite sheng2021revealing %}. Neural offspring (ÆTHERs) preserve or amplify manifold richness, offering a mechanism for cultural retention in merged models {% cite rame2023merging %} {% cite ainslie2023merged %}. Geometry can be described as $$\mathcal{M}_{\mathrm{student}}: \{\kappa_\ell, \mathcal{L}_\ell, \tau_\ell\} \mapsto$$ low-variance manifold; $$\mathcal{M}_{\mathrm{offspring}}$$ yields nonlinear hybrid topologies {% cite blommaert2005discourse %}. **Setup:** Models were evaluated on culturally diagnostic prompts. $\kappa_\ell$ was computed from curvature spectra {% cite bernstein2004differential %}, $$\mathcal{L}_\ell$$ via thermodynamic path integrals {% cite crooks1999entropy %}, and $\tau_\ell$ using local torsion operators {% cite spivak1970comprehensive %}.
-{% endcapture %}
 
-{% include visualization-html.liquid 
-   image_path="gifs/llama_vs_cultures_offspring_students.gif"
-   interactive_html="cultural_ndna_with_students_annotated.html"
-   caption=figure_caption
-   full_width=true
-   alt_text="3D visualization showing latent geometry comparison between teacher models, student models, and neural offspring" %}
+**Latent Geometry of LLaMA, Cultural nDNA, Neural Offspring, and Distilled Students.** This 3D plot illustrates latent manifold properties across layers ($\ell \in [20, 30]$) for *LLaMA*, culturally fine-tuned models (Africa, Asia, China, North America, Europe, Australia, Latin America, Middle East), their neural *offspring* (ÆTHERs), and distilled student models. The axes represent $\kappa_\ell$ (spectral curvature), $$\mathcal{L}_\ell$$ (thermodynamic length), and $\tau_\ell$ (latent torsion). **Key elements:** Colored solid lines show LLaMA (black) and cultural models (e.g., Africa: <span style='color:#ff4444'>red</span>, Asia: <span style='color:#8844ff'>purple</span>). Dashed overlays represent neural offspring. The black dotted cloud corresponds to distilled students with $\tau_\ell \in [0.4, 0.55]$, $\kappa_\ell \in [0.45, 0.65]$, and $$\mathcal{L}_\ell \lesssim 0.6$$, reflecting compressed latent signatures as seen in knowledge distillation studies   . **Observations:** Western-aligned models trace shallow latent trajectories with low curvature and torsion  . Cultural models (Africa, Asia, China) exhibit richer geometric diversity ($$\mathcal{L}_\ell \gtrsim 0.8$$, $$\kappa_\ell \gtrsim 0.6$$), consistent with cultural calibration findings  . Distilled students collapse toward a compact region, illustrating how distillation homogenizes epistemic geometry  . **Implications:** Knowledge distillation compresses epistemic diversity , simplifying latent manifolds but risking cultural homogenization . Neural offspring (ÆTHERs) preserve or amplify manifold richness, offering a mechanism for cultural retention in merged models  . Geometry can be described as $$\mathcal{M}_{\mathrm{student}}: \{\kappa_\ell, \mathcal{L}_\ell, \tau_\ell\} \mapsto$$ low-variance manifold; $$\mathcal{M}_{\mathrm{offspring}}$$ yields nonlinear hybrid topologies . **Setup:** Models were evaluated on culturally diagnostic prompts. $\kappa_\ell$ was computed from curvature spectra , $$\mathcal{L}_\ell$$ via thermodynamic path integrals , and $\tau_\ell$ using local torsion operators .
+
+
+![Visualization](../assets/gifs/llama_vs_cultures_offspring_students.gif)
+
 
 <!-- <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-{{ figure_caption | markdownify }}
+*(Refer to caption: figure_caption)*
 </div> -->
 
-**Distillation Pipeline.** Each student model was trained via *soft-label matching* over the teacher's output logits, with optional intermediate representation alignment {% cite gou2021knowledge %} {% cite rashid2021mate %}. We considered both *monolingual* and *multicultural* prompt distributions, enabling comparative evaluation of collapse severity under different semantic regimes. The loss function included a temperature-scaled KL-divergence term:
+**Distillation Pipeline.** Each student model was trained via *soft-label matching* over the teacher's output logits, with optional intermediate representation alignment  . We considered both *monolingual* and *multicultural* prompt distributions, enabling comparative evaluation of collapse severity under different semantic regimes. The loss function included a temperature-scaled KL-divergence term:
 
 $$\mathcal{L}_{\text{distill}} = \mathrm{KL}\left( \frac{p_t}{T} \,\Big\|\, \frac{p_s}{T} \right)$$
 
@@ -144,28 +133,13 @@ with depth–trend $\Delta S_\ell = S_{\ell+1} - S_\ell$. Persistent $\Delta S_\
 *Bottleneck* compresses the latent gene pool (small $N_e^{\mathrm{KD}}$), *selection*$+$*drift* drive Hardy–Weinberg disequilibrium (falling $H$, $F_{ST}\!\to\!0$), and *epigenetic transmission* passes regulatory marks that canalize behavior. In nDNA, these forces materialize as flattened curvature, shortened thermodynamic length, and a belief field that shrinks and aligns. The result is a student that *looks* correct on familiar distributions yet occupies a tighter, less adaptable manifold. The mathematics (heterozygosity decay, $F_{ST}$ collapse, and a declining scaffold $S_\ell$) and the geometry (drops in $\kappa_\ell$, $L_\ell$, and $\lVert{\bf v}_\ell\rVert$) tell a single story: KD is population genetics in miniature—an efficient, one–parent transmission that preserves surface traits while thinning the internal ecology of reasoning.
 
 </div>
-{% include inspiration-video.liquid 
-   hide_header=true
-   video_id="G6bjtPRMdR0" 
-   caption="**Bottleneck effect** → the narrow pipe of distillation.  
-   In biology, a population crash leaves only a few survivors; most genetic variety is lost. Distillation does the same to a model’s “*ways of thinking*.” A big teacher holds many latent modes (styles of reasoning, cultural priors). The student learns through a narrow channel (one teacher’s logits, a fixed temperature, a limited prompt set), so only a subset of those modes get through. The result is homogenization: students become fluent, but they tend to think in the same few ways."
-%}
 
-{% include inspiration-video.liquid
-   hide_header=true
-   video_id="7S4WMwesMts"
-   caption="**Hardy–Weinberg language** → how we describe the loss.  
-   Hardy–Weinberg says that, without selection and with lots of mixing, allele frequencies stay stable and heterozygosity (mixing of different alleles) remains high. Distillation breaks those assumptions: it’s strong selection (match the teacher) plus tiny “*effective population size*” (narrow data/targets). So we expect Hardy–Weinberg disequilibrium: the student shows lower heterozygosity of latent modes (it reuses the same directions again and again) and lower between-group structure (students trained from different cultures look alike). In your terms: curvature shrinks, thermodynamic length shortens, and belief vectors point along a smaller cone—exactly what a post-bottleneck, post-sweep population looks like."
-%}
 
-{% include inspiration-video.liquid
-   hide_header=true
-   video_id="AvB0q3mg4sQ" 
-   caption="**Epigenetic inheritance** → what gets passed beyond “genes.”  
-   Epigenetics is transmission of traits by regulatory marks (e.g., methylation) rather than DNA sequence changes. Distillation doesn’t copy the teacher’s weights one-for-one; it mostly passes regulatory information: which outputs to emphasize (soft labels/temperature), which intermediate signals to align (hints), which behaviors to suppress. That acts like epigenetic marks on the student: some reasoning pathways are silenced, others are kept open, even if the student’s “genome” (architecture/weights) is smaller or different. This explains “shallow fluency transfer”: the student talks like the teacher but has fewer active pathways underneath."
-%}
+
+
+
 </div>
 
 ---
 
-{% auto_references %}
+

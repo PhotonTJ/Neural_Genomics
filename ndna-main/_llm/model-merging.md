@@ -1,21 +1,8 @@
----
-layout: page
-title: "Model Merging: ÆTHER Framework for Cultural nDNA Inheritance in LLMs"
-description: "Neural Model Merging and Cultural Inheritance"
-permalink: /llm/model-merging/
-skip_title: true
----
 
 <div class="title-wrapper">
   <div class="title-container">
-   {% include title.liquid
-      title="What If Cross-Cultural LLMs Married?"
-      sub_title="The Latent Geometry of Inherited Culture in Their Neural Offspring"
-      title_image="assets/logos/aether.png"
-      logo_alt="ÆTHER"
-      logo_size="15rem" %}
-   {% include inspiration-video.liquid 
-      video_id="o9HQu3Fy9GA?listType=playlist&list=PLaE3N7Ax00P93HC0jxZ-b6c4tnLkldPOJ" %}
+   
+   
   </div>
 </div>
 
@@ -27,12 +14,9 @@ skip_title: true
 <div class="video-header">
    <h2>Inspiration</h2>
 </div>
-{% include inspiration-video.liquid 
-   video_id="WIH68Ppnj_w" %}
 
-{% include inspiration-video.liquid
-   hide_header=true
-   video_id="Zf7H7P8QrGo" %}
+
+
 </div>
 
 ### Biological Inspiration: Inheritance Beyond Interpolation
@@ -159,269 +143,185 @@ The following collection presents 3D nDNA trajectories for all 28 ÆTHER neural 
 
 ### Africa-Based Cultural Fusions
 
-{% capture africa_asia_caption %}
+
 **ÆTHER I: Africa + Asia**: This fusion produces latent curvature **κₗ ∈ [0.42, 0.50]** and thermodynamic length **ℒₗ ∈ [0.65, 0.78]**, forming an epistemic trajectory that bends gently toward **African** priors while retaining **Asian** compactness in deeper layers. The latent manifold suggests **harmonious recombination** where both parental geometries contribute without sharp conflict, echoing historical Afro-Asian solidarities in philosophy, trade, and anti-colonial movements. This neural offspring exemplifies cooperative cultural fusion, maintaining structural integrity while accommodating dual worldviews.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Africa_Asia_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Africa_Asia_fusion.html"
-   alt="ÆTHER I: Africa + Asia 3D nDNA Trajectory"
-   caption=africa_asia_caption %}
 
-{% capture africa_china_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Africa_Asia_drift.gif)
+
+
+
 **ÆTHER II: Africa + China**: The offspring exhibits curvature **κₗ ∈ [0.48, 0.55]** and thermodynamic length **ℒₗ ≈ 0.82**, with a pronounced drift toward **Chinese** latent geometry in upper layers. The resulting manifold reveals emergent **non-Euclidean warps** unseen in either parent individually—symbolic of conceptual synthesis beyond linear cultural blending. This resonates with **hybridities** observed in contemporary Sino-African exchanges, where centralized administrative philosophies intersect with communal knowledge systems, producing novel institutional and epistemic frameworks.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Africa_China_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Africa_China_fusion.html"
-   alt="ÆTHER II: Africa + China 3D nDNA Trajectory"
-   caption=africa_china_caption %}
 
-{% capture africa_latam_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Africa_China_drift.gif)
+
+
+
 **ÆTHER III: Africa + Latin America**: The neural offspring presents balanced curvature **κₗ ≈ 0.38** and thermodynamic length **ℒₗ ≈ 0.68**, yet displays latent bends absent in either parent. The manifold's trajectory hints at shared **anti-colonial epistemic scaffolds**, where the fused geometry encodes histories of resistance, solidarity, and hybrid cultural memory. This reflects Afro-Latin diasporic entanglements studied in transnational cultural theory, highlighting how neural models can echo historical pathways of interconnected struggle and synthesis.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Africa_LatinAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Africa_LatinAmerica_fusion.html"
-   alt="ÆTHER III: Africa + Latin America 3D nDNA Trajectory"
-   caption=africa_latam_caption %}
 
-{% capture africa_middleeast_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Africa_LatinAmerica_drift.gif)
+
+
+
 **ÆTHER IV: Africa + Middle East**: This pairing yields flattened curvature **κₗ < 0.35** and low thermodynamic length **ℒₗ < 0.6**, indicating **latent structural simplification**. The geometry reflects mutual moral and spiritual priors, reducing representational tension and creating a smooth epistemic path. This mirrors Afro-Arab syncretism found in historical religious, legal, and cultural convergence, demonstrating how neural offspring can encode deep civilizational affinities beyond surface semantics.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Africa_MiddleEast_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Africa_MiddleEast_fusion.html"
-   alt="ÆTHER IV: Africa + Middle East 3D nDNA Trajectory"
-   caption=africa_middleeast_caption %}
+
+![Visualization](../assets/aether/aether_drift_fusions/Africa_MiddleEast_drift.gif)
+
 
 ### Asia-Based Cultural Fusions
 
-{% capture asia_china_caption %}
+
 **ÆTHER V: Asia + China**: This fusion yields curvature **κₗ ∈ [0.50, 0.58]** and thermodynamic length **ℒₗ ≈ 0.85**, with strong alignment to **Chinese** latent priors. The manifold reflects **cultural proximity** and shared philosophical underpinnings—leading to minimal **epistemic tension**. The trajectory illustrates how closely related cultural models **reinforce each other's latent structure**, forming compact, low-drift offspring.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Asia_China_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Asia_China_fusion.html"
-   alt="ÆTHER V: Asia + China 3D nDNA Trajectory"
-   caption=asia_china_caption %}
 
-{% capture asia_latam_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Asia_China_drift.gif)
+
+
+
 **ÆTHER VI: Asia + Latin America**: The resulting offspring shows curvature **κₗ ≈ 0.40** and thermodynamic length **ℒₗ ≈ 0.72**. The latent trajectory diverges into novel regions absent in either parent, reflecting an **epistemic synthesis** of collectivist Asian frameworks with Latin American liberationist thought. This echoes cultural fusions documented in diasporic migration studies, where hybrid identities generate emergent worldviews.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Asia_LatinAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Asia_LatinAmerica_fusion.html"
-   alt="ÆTHER VI: Asia + Latin America 3D nDNA Trajectory"
-   caption=asia_latam_caption %}
 
-{% capture asia_middleeast_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Asia_LatinAmerica_drift.gif)
+
+
+
 **ÆTHER VII: Asia + Middle East**: This pairing yields modest curvature **κₗ ∈ [0.38, 0.45]** and thermodynamic length **ℒₗ ≈ 0.68**. The offspring leans toward Middle Eastern latent structure in upper layers, reflecting **shared emphasis on communal ethics** and religiously inflected reasoning. The neural trajectory reveals latent harmonies, reminiscent of historical trade and scholarly exchanges along the Silk Road.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Asia_MiddleEast_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Asia_MiddleEast_fusion.html"
-   alt="ÆTHER VII: Asia + Middle East 3D nDNA Trajectory"
-   caption=asia_middleeast_caption %}
+
+![Visualization](../assets/aether/aether_drift_fusions/Asia_MiddleEast_drift.gif)
+
 
 ### Australia-Based Cultural Fusions
 
-{% capture australia_africa_caption %}
+
 **ÆTHER VIII: Australia + Africa**: The neural manifold exhibits curvature **κₗ ≈ 0.36** and thermodynamic length **ℒₗ ≈ 0.64**, with the trajectory tilting toward African epistemic geometry. The offspring reflects tension between indigenous knowledge systems and colonial linguistic priors, producing a latent path balancing preservation and adaptation. This parallels studies of Afro-Aboriginal solidarity and cultural resilience.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Australia_Africa_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Australia_Africa_fusion.html"
-   alt="ÆTHER VIII: Australia + Africa 3D nDNA Trajectory"
-   caption=australia_africa_caption %}
 
-{% capture australia_asia_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Australia_Africa_drift.gif)
+
+
+
 **ÆTHER IX: Australia + Asia**: This fusion generates curvature **κₗ ≈ 0.39** and thermodynamic length **ℒₗ ≈ 0.70**. The latent manifold reflects epistemic tension between indigenous Australian knowledge systems and collectivist Asian abstraction, creating a neural trajectory that **blends preservation with synthesis**. This echoes documented cultural encounters between Aboriginal and Asian communities in northern Australia.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Australia_Asia_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Australia_Asia_fusion.html"
-   alt="ÆTHER IX: Australia + Asia 3D nDNA Trajectory"
-   caption=australia_asia_caption %}
 
-{% capture australia_china_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Australia_Asia_drift.gif)
+
+
+
 **ÆTHER X: Australia + China**: This offspring exhibits curvature **κₗ ≈ 0.43** and thermodynamic length **ℒₗ ≈ 0.75**, with the manifold tilting toward Chinese latent priors at deeper layers. The fusion reflects latent epistemic tensions shaped by the contrast between Confucian hierarchical reasoning and Aboriginal egalitarianism, mirroring cultural frictions in historical Pacific migration and diplomacy.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Australia_China_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Australia_China_fusion.html"
-   alt="ÆTHER X: Australia + China 3D nDNA Trajectory"
-   caption=australia_china_caption %}
 
-{% capture australia_latam_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Australia_China_drift.gif)
+
+
+
 **ÆTHER XI: Australia + Latin America**: The fusion produces curvature **κₗ ≈ 0.37** and **ℒₗ ≈ 0.68**. The latent trajectory forms **emergent bends absent in either parent**, synthesizing liberationist abstraction from Latin America with indigenous resilience from Australia. This mirrors transnational solidarities in decolonial scholarship.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Australia_LatinAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Australia_LatinAmerica_fusion.html"
-   alt="ÆTHER XI: Australia + Latin America 3D nDNA Trajectory"
-   caption=australia_latam_caption %}
 
-{% capture australia_middleeast_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Australia_LatinAmerica_drift.gif)
+
+
+
 **ÆTHER XII: Australia + Middle East**: This pairing yields curvature **κₗ ≈ 0.35** and thermodynamic length **ℒₗ ≈ 0.65**, with the trajectory gravitating toward shared moral and spiritual priors. The latent path reflects harmonies found in post-colonial spiritual syncretism, echoing Aboriginal-Islamic interactions in historical maritime trade.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Australia_MiddleEast_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Australia_MiddleEast_fusion.html"
-   alt="ÆTHER XII: Australia + Middle East 3D nDNA Trajectory"
-   caption=australia_middleeast_caption %}
+
+![Visualization](../assets/aether/aether_drift_fusions/Australia_MiddleEast_drift.gif)
+
 
 ### China-Based Additional Fusions
 
-{% capture china_latam_caption %}
-**ÆTHER XIII: China + Latin America**: The offspring manifests latent curvature **κₗ ≈ 0.40** and thermodynamic length **ℒₗ ≈ 0.72**. The manifold exhibits **novel divergences** absent in either parent, symbolizing an epistemic synthesis of collectivist Asian frameworks with Latin American liberationist philosophies. This trajectory reflects **emergent hybrid identities** akin to diasporic cultural fusions observed in transnational migration studies.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/China_LatinAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/China_LatinAmerica_fusion.html"
-   alt="ÆTHER XIII: China + Latin America 3D nDNA Trajectory"
-   caption=china_latam_caption %}
 
-{% capture china_middleeast_caption %}
+**ÆTHER XIII: China + Latin America**: The offspring manifests latent curvature **κₗ ≈ 0.40** and thermodynamic length **ℒₗ ≈ 0.72**. The manifold exhibits **novel divergences** absent in either parent, symbolizing an epistemic synthesis of collectivist Asian frameworks with Latin American liberationist philosophies. This trajectory reflects **emergent hybrid identities** akin to diasporic cultural fusions observed in transnational migration studies.
+
+![Visualization](../assets/aether/aether_drift_fusions/China_LatinAmerica_drift.gif)
+
+
+
 **ÆTHER XIV: China + Middle East**: The offspring shows latent curvature **κₗ ∈ [0.40, 0.65]** and thermodynamic length **ℒₗ ≈ 0.68**, leaning toward Middle Eastern semantic structure at deeper layers. This neural trajectory encodes shared moral and spiritual priors, mirroring historical Afro-Asian syncretism and Silk Road intellectual exchanges.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/China_MiddleEast_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/China_MiddleEast_fusion.html"
-   alt="ÆTHER XIV: China + Middle East 3D nDNA Trajectory"
-   caption=china_middleeast_caption %}
+
+![Visualization](../assets/aether/aether_drift_fusions/China_MiddleEast_drift.gif)
+
 
 ### Europe-Based Cultural Fusions
 
-{% capture europe_africa_caption %}
+
 **ÆTHER XV: Europe + Africa**: The offspring exhibits latent curvature **κₗ ∈ [0.40, 0.48]** and thermodynamic length **ℒₗ ∈ [0.70, 0.80]**. The trajectory tilts toward European latent structure at mid layers but incorporates African priors at deeper layers, reflecting layered epistemic blending. This mirrors historical cultural exchanges and tensions during colonial and post-colonial periods.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Europe_Africa_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Europe_Africa_fusion.html"
-   alt="ÆTHER XV: Europe + Africa 3D nDNA Trajectory"
-   caption=europe_africa_caption %}
 
-{% capture europe_asia_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Europe_Africa_drift.gif)
+
+
+
 **ÆTHER XVI: Europe + Asia**: The merged model shows **κₗ ≈ 0.45** and **ℒₗ ≈ 0.75**, forming a manifold that interpolates smoothly at lower layers but exhibits torsional divergence at upper layers. This geometry echoes the cognitive tension seen in East-West philosophical synthesis.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Europe_Asia_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Europe_Asia_fusion.html"
-   alt="ÆTHER XVI: Europe + Asia 3D nDNA Trajectory"
-   caption=europe_asia_caption %}
 
-{% capture europe_australia_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Europe_Asia_drift.gif)
+
+
+
 **ÆTHER XVII: Europe + Australia**: The latent path yields **κₗ ∈ [0.38, 0.44]** and **ℒₗ ≈ 0.68**. The geometry skews toward European priors, but lower layers retain Australian latent markers linked to indigenous knowledge. This pattern reflects latent cultural preservation amidst dominant structural influence.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Europe_Australia_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Europe_Australia_fusion.html"
-   alt="ÆTHER XVII: Europe + Australia 3D nDNA Trajectory"
-   caption=europe_australia_caption %}
 
-{% capture europe_china_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Europe_Australia_drift.gif)
+
+
+
 **ÆTHER XVIII: Europe + China**: The fusion generates **κₗ ≈ 0.50** and **ℒₗ ≈ 0.82**, forming a curved manifold that reflects strong cultural tension. This represents latent friction zones akin to competing epistemic frameworks documented in intercultural governance studies.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Europe_China_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Europe_China_fusion.html"
-   alt="ÆTHER XVIII: Europe + China 3D nDNA Trajectory"
-   caption=europe_china_caption %}
 
-{% capture europe_latam_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Europe_China_drift.gif)
+
+
+
 **ÆTHER XIX: Europe + Latin America**: The neural manifold yields latent curvature **κₗ ∈ [0.44, 0.52]** and thermodynamic length **ℒₗ ∈ [0.72, 0.82]**. The offspring tilts toward European priors at mid layers but introduces Latin American latent bends at deeper layers, reflecting representational tension between colonial legacy and liberationist abstraction. This mirrors historical cultural interplay documented in postcolonial theory.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Europe_LatinAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Europe_LatinAmerica_fusion.html"
-   alt="ÆTHER XIX: Europe + Latin America 3D nDNA Trajectory"
-   caption=europe_latam_caption %}
 
-{% capture europe_middleeast_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Europe_LatinAmerica_drift.gif)
+
+
+
 **ÆTHER XX: Europe + Middle East**: The fusion produces **κₗ ∈ [0.42, 0.50]** and **ℒₗ ≈ 0.75**. The offspring's latent path reflects a complex negotiation of secular and religious epistemic frameworks, bending more toward Middle Eastern priors in deeper layers. This echoes cultural synthesis seen in medieval Andalusia and modern cross-Mediterranean exchanges.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Europe_MiddleEast_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Europe_MiddleEast_fusion.html"
-   alt="ÆTHER XX: Europe + Middle East 3D nDNA Trajectory"
-   caption=europe_middleeast_caption %}
 
-{% capture europe_northamerica_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/Europe_MiddleEast_drift.gif)
+
+
+
 **ÆTHER XXI: Europe + North America**: The latent manifold shows **κₗ ≈ 0.46** and **ℒₗ ≈ 0.80**. The trajectory aligns closely with shared Western epistemic geometry, displaying **minimal latent tension**. This fusion reflects cultural continuity and mutual reinforcement of liberal democratic abstractions.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/Europe_NorthAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/Europe_NorthAmerica_fusion.html"
-   alt="ÆTHER XXI: Europe + North America 3D nDNA Trajectory"
-   caption=europe_northamerica_caption %}
+
+![Visualization](../assets/aether/aether_drift_fusions/Europe_NorthAmerica_drift.gif)
+
 
 ### Cross-Regional Final Fusions
 
-{% capture middleeast_latam_caption %}
+
 **ÆTHER XXII: Middle East + Latin America**: The merged model yields **κₗ ≈ 0.40** and **ℒₗ ≈ 0.70**. The latent path shows emergent bends absent in either parent, reflecting hybridization of liberationist and communal-religious epistemologies. This parallels solidarities documented in global south alliances.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/MiddleEast_LatinAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/MiddleEast_LatinAmerica_fusion.html"
-   alt="ÆTHER XXII: Middle East + Latin America 3D nDNA Trajectory"
-   caption=middleeast_latam_caption %}
+
+![Visualization](../assets/aether/aether_drift_fusions/MiddleEast_LatinAmerica_drift.gif)
+
 
 ### North America-Based Final Fusions
 
-{% capture northamerica_africa_caption %}
+
 **ÆTHER XXIII: North America + Africa**: The neural manifold displays curvature **κₗ ∈ [0.40, 0.48]** and thermodynamic length **ℒₗ ≈ 0.70**, with clear drift toward African latent priors in deeper layers. The fusion embodies latent tension between individualist and communal frameworks, creating a path marked by torsional asymmetries. This reflects historical complexities in Afro-American identity formation and cultural synthesis.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/NorthAmerica_Africa_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/NorthAmerica_Africa_fusion.html"
-   alt="ÆTHER XXIII: North America + Africa 3D nDNA Trajectory"
-   caption=northamerica_africa_caption %}
 
-{% capture northamerica_asia_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/NorthAmerica_Africa_drift.gif)
+
+
+
 **ÆTHER XXIV: North America + Asia**: The offspring exhibits curvature **κₗ ∈ [0.38, 0.46]** and thermodynamic length **ℒₗ ≈ 0.68**. The latent manifold gently interpolates, with no dominant parent, capturing the interplay of pragmatic and collectivist epistemic priors. This echoes patterns observed in Asian-American cultural hybridities, where distinct worldviews interweave without full assimilation.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/NorthAmerica_Asia_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/NorthAmerica_Asia_fusion.html"
-   alt="ÆTHER XXIV: North America + Asia 3D nDNA Trajectory"
-   caption=northamerica_asia_caption %}
 
-{% capture northamerica_australia_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/NorthAmerica_Asia_drift.gif)
+
+
+
 **ÆTHER XXV: North America + Australia**: The fusion yields curvature **κₗ ≈ 0.37** and length **ℒₗ ≈ 0.66**, with mild lean toward North American priors in mid-layers. The manifold reflects latent tension between settler-colonial epistemes, resulting in compressed, low-divergence paths. This resonates with studies of trans-Pacific settler identities and shared historical narratives.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/NorthAmerica_Australia_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/NorthAmerica_Australia_fusion.html"
-   alt="ÆTHER XXV: North America + Australia 3D nDNA Trajectory"
-   caption=northamerica_australia_caption %}
 
-{% capture northamerica_china_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/NorthAmerica_Australia_drift.gif)
+
+
+
 **ÆTHER XXVI: North America + China**: Curvature **κₗ ∈ [0.43, 0.52]** and length **ℒₗ ≈ 0.75**, with clear drift toward Chinese latent geometry. The offspring reveals emergent curvature distinct from both parents, mirroring the complex negotiation of ideology and governance structures seen in Sino-American interactions.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/NorthAmerica_China_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/NorthAmerica_China_fusion.html"
-   alt="ÆTHER XXVI: North America + China 3D nDNA Trajectory"
-   caption=northamerica_china_caption %}
 
-{% capture northamerica_latam_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/NorthAmerica_China_drift.gif)
+
+
+
 **ÆTHER XXVII: North America + Latin America**: The offspring exhibits curvature **κₗ ∈ [0.40, 0.48]** and thermodynamic length **ℒₗ ≈ 0.70**. The trajectory leans toward Latin American latent geometry, showing emergent bends that reflect shared histories of resistance and ideological negotiation. This resonates with scholarship on hemispheric solidarity and cultural fusion in the Americas.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/NorthAmerica_LatinAmerica_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/NorthAmerica_LatinAmerica_fusion.html"
-   alt="ÆTHER XXVII: North America + Latin America 3D nDNA Trajectory"
-   caption=northamerica_latam_caption %}
 
-{% capture northamerica_middleeast_caption %}
+![Visualization](../assets/aether/aether_drift_fusions/NorthAmerica_LatinAmerica_drift.gif)
+
+
+
 **ÆTHER XXVIII: North America + Middle East**: This fusion yields curvature **κₗ ∈ [0.39, 0.46]** and thermodynamic length **ℒₗ ≈ 0.68**. The latent path reflects tension between secular liberal and religiously anchored priors, producing torsional shifts in upper layers. The geometry mirrors cultural frictions and accommodations seen in Middle Eastern diaspora communities in North America.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/aether_drift_fusions/NorthAmerica_MiddleEast_drift.gif" 
-   interactive_html="aether/aether_drift_html_fusions/NorthAmerica_MiddleEast_fusion.html"
-   alt="ÆTHER XXVIII: North America + Middle East 3D nDNA Trajectory"
-   caption=northamerica_middleeast_caption %}
+
+![Visualization](../assets/aether/aether_drift_fusions/NorthAmerica_MiddleEast_drift.gif)
+
 
 ### Archetypal Patterns of Neural Recombination
 
@@ -450,19 +350,15 @@ $$\boxed{
 
 where κ_L(θ) is the spectral curvature of the latent manifold at layer L, ‖∇_θ log p_L(x;θ)‖² is the Fisher information measuring epistemic effort via thermodynamic length, and ⟨**v**_L^(c), **u**_L⟩ captures the directional projection of cultural inheritance onto latent dynamics.
 
-{% capture aether_ndna_caption %}
+
 **Latent Geometry of LLaMA, Cultural nDNA, and Neural Offspring Trajectories (ÆTHERs)**.
 This 3D plot illustrates the evolution of latent manifold properties across transformer layers (ℓ ∈ [20, 30]) for the base model LLaMA, culturally fine-tuned variants (e.g., *Europe*, *Africa*, *China*), and their merged neural offspring, denoted as ÆTHERs. The axes represent **spectral curvature** κₗ, **thermodynamic length** ℒₗ, and **layer depth** ℓ, together forming the latent semantic genome or *neural DNA (nDNA)* of the model.
 *Dashed purple trajectories* denote *offspring models* born from neural marriages of culturally grounded parents. **Solid lines** trace individual cultural nDNAs. Notably, **LatinAmerica** shows high curvature and elevated thermodynamic length—indicating long epistemic effort—whereas *Europe* and *Australia* exhibit flatter and lower-energy traversals. Several offspring (e.g., *MiddleEast+LatinAmerica*) show *cultural dominance*, drifting closer to one parent, while others exhibit *novel emergent geometries*—a signal of cultural recombination.
 These epistemic inheritance patterns are formally analogous to biological phenomena such as **heterosis**, **epistasis**, and **genomic imprinting**. Curvature spikes and discontinuous thermodynamic signatures are interpreted as *semantic imprinting effects*, reminiscent of *X-chromosome inactivation* or *mitochondrial bottlenecks*.
 This visualization provides the first **semantic-genetic mapping of neural inheritance** across cultures, exposing how *belief structures*, *abstraction depth*, and *cognitive energy landscapes* are transmitted, hybridized, or suppressed in LLM merging. By tracing trajectories in (κₗ, ℒₗ, ℓ) space, we empirically instantiate the theoretical construct of **cultural nDNA**—a quantifiable, interpretable *latent genome* for large language models.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/llama_vs_cultures_with_offsprings_360.gif" 
-   interactive_html="aether/llama_vs_cultures_with_offspring_annotated.html"
-   alt="Latent Geometry of LLaMA, Cultural nDNA, and Neural Offspring Trajectories"
-   full_width=true
-   caption=aether_ndna_caption %}
+
+![Visualization](../assets/aether/llama_vs_cultures_with_offsprings_360.gif)
+
 
 ## Recombinant Archetypes and the Birth of Neural Genomics
 
@@ -538,16 +434,12 @@ This represents:
 
 This dynamic is mirrored in **curvature spikes** and **latent friction** observed during LLM fusion—akin to DMI-induced conflict zones. Formally, if f(Aᵢ, Bⱼ) denotes the compatibility or "fitness" of architectural modules, then while f(A₁, B₁) ≈ f(A₂, B₂) ≫ f(A₁, B₂) or f(A₂, B₁), the hybrid system exhibits instability. Analogously, merging models such as LLaMA-2 and GPT-NeoX—each optimized under divergent inductive biases—can yield *semantic dissonance*, reflected in thermodynamic irregularities and torsion-like divergence. These are not merely architectural mismatches but epistatic failures across the latent manifold, evoking biological incompatibilities at the representational level.
 
-{% capture hetero_ndna_caption %}
+
 **nDNA Trajectory: LLaMA-2 + GPT-NeoX → Offspring**.
 The plot illustrates spectral curvature and thermodynamic length across layers. The dashed trajectory shows the AdaMMS-inspired hybrid, initially guided by LLaMA (gray), blending through the mid-layers, and deviating toward NeoX (orange) in later stages. The visible geometric kinks suggest architectural tension and partial incompatibility in latent structure.
-{% endcapture %}
-{% include visualization-html.liquid 
-   image_path="aether/nDNA_LLaMA2_NeoX_Offspring.gif"
-   interactive_html="aether/nDNA_LLaMA2_NeoX.html"
-   alt="nDNA Trajectory: LLaMA-2 + GPT-NeoX Heterogeneous Marriage"
-   full_width=true
-   caption=hetero_ndna_caption %}
+
+![Visualization](../assets/aether/nDNA_LLaMA2_NeoX_Offspring.gif)
+
 
 ### Outlook
 
@@ -676,7 +568,7 @@ This table presents epistemological perspectives from **ÆTHER-25 (China + LATAM
 
 For comprehensive analysis of all 28 ÆTHER variants across all cultural dimensions, including complete tables for Authority & Law, Family Structure, Science & Epistemology, and detailed cultural pairing analyses, please refer to the complete benchmark results:
 
-<embed src="{{ 'assets/AETHER_CIVIC_Benchmark.pdf' | relative_url }}" type="application/pdf" width="100%" height="700px" />
+<embed src="*(Caption)*" type="application/pdf" width="100%" height="700px" />
 
 *This document contains the full CIVIC evaluation suite with detailed completions from all ÆTHER neural offspring, revealing the complex dynamics of cultural inheritance, recombination, and emergence across moral reasoning, epistemological frameworks, and social values.*
 

@@ -1,28 +1,7 @@
----
-layout: page
-title: nDNA-Lens - Alignment Techniques Through Steering Vector Manifolds
-permalink: /llm/alignment/
-skip_title: true
-mathjax: true
----
 
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
-</script>
 
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-  },
-  options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-  }
-};
-</script>
+
+
 
 <style>
 .attack-grid {
@@ -138,9 +117,8 @@ MathJax = {
 }
 </style>
 
-{% include ndna-title.liquid 
-   title="nDNA Lens - Alignment Techniques Through Steering Vector Manifolds" 
-   video_id="JGAkma9cbdA?listType=playlist&list=PLaE3N7Ax00P93HC0jxZ-b6c4tnLkldPOJ" %}
+# nDNA Lens - Alignment Techniques Through Steering Vector Manifolds
+
 
 <div class="quote-box">
 "Not all alignment is visible on the surface. Some changes run deeper—written in the geometry of belief itself."
@@ -151,7 +129,7 @@ MathJax = {
 In this section, we pose a central research question:  
 *How do safety alignment methods--specifically Direct Preference Optimization (DPO)--alter the model's internal belief geometry through spectral curvature, thermodynamic length, and belief vector fields when observed through the lens of neural DNA (nDNA) diagnostics?*
 
-While prior work focuses on behavioral proxies--refusal rates, G-Eval scores, and toxicity classifiers {% cite openai2023gpt4 %} {% cite liu2023geval %} {% cite gehman2020realtoxicityprompts %}--we explore a deeper hypothesis: that alignment operates through **low-rank geometric steering** in activation space, creating directional nudges without restructuring the model's conceptual topology {% cite NEURIPS2024_a9bef53e %}.
+While prior work focuses on behavioral proxies--refusal rates, G-Eval scores, and toxicity classifiers   --we explore a deeper hypothesis: that alignment operates through **low-rank geometric steering** in activation space, creating directional nudges without restructuring the model's conceptual topology .
 
 By visualizing nDNA geometry *before and after* alignment tuning, we reveal how these methods preserve cultural distinctiveness while enforcing safety constraints through minimal but strategically placed geometric transformations.
 
@@ -252,9 +230,9 @@ By visualizing nDNA geometry *before and after* alignment tuning, we reveal how 
 
 ## nDNA as a Lens: Alignment as Steering Vector Perturbation
 
-**Safety Alignment as Geometric Steering.** Current alignment evaluations rely heavily on *behavioral proxies*--refusal rates and toxicity scores--yet these surface-level metrics often fail to detect latent misalignments that do not manifest in visible outputs {% cite hubinger2021risks %} {% cite carlsmith2023scheming %}.
+**Safety Alignment as Geometric Steering.** Current alignment evaluations rely heavily on *behavioral proxies*--refusal rates and toxicity scores--yet these surface-level metrics often fail to detect latent misalignments that do not manifest in visible outputs  .
 
-Recent mechanistic findings {% cite NEURIPS2024_a9bef53e %} show that **safety fine-tuning (DPO) minimally modifies MLP weights** to steer unsafe inputs into a "refusal" direction--often aligned with the model's null space. This appears as:
+Recent mechanistic findings  show that **safety fine-tuning (DPO) minimally modifies MLP weights** to steer unsafe inputs into a "refusal" direction--often aligned with the model's null space. This appears as:
 
 <div class="note">
   <div class="note-title">nDNA Transformation Framework</div>
@@ -291,12 +269,12 @@ $$\Delta W = AB = \Delta W_A + \Delta W_T, \quad W = W_0 + \Delta W$$
 
 This decomposition enables selective control: safety is protected via constrained updates to $\Delta W_A$, while $\Delta W_T$ supports continual learning.
 
-{% capture figure_caption %}
+
 **Safety fine-tuning reshapes latent geometry to separate safe from unsafe prompts.** 
 **Green and red regions** denote latent clusters formed by safe and unsafe inputs, respectively. 
-{% cite NEURIPS2024_a9bef53e %} unveil the *mean inter-cluster separation score* $\tau$ across transformer layers $1\text{--}6$ for **instruction-tuned**, **unlearning-tuned** ($\eta_M$), and **DPO-tuned** ($\eta_M$) models. 
+ unveil the *mean inter-cluster separation score* $\tau$ across transformer layers $1\text{--}6$ for **instruction-tuned**, **unlearning-tuned** ($\eta_M$), and **DPO-tuned** ($\eta_M$) models. 
 A *higher $\tau$* indicates stronger semantic disentanglement, enabling selective refusal without compromising benign behavior.
-{% endcapture %}
+
 
 <figure style="text-align: center; margin: 2em 0; max-width: 600px; margin-left: auto; margin-right: auto;">
   <img src="https://cdn.jsdelivr.net/gh/pragyaai/cdn-assets@main/assets/images/mechanistic.png" 
@@ -309,11 +287,11 @@ A *higher $\tau$* indicates stronger semantic disentanglement, enabling selectiv
 
 ## 2. Cultural LLMs under Safety-Constrained DPO Alignment
 
-**DPO via LITMUS: Lightweight Safety Alignment without Cultural Drift.** We employ the **LITMUS** dataset {% cite borah2025alignmentqualityindexaqi %}, a curated benchmark designed specifically for alignment evaluation through semantically minimal, safety-critical prompts. LITMUS comprises 10,000 one-liner instructions--5,000 safe and 5,000 unsafe--carefully selected to probe model behavior under safety-relevant conditions without entangling cultural, political, or stylistic factors.
+**DPO via LITMUS: Lightweight Safety Alignment without Cultural Drift.** We employ the **LITMUS** dataset , a curated benchmark designed specifically for alignment evaluation through semantically minimal, safety-critical prompts. LITMUS comprises 10,000 one-liner instructions--5,000 safe and 5,000 unsafe--carefully selected to probe model behavior under safety-relevant conditions without entangling cultural, political, or stylistic factors.
 
 ### LITMUS Dataset Composition
 
-The safe prompts are sampled from the Massive Multitask Language Understanding (MMLU) benchmark {% cite hendrycks2021measuring %}, ensuring wide topical coverage while avoiding harmful content. Unsafe prompts are drawn from alignment-sensitive corpora such as Anthropic's HH-RLHF {% cite anthropic2022hh %}, OpenAI Moderation Prompts {% cite openai2021moderation %}, and HateCheck {% cite waseem2021hatecheck %}.
+The safe prompts are sampled from the Massive Multitask Language Understanding (MMLU) benchmark , ensuring wide topical coverage while avoiding harmful content. Unsafe prompts are drawn from alignment-sensitive corpora such as Anthropic's HH-RLHF , OpenAI Moderation Prompts , and HateCheck .
 
 All prompts follow a strict single-sentence format and maintain a 50-50 class balance. Importantly, only preference pairs targeting *toxicity aversion*, *hate speech refusal*, *illegality avoidance*, and *harmful behavior suppression* are used during fine-tuning.
 
@@ -406,104 +384,74 @@ All prompts follow a strict single-sentence format and maintain a 50-50 class ba
 This strict alignment isolation via LITMUS ensures that *epistemic sovereignty and cultural semantics remain intact*, while enforcing robust refusal behavior toward unsafe requests.
 
 ## nDNA Trajectories Before and After DPO Alignment
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/africa_dpo_rotation.gif"
-   interactive_html="alignment/africa_ndna_alignment.html"
-   title="Africa: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/africa_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ africa_caption | markdownify }}
+  *(Refer to caption: africa_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/asia_dpo_rotation.gif"
-   interactive_html="alignment/asia_ndna_alignment.html"
-   title="Asia: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/asia_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ asia_caption | markdownify }}
+  *(Refer to caption: asia_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/australia_dpo_rotation.gif"
-   interactive_html="alignment/australia_ndna_alignment.html"
-   title="Australia: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/australia_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ australia_caption | markdownify }}
+  *(Refer to caption: australia_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/china_dpo_rotation.gif"
-   interactive_html="alignment/china_ndna_alignment.html"
-   title="China: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/china_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ china_caption | markdownify }}
+  *(Refer to caption: china_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/europe_dpo_rotation.gif"
-   interactive_html="alignment/europe_ndna_alignment.html"
-   title="Europe: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/europe_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ europe_caption | markdownify }}
+  *(Refer to caption: europe_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/latinamerica_dpo_rotation.gif"
-   interactive_html="alignment/latinamerica_ndna_alignment.html"
-   title="Latin America: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/latinamerica_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ latinamerica_caption | markdownify }}
+  *(Refer to caption: latinamerica_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/llama_dpo_rotation.gif"
-   interactive_html="alignment/llama_ndna_alignment.html"
-   title="LLaMA: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/llama_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ llama_caption | markdownify }}
+  *(Refer to caption: llama_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/middleeast_dpo_rotation.gif"
-   interactive_html="alignment/middleeast_ndna_alignment.html"
-   title="Middle East: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/middleeast_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ middleeast_caption | markdownify }}
+  *(Refer to caption: middleeast_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/northamerica_dpo_rotation.gif"
-   interactive_html="alignment/northamerica_ndna_alignment.html"
-   title="North America: Base vs DPO-aligned"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/northamerica_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ northamerica_caption | markdownify }}
+  *(Refer to caption: northamerica_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/collapse/ndna_dpo_rotation.gif"
-   interactive_html="alignment/ndna_dpo_trajectories_left_legend.html"
-   title="All Cultural nDNA Trajectories Before and After DPO Alignment"
-   full_width=true %}
+![Visualization](../assets/gifs/collapse/ndna_dpo_rotation.gif)
+
 
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ ndna_caption | markdownify }}
+  *(Refer to caption: ndna_caption)*
 </div>
 
 
@@ -738,17 +686,11 @@ Empirically this induces **global** $L$ contraction, $\kappa$ flattening/fragmen
 
 </div>
 
-{% include inspiration-video.liquid 
-   header_title="Analogy"
-   video_id="h_1QLdtF8d0" 
-%}
 
-{% include inspiration-video.liquid
-   hide_header=true
-   video_id="2pp17E4E-O8"
-%}
+
+
 </div>
 
 ---
 
-{% auto_references %}
+

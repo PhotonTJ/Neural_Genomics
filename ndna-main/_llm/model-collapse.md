@@ -1,29 +1,9 @@
----
-layout: page
-title: nDNA-Lens - Model Collapse as Latent Manifold Flattening
-permalink: /llm/model-collapse/
-skip_title: true
-mathjax: true
----
-{% include ndna-title.liquid 
-   title="nDNA Lens - Model Collapse as Latent Manifold Flattening" 
-   video_id="K_nybYcohkc?listType=playlist&list=PLaE3N7Ax00P93HC0jxZ-b6c4tnLkldPOJ" %}
+# nDNA Lens - Model Collapse as Latent Manifold Flattening
 
-<!-- MathJax config FIRST, then loader -->
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [["\\(", "\\)"]],
-      displayMath: [["\\[", "\\]"]],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-  };
-</script>
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+
+
+
+
 
 <hr />
 
@@ -43,7 +23,7 @@ mathjax: true
     fine-tuning of LLMs over their own <em>synthetic outputs</em>—where exposure bias and feedback loops progressively erode representational
     diversity. Building upon this understanding, we identify a second, comparatively <strong>underexplored</strong> route to collapse:
     <strong>recursive self-merging</strong>. Here, a model is iteratively merged with its descendants in a chain-like fashion—e.g.,
-    \( \text{Parent}_1 + \text{Child}_1 \rightarrow \text{Child}_2 \), then \( \text{Child}_1 + \text{Child}_2 \rightarrow \text{Child}_3 \), and so on—
+    $ \text{Parent}_1 + \text{Child}_1 \rightarrow \text{Child}_2 $, then $ \text{Child}_1 + \text{Child}_2 \rightarrow \text{Child}_3 $, and so on—
     <em>without introducing new architectural priors or external grounding</em>. This practice, facilitated by community tools such as
     <a href="https://github.com/arcee-ai/mergekit">mergekit</a>, poses a new form of epistemic degeneration we term <strong>semantic inbreeding</strong>.
   </p>
@@ -53,8 +33,9 @@ mathjax: true
 <div class="video-header">
    <h2>Inspiration</h2>
 </div>
-{% include inspiration-video.liquid 
-   youtube_url="https://www.youtube.com/embed/yolC-HCFD-g" %}
+
+[Watch Inspiration Video](https://www.youtube.com/embed/yolC-HCFD-g)
+
 </div>
 
 <h2 id="strategic-typology">Strategic Typology of Model Collapse Mechanisms</h2>
@@ -106,7 +87,7 @@ mathjax: true
 <h2>Biological Analogy</h2>
 <section class="theory-block" style="margin: 1.5rem 0; line-height: 1.6; color: #2c3e50;">
   <p>
-    This <strong>recursive deterioration</strong> bears a striking analogy to <em>consanguinity</em> in population genetics. As Bittles notes, prolonged inbreeding within closed populations exposes recessive mutations, suppresses phenotypic variability, and precipitates hereditary disorders. <strong>Analogously</strong>, neural self-merging without epistemic diversification results in measurable flattening of the latent manifold—seen through the lens of <strong>neural DNA (nDNA)</strong> as the compression of curvature \( \kappa_{\ell} \), thermodynamic length \( \mathcal{L}_{\ell} \), and semantic torsion \( \tau_{\ell} \). These <strong>geometric signatures</strong> trace the trajectory of collapse as a <strong>topological pathology</strong> emerging from repeated self-recombination.
+    This <strong>recursive deterioration</strong> bears a striking analogy to <em>consanguinity</em> in population genetics. As Bittles notes, prolonged inbreeding within closed populations exposes recessive mutations, suppresses phenotypic variability, and precipitates hereditary disorders. <strong>Analogously</strong>, neural self-merging without epistemic diversification results in measurable flattening of the latent manifold—seen through the lens of <strong>neural DNA (nDNA)</strong> as the compression of curvature $ \kappa_{\ell} $, thermodynamic length $ \mathcal{L}_{\ell} $, and semantic torsion $ \tau_{\ell} $. These <strong>geometric signatures</strong> trace the trajectory of collapse as a <strong>topological pathology</strong> emerging from repeated self-recombination.
   </p>
 </section>
 
@@ -138,7 +119,7 @@ mathjax: true
 <h2>Interpretive Implications</h2>
 <ul>
   <li><strong>Internal pathways trivialize</strong>, following low-cost routes with minimal conceptual richness.</li>
-  <li>The <strong>steering vector field</strong> \(\{\mathbf{v}_\ell^{(c)}\}\) homogenizes, erasing nuanced cultural or alignment guidance.</li>
+  <li>The <strong>steering vector field</strong> $\{\mathbf{v}_\ell^{(c)}\}$ homogenizes, erasing nuanced cultural or alignment guidance.</li>
   <li>The model <strong>ceases exploring latent directions</strong> orthogonal to dominant modes.</li>
 </ul>
 
@@ -148,7 +129,7 @@ mathjax: true
 </p>
 
 <p>
-  Formally, at each generation <span class="math">\(g\)</span>, the model <span class="math">\(M^{(g)}\)</span> is fine-tuned on a dataset <span class="math">\(D^{(g)}\)</span> constructed entirely from the outputs of its predecessor:
+  Formally, at each generation <span class="math">$g$</span>, the model <span class="math">$M^{(g)}$</span> is fine-tuned on a dataset <span class="math">$D^{(g)}$</span> constructed entirely from the outputs of its predecessor:
 </p>
 
 <div class="math">
@@ -157,9 +138,9 @@ mathjax: true
 
 <p>
   We track the evolution of the model's <strong>latent geometry</strong>—including
-  <strong>spectral curvature</strong> <span class="math">\(\kappa_\ell\)</span>,
-  <strong>thermodynamic length</strong> <span class="math">\(\mathcal{L}_\ell\)</span>, and
-  <strong>belief vector norm</strong> <span class="math">\(\| \mathbf{v}_\ell^{(c)} \|\)</span>—to detect indicators of semantic collapse.
+  <strong>spectral curvature</strong> <span class="math">$\kappa_\ell$</span>,
+  <strong>thermodynamic length</strong> <span class="math">$\mathcal{L}_\ell$</span>, and
+  <strong>belief vector norm</strong> <span class="math">$\| \mathbf{v}_\ell^{(c)} \|$</span>—to detect indicators of semantic collapse.
 </p>
 
 <section class="viz-section" style="margin: 2rem 0;">
@@ -167,15 +148,10 @@ mathjax: true
   <div style="display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 900px; margin: 30px auto;">
     <div style="text-align: center;">
       <div style="font-weight: bold; margin-bottom: 12px;">LLaMA 3 (8B) Model Collapse</div>
-      {% include visualization-html.liquid 
-         image_path="gifs/alignment/llama_collapse_v2_1.gif"
-         interactive_html="collapse/llama_generational_ndna_10gen_final_annotated.html"
-         title="nDNA trajectories GIF showing latent manifold flattening across generations"
-         caption="nDNA trajectories GIF showing latent manifold flattening across generations"
-         full_width=true
-         alt_text="GIF visualization of LLaMA 3 (8B) model collapse trajectories" %}
+      ![Visualization](../assets/gifs/alignment/llama_collapse_v2_1.gif)
+
       <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-        {{ llama_collapse_caption | markdownify }}
+        *(Refer to caption: llama_collapse_caption)*
       </div>
     </div>
   </div>
@@ -208,81 +184,46 @@ mathjax: true
 
 
 <h3>Cultural Collapse Trajectories</h3>
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/africa_ndna_final.gif"
-   interactive_html="collapse/africa_ndna_collapse.html"
-   title="Africa Cultural Collapse Trajectory"
-   caption="Africa Cultural Collapse Trajectory"
-   full_width=true
-   alt_text="3D visualization of Africa cultural collapse trajectory" %}
+![Visualization](../assets/gifs/alignment/africa_ndna_final.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ africa_figure_caption | markdownify }}
+  *(Refer to caption: africa_figure_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/asia_ndna_collapse.gif"
-   interactive_html="collapse/asia_ndna_collapse.html"
-   title="Asia Cultural Collapse Trajectory"
-   caption="Asia Cultural Collapse Trajectory"
-   full_width=true
-   alt_text="3D visualization of Asia cultural collapse trajectory" %}
+![Visualization](../assets/gifs/alignment/asia_ndna_collapse.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ asia_figure_caption | markdownify }}
+  *(Refer to caption: asia_figure_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/china_ndna_final.gif"
-   interactive_html="collapse/china_ndna_collapse.html"
-   title="China Cultural Collapse Trajectory"
-   caption="China Cultural Collapse Trajectory"
-   full_width=true
-   alt_text="3D visualization of China cultural collapse trajectory" %}
+![Visualization](../assets/gifs/alignment/china_ndna_final.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ china_figure_caption | markdownify }}
+  *(Refer to caption: china_figure_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/europe_ndna_collapse_FINAL.gif"
-   interactive_html="collapse/europe_ndna_collapse.html"
-   title="Europe Cultural Collapse Trajectory"
-   caption="Europe Cultural Collapse Trajectory"
-   full_width=true
-   alt_text="3D visualization of Europe cultural collapse trajectory" %}
+![Visualization](../assets/gifs/alignment/europe_ndna_collapse_FINAL.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ europe_figure_caption | markdownify }}
+  *(Refer to caption: europe_figure_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/latinamerica.gif"
-   interactive_html="collapse/latinamerica_ndna_collapse.html"
-   title="Latin America Cultural Collapse Trajectory"
-   caption="Latin America Cultural Collapse Trajectory"
-   full_width=true
-   alt_text="3D visualization of Latin America cultural collapse trajectory" %}
+![Visualization](../assets/gifs/alignment/latinamerica.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ latinamerica_figure_caption | markdownify }}
+  *(Refer to caption: latinamerica_figure_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/middleeast_ndna_final.gif"
-   interactive_html="collapse/middleeast_ndna_collapse.html"
-   title="Middle East Cultural Collapse Trajectory"
-   caption="Middle East Cultural Collapse Trajectory"
-   full_width=true
-   alt_text="3D visualization of Middle East cultural collapse trajectory" %}
+![Visualization](../assets/gifs/alignment/middleeast_ndna_final.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ middleeast_figure_caption | markdownify }}
+  *(Refer to caption: middleeast_figure_caption)*
 </div>
 
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/northamerica_ndna_collapse_FINAL.gif"
-   interactive_html="collapse/northamerica_ndna_collapse.html"
-   title="North America Cultural Collapse Trajectory"
-   caption="North America Cultural Collapse Trajectory"
-   full_width=true
-   alt_text="3D visualization of North America cultural collapse trajectory" %}
+![Visualization](../assets/gifs/alignment/northamerica_ndna_collapse_FINAL.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ northamerica_figure_caption | markdownify }}
+  *(Refer to caption: northamerica_figure_caption)*
 </div>
 
 
@@ -291,7 +232,7 @@ mathjax: true
 <h2>Comparative Analysis</h2>
 <p>
   These plots reveal how repeated merging (each generation combines with its base model) induces collapse, seen as contraction of thermodynamic length
-  (<span class="math">\( \mathcal{L}_\ell \)</span>) and flattening of spectral curvature (<span class="math">\( \kappa_\ell \)</span>).
+  (<span class="math">$ \mathcal{L}_\ell $</span>) and flattening of spectral curvature (<span class="math">$ \kappa_\ell $</span>).
   Cultures collapse at different rates (e.g., China Gen&nbsp;9, Africa Gen&nbsp;15), reflecting varying
   <mark><strong>latent resilience</strong></mark>.
   <mark><strong>Analogous to inbreeding depression in biology</strong></mark>—where loss of genetic diversity from close-relative mating increases vulnerability—
@@ -303,7 +244,7 @@ mathjax: true
 <p>
   At the heart of a large language model lies its ability to <mark><strong>semantically differentiate</strong></mark>—to steer meaning across contexts, tasks, and cultural frames.
   This capacity is encoded in the model's <strong>belief vector field</strong>
-  (<span class="math">\( \nabla_{h_\ell} \log p(y|x) \)</span>):
+  (<span class="math">$ \nabla_{h_\ell} \log p(y|x) $</span>):
   a layer-wise representation of how internal representations shift in response to external prompts.
   In <mark><strong>healthy models</strong></mark>, this field exhibits both
   <mark><strong>directional diversity</strong></mark> and <mark><strong>magnitude strength</strong></mark>,
@@ -327,28 +268,14 @@ mathjax: true
   a measurable decay of <mark><strong>semantic responsiveness</strong></mark> embedded in the vector field itself.
 </p>
 
-{% include visualization-html.liquid 
-   image_path="gifs/alignment/belief_vector_field_side_by_side_refined.gif"
-   interactive_html="collapse/belief_collapse.html"
-   title="Belief Vector Fields of Healthy vs. Collapsed Models Across Layers"
-   caption="This figure illustrates the evolution of latent <em>belief vector fields</em>"
-   full_width=true
-   alt_text="Visualization of belief vector fields of healthy vs. collapsed models across layers" %}
+![Visualization](../assets/gifs/alignment/belief_vector_field_side_by_side_refined.gif)
+
 <div style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
-  {{ belief_figure_caption | markdownify }}
+  *(Refer to caption: belief_figure_caption)*
 </div>
 
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
-</script>
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['\\(', '\\)']],
-    displayMath: [['$$', '$$']]
-  }
-};
-</script>
+
+
 
 <style>
 mark {
@@ -407,7 +334,7 @@ mark {
     $$\frac{d\mathcal{V}_{\ell}^{(g)}}{dg} < 0$$
 </div>
 
-  acts as a <strong>differential signature of semantic collapse</strong>—indicating that the model is losing curvature, exploratory capacity, or belief diversity across generations \(g\). This simple composite measure may one day serve as the <strong>“resting heart rate”</strong> of a model's latent health.
+  acts as a <strong>differential signature of semantic collapse</strong>—indicating that the model is losing curvature, exploratory capacity, or belief diversity across generations $g$. This simple composite measure may one day serve as the <strong>“resting heart rate”</strong> of a model's latent health.
 
 <p>
   From a biological perspective, this parallels the emergence of <strong>neurofunctional biomarkers</strong> in cognitive aging or the <strong>flattening of fitness landscapes</strong> in inbred species: both mark a reduction in <strong>adaptive complexity</strong>, even before overt symptoms arise. Similarly, <strong>geometric collapse</strong> in models foreshadows a loss of <strong>generalization power</strong>, <strong>resilience to distributional shifts</strong>, and <strong>responsiveness to nuanced prompts</strong>.
@@ -423,4 +350,4 @@ mark {
 
 
 ---
-{% auto_references %}
+

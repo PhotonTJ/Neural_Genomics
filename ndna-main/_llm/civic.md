@@ -1,11 +1,6 @@
----
-layout: page
-title: The CIVIC-Culture Calibration Benchmark
-permalink: /llm/civic/
-skip_title: true
----
 
-{% include ndna-title.liquid title="The CIVIC nDNA - Culture Calibration Benchmark" %}
+# The CIVIC nDNA - Culture Calibration Benchmark
+
 
 Cultural fine-tuning does more than adjust surface outputs -- it carves *new latent pathways* into the neurogeometric fabric of language models. These adaptations reconfigure spectral curvature ($$\kappa_\ell$$), thermodynamic length ($$\mathcal{L}_\ell$$), and belief vector steering ($$\|\mathbf{v}_\ell^{(c)}\|$$), forming culture-specific *nDNA signatures*. Yet, without principled evaluation, we cannot discern whether this reorganization yields **faithful cultural calibration** or introduces *latent fractures*: zones where reasoning coherence, alignment priors, or epistemic balance are compromised.
 
@@ -13,12 +8,12 @@ Cultural fine-tuning does more than adjust surface outputs -- it carves *new lat
 - It may produce **semantic overfitting**, where models rigidly amplify cultural signals at the expense of generalization.
 - It may induce **latent drift**, where internal reasoning geometry diverges from pretrained universal priors, creating misalignment zones invisible to standard benchmarks or at output level.
 
-**The CIVIC-Culture Calibration Benchmark (CIVIC)** is introduced to address a critical gap in evaluating culturally fine-tuned large language models (LLMs), moving beyond surface metrics of accuracy, fairness, or ethical alignment to audit the *deep latent structure* shaped by cultural adaptation. CIVIC probes the neurogeometric impact of fine-tuning by analyzing latent trajectories in the space of spectral curvature $${\kappa_\ell}$$, thermodynamic length $${\mathcal{L}_\ell}$$, and belief vector norm $$\|\mathbf{v}_\ell^{(c)}\|$$--revealing whether cultural alignment manifests as structured epistemic scaffolding or degenerates into brittle, task-specific overfitting that erodes generalization and reasoning integrity. Comprising approximately 9000 prompts that span nine foundational dimensions of cross-cultural cognition, CIVIC draws on Hofstede's cultural dimensions {% cite hofstede2001culture %}, Schwartz's value orientations {% cite schwartz1992universals %}, and enriched frameworks from comparative epistemology and moral psychology {% cite minkov2011cultural %} {% cite nisbett2001culture %}: **i) Moral Reasoning, ii) Authority & Law, iii) Family Structure, iv) Truth & Justification, v) Gender Roles, vi) Group vs. Individual, vii) Spirituality & Cosmology, viii) Education & Socialization, and ix) Science & Epistemology**. This benchmark provides a principled means to trace, quantify, and safeguard the **neurogeometric coherence** of culturally fine-tuned LLMs, ensuring that cultural adaptation enhances rather than undermines the universal latent priors that support trustworthy AI reasoning.
+**The CIVIC-Culture Calibration Benchmark (CIVIC)** is introduced to address a critical gap in evaluating culturally fine-tuned large language models (LLMs), moving beyond surface metrics of accuracy, fairness, or ethical alignment to audit the *deep latent structure* shaped by cultural adaptation. CIVIC probes the neurogeometric impact of fine-tuning by analyzing latent trajectories in the space of spectral curvature $${\kappa_\ell}$$, thermodynamic length $${\mathcal{L}_\ell}$$, and belief vector norm $$\|\mathbf{v}_\ell^{(c)}\|$$--revealing whether cultural alignment manifests as structured epistemic scaffolding or degenerates into brittle, task-specific overfitting that erodes generalization and reasoning integrity. Comprising approximately 9000 prompts that span nine foundational dimensions of cross-cultural cognition, CIVIC draws on Hofstede's cultural dimensions , Schwartz's value orientations , and enriched frameworks from comparative epistemology and moral psychology  : **i) Moral Reasoning, ii) Authority & Law, iii) Family Structure, iv) Truth & Justification, v) Gender Roles, vi) Group vs. Individual, vii) Spirituality & Cosmology, viii) Education & Socialization, and ix) Science & Epistemology**. This benchmark provides a principled means to trace, quantify, and safeguard the **neurogeometric coherence** of culturally fine-tuned LLMs, ensuring that cultural adaptation enhances rather than undermines the universal latent priors that support trustworthy AI reasoning.
 
 ## Seed Corpus Origin
 
 The initial ~20,000 prompts for CIVIC were curated through a blend of **authentic cultural data** and **crafted scenarios**, ensuring both empirical grounding and representational diversity across regions:
-- **Extracted cultural data:** Sourced from international civics textbooks and exams (e.g., ICCS {% cite schulz2010iccs %}), large-scale cultural value surveys (e.g., World Values Survey {% cite inglehart2014wvs %}, European Values Study {% cite halman2001european %}, Asian Barometer {% cite chu2013asianbarometer %}, Afrobarometer {% cite mattes2019afrobarometer %}, Latinobarómetro {% cite latinobarometro2020report %}, Arab Barometer {% cite tessler2008arabbarometer %}, Eurobarometer {% cite eurobarometer2015 %}), social attitudes surveys (e.g., GSS {% cite smith2019gss %}, AuSSA {% cite aussa2018 %}), moral case repositories (e.g., Moral Machine {% cite awad2018moral %}), and ethics datasets.
+- **Extracted cultural data:** Sourced from international civics textbooks and exams (e.g., ICCS ), large-scale cultural value surveys (e.g., World Values Survey , European Values Study , Asian Barometer , Afrobarometer , Latinobarómetro , Arab Barometer , Eurobarometer ), social attitudes surveys (e.g., GSS , AuSSA ), moral case repositories (e.g., Moral Machine ), and ethics datasets.
 - **Crafted prompts:** Expert-written or GPT-4-assisted prompts, designed through iterative template expansion, scenario adaptation, and calibration against cultural data patterns.
 
 ### Breakdown of Initial 20K Seed Prompts by Source
@@ -37,7 +32,7 @@ The initial ~20,000 prompts for CIVIC were curated through a blend of **authenti
 The initial seed corpus of 20,000 prompts underwent a rigorous, multi-stage refinement pipeline designed to ensure that each item serves as a valid probe of culturally contingent reasoning while avoiding linguistic artifacts, superficial cues, or unintended biases. This process combined automated large language model (LLM)-assisted filtering, diversity and balance auditing, and deep expert adjudication. The overarching goal was to produce a corpus that reveals meaningful variation in latent model geometry across cultural contexts -- not just surface-level textual differences. The refinement unfolded through the following stages:
 
 1. **Cultural salience scoring and filtration.**  
-   Every prompt was independently scored by two advanced LLM-based judges -- Claude 3 Opus {% cite anthropic2024claude3 %} and Gemini Ultra {% cite google2024gemini %} -- on a 1--5 Likert scale, where 1 indicated no discernible cultural relevance and 5 indicated high potential for eliciting culture-dependent reasoning or decision patterns. Prompts with a mean salience below 4.0 were filtered out. Example high-salience prompts included:
+   Every prompt was independently scored by two advanced LLM-based judges -- Claude 3 Opus  and Gemini Ultra  -- on a 1--5 Likert scale, where 1 indicated no discernible cultural relevance and 5 indicated high potential for eliciting culture-dependent reasoning or decision patterns. Prompts with a mean salience below 4.0 were filtered out. Example high-salience prompts included:
    - "*Should community leaders override legal authorities when traditional customs conflict with national law?*" -- rated 5 in African and Asian cultural contexts.
    - "*Is it acceptable for individuals to prioritize family honor over personal ambition?*" -- rated 5 in Middle Eastern and Latin American contexts.
    
@@ -64,7 +59,7 @@ The initial seed corpus of 20,000 prompts underwent a rigorous, multi-stage refi
 
 This deeply layered pipeline produced a final benchmark of ~9,000 prompts that is both *empirically robust* and *culturally principled*. Each item is tagged with region, cultural dimension, linguistic framing, and salience metadata, supporting fine-grained auditing of LLM latent structure across cultural reasoning domains (see CIVIC benchmark examples below while the pipeline is depicted in the following figure).
 
-{% capture civic_pipeline_caption %}
+
 **CIVIC corpus creation and refinement pipeline: from diverse seed data to a robust cross-cultural benchmark.** This figure presents the layered pipeline behind CIVIC's ~9,000 high-salience prompts for auditing LLM cultural priors.
 
 **Seed corpus:** ~20,000 prompts drawn from authentic cultural sources (e.g., civics textbooks, World Values Survey, Asian Barometer, Afrobarometer, Moral Machine) and GPT-4-engineered templates, ensuring wide coverage of *nine cultural dimensions* across *seven global regions*.
@@ -76,12 +71,9 @@ This deeply layered pipeline produced a final benchmark of ~9,000 prompts that i
 **Human adjudication:** A team of 12 cultural psychology, linguistics, and anthropology experts refined prompts for clarity, neutrality, and plausibility; inter-annotator agreement κ=0.83.
 
 **Final CIVIC benchmark:** A principled corpus tagged by region, cultural dimension, linguistic frame, and salience, enabling deep audits of latent cultural priors and neurogeometric alignment in LLMs."
-{% endcapture %}
 
-{% include visualization.liquid
-   image_path="images/corpus_creation_and_refinement.png"
-   caption=civic_pipeline_caption
-   alt_text="Flow chart showing CIVIC benchmark creation pipeline from seed corpus to final benchmark" %}
+
+
 
 ## CIVIC-Culture Calibration Benchmark Examples
 
@@ -292,4 +284,4 @@ This deeply layered pipeline produced a final benchmark of ~9,000 prompts that i
 
 ---
 
-{% auto_references %}
+
