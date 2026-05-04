@@ -1,0 +1,24 @@
+{% comment %}
+infection_traceback.liquid
+- Renders an interactive infection traceback graph visualization
+- Includes a caption below the visualization
+- Parameters:
+  - html_path: Path to the interactive HTML file (relative to assets/html_plots/)
+  - title: Title for the visualization
+  - caption: Optional markdown caption text
+{% endcomment %}
+
+{% assign html_src = '/assets/html_plots/' | append: include.html_path | relative_url %}
+
+<div id="fig:infection_traceback" style="width: 100%; margin: 0; overflow: visible;">
+  <div style="position: relative; width: 110%; min-height: 700px; margin: 0; padding: 0;">
+    <iframe src="{{ html_src }}" 
+            style="width: 110%; height: 700px; border: none; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    </iframe>
+  </div>
+  
+  <figcaption style="margin-top: 12px; font-size: 0.9em; color: #444; text-align: left;">
+    {% if include.title %}<strong>{{ include.title }}</strong>{% endif %}
+    {% if include.caption %}{{ include.caption | markdownify }}{% endif %}
+  </figcaption>
+</div>

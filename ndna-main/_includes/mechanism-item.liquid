@@ -1,0 +1,6 @@
+{% comment %}
+Mechanism Item Template - Renders a mechanism with icon
+Usage: {% include mechanism-item.liquid icon="fa-burn" title="Geometric Distillation" description="Use only intermediate activations..." %}
+{% endcomment %}
+
+{% include icon.liquid name=include.icon %} <strong>{{ include.title }}</strong> — {{ include.description }}

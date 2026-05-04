@@ -1,0 +1,27 @@
+<div class="threat-card">
+    <div class="threat-card-header">
+    <div class="threat-card-icon">
+      {% include icon.liquid name=include.icon %}
+    </div>
+    <h3 class="threat-card-title">{{ include.title }}</h3>
+  </div>
+  <div class="threat-card-body">
+  {% if include.description %}
+    <div class="threat-card-section">
+      <div class="threat-card-content">{{ include.description | markdownify }}</div>
+    </div>
+  {% endif %}
+  {% if include.mechanism %}
+    <div class="threat-card-section">
+      <div class="threat-card-label">Intent & Mechanism</div>
+      <div class="threat-card-content">{{ include.mechanism }}</div>
+    </div>
+  {% endif %}
+  {% if include.risks %}
+    <div class="threat-card-section">
+      <div class="threat-card-label">Societal/Economic Risks</div>
+      <div class="threat-card-content threat-card-risk">{{ include.risks }}</div>
+    </div>
+  {% endif %}
+  </div>
+</div>

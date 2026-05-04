@@ -1,0 +1,315 @@
+button:hover {
+  background-color: #222; /* Slightly lighter than black for feedback */
+  transform: scale(1.02);
+}
+
+/* — Citation styles — */
+a[href*="cite"],
+.citation,
+a[href^="#"],
+.bibliography a,
+sup a,
+a[title*="cite"],
+.cite,
+[data-cite] {
+  text-decoration: none !important;
+  color: #0066cc !important; /* Normal blue color */
+  border-bottom: none !important; /* Remove underline */
+}
+
+a[href*="cite"]:hover,
+.citation:hover,
+a[href^="#"]:hover,
+.bibliography a:hover,
+sup a:hover,
+a[title*="cite"]:hover,
+.cite:hover,
+[data-cite]:hover {
+  text-decoration: none !important;
+  color: #004499 !important; /* Darker blue on hover */
+  border-bottom: none !important; /* Remove underline on hover */
+}
+
+/* Target Jekyll-scholar specific citation elements */
+.bibliography .entry a,
+.bibliography .title a,
+cite a {
+  color: #0066cc !important;
+  text-decoration: none !important;
+}
+
+.bibliography .entry a:hover,
+.bibliography .title a:hover,
+cite a:hover {
+  color: #004499 !important;
+}
+
+/* — Figure titles centered — */
+figure[style*="text-align: center;"] figcaption > strong:first-child {
+  display: block !important;
+  text-align: center !important;
+  margin: 0.5em auto !important;
+  font-size: 1.2em !important;
+}
+
+.interactive-plot-container + strong {
+  display: block !important;
+  text-align: center !important;
+  margin: 1em auto 0 !important;
+  font-size: 1.2em !important;
+}
+
+p[style*="font-weight: 500"] {
+  text-align: center !important;
+  margin-top: 0.5em !important;
+  font-size: 1.2em !important;
+}
+
+/* --- Card Style (Container is unchanged as requested) --- */
+/* --- Card Style --- */
+.card {
+    /* --- ADJUSTED: Set a fixed width --- */
+    width: 1200px; 
+    
+    /* --- ADDED: Ensures padding and border are included in the total width --- */
+    box-sizing: border-box; 
+    
+    /* Other styles remain the same */
+    padding: 2.5rem 3rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    color: #374151;
+}
+
+/* --- Styling the Title (h3) --- */
+.card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    color: #111827;
+    margin: 0 0 1.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+
+    /* --- ADDED: Animation --- */
+    animation: fadeInUp 0.5s ease-out 0.2s;
+    animation-fill-mode: backwards;
+}
+
+/* --- Styling the List (ul) --- */
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- Styling List Items (li) --- */
+.card li {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+
+    /* --- ADDED: Animation --- */
+    animation: fadeInUp 0.5s ease-out;
+    animation-fill-mode: backwards;
+}
+
+/* --- ADDED: Staggered animation delay for each list item --- */
+.card li:nth-of-type(1) {
+    animation-delay: 0.4s;
+}
+.card li:nth-of-type(2) {
+    animation-delay: 0.6s;
+}
+.card li:nth-of-type(3) {
+    animation-delay: 0.8s;
+}
+
+.card li:last-child {
+    margin-bottom: 0;
+}
+
+/* Custom "bullet" using a pseudo-element */
+.card li::before {
+    content: '›';
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* --- CHANGED: Switched to a subtle charcoal grey --- */
+    color: #4A4A4A;
+    margin-right: 0.75rem;
+    line-height: 1;
+}
+
+/* --- Styling the highlighted text (em) --- */
+.card em {
+    font-style: normal;
+    font-weight: 600;
+    /* --- CHANGED: Switched to a subtle charcoal grey --- */
+    color: #4A4A4A;
+    margin-left: 0.25em;
+}
+
+/* --- NEW: Animation Keyframes --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Root variables for accent colors --- */
+/* --- Root variables for a clean and professional palette --- */
+/* --- Root variables for a clean and professional palette --- */
+/* --- Root variables for a clean and professional palette --- */
+/* --- Root variables for a clean and professional palette --- */
+/* --- Root variables for a clean and professional palette --- */
+/* --- Root variables for a clean and professional palette --- */
+:root {
+  --accent-green: #27ae60;
+  --accent-yellow: #f39c12;
+  --accent-blue: #2980b9;
+  --text-heading: #1a202c;
+  --text-body: #2d3748;
+  --text-subtle: #718096;
+  --border-light: #e2e8f0;
+  --link-color: #3498db; 
+}
+
+/* --- Main container & Card Shell --- */
+.content-showcase-container {
+  /* ...all your existing styles like display, gap, width, etc... */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%; /* The container itself should be full-width */
+
+  /* ADD THIS LINE to override the parent's centering */
+  margin-right: auto;
+}
+
+.showcase-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.06);
+  padding: 2rem 2.5rem;
+  /* FINAL ADJUSTMENT: Forced width */
+  width: 1200px; 
+  max-width: 100%; /* Safety for smaller viewports */
+  box-sizing: border-box; 
+  border-left-width: 5px;
+}
+
+/* Applying the specific border colors */
+.showcase-card.accent-green { border-left-color: var(--accent-green); }
+.showcase-card.accent-yellow { border-left-color: var(--accent-yellow); }
+.showcase-card.accent-blue { border-left-color: var(--accent-blue); }
+
+/* ==========================================================================
+    FINAL REFINED TYPOGRAPHY AND CONTENT FORMATTING
+========================================================================== */
+
+/* --- General Typography --- */
+.showcase-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem; /* FINAL ADJUSTMENT */
+  font-weight: 600;
+  color: var(--text-heading);
+  margin: 0 0 1.5rem 0;
+  line-height: 1.3;
+}
+
+.showcase-card p {
+  color: var(--text-body);
+  line-height: 1.6;
+  margin: 1.5rem 0 0 0;
+  font-size: 1rem; 
+}
+.showcase-card > *:first-child { margin-top: 0; }
+.showcase-card > *:last-child { margin-bottom: 0; }
+
+/* --- Metrics List (Card 1) --- */
+.metrics-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.metric-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 1.5rem;
+  align-items: start; 
+}
+.metric-symbol { 
+    text-align: center; 
+    padding-top: 0.15em; /* FINAL ADJUSTMENT: Nudges symbol down to align with text */
+}
+.metric-main { line-height: 1.6; }
+.metric-title {
+  color: var(--text-body);
+  font-size: 1rem;
+}
+.metric-title strong { color: var(--text-heading); font-weight: 600; }
+.metric-description {
+  margin-top: 0.25rem;
+  color: var(--text-subtle);
+  font-size: 0.95rem;
+}
+.metric-citations {
+  display: flex;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+.metric-citations a {
+  font-size: 0.9rem;
+  color: var(--link-color);
+  text-decoration: none;
+}
+.metric-citations a:hover { text-decoration: underline; }
+
+/* --- Standard Lists (Cards 2 & 3) --- */
+.standard-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+.standard-list li {
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.9rem; /* FINAL ADJUSTMENT */
+}
+.standard-list li:last-child { margin-bottom: 0; }
+.standard-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  color: var(--text-subtle);
+  font-size: 1.2rem;
+}
+
+/* Inline content styling */
+.standard-list strong { color: var(--text-heading); font-weight: 600; }
+.standard-list em { font-style: italic; }
+.standard-list a {
+  font-size: 0.9em;
+  color: var(--link-color);
+  text-decoration: none;
+  margin: 0 0.15rem;
+}
+.standard-list a:hover { text-decoration: underline; }

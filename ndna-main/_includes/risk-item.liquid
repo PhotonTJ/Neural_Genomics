@@ -1,0 +1,6 @@
+{% comment %}
+Risk Item Template - Renders a risk with icon and optional color
+Usage: {% include risk-item.liquid icon="fa-bomb" color="red" title="Severity" description="Catastrophic..." %}
+{% endcomment %}
+
+{% include icon.liquid name=include.icon color=include.color %} <strong>{{ include.title }}:</strong> {{ include.description }}

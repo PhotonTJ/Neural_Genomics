@@ -1,0 +1,26 @@
+{% comment %}
+Icon Template - Standardized FontAwesome icon rendering
+Usage: {% include icon.liquid name="fa-bomb" style="fas" color="red" size="lg" %}
+
+Parameters:
+- name: FontAwesome icon name (required, e.g., "fa-bomb", "fa-gavel")
+- style: FontAwesome style (optional, default: "fas" - solid)
+- color: Icon color (optional, can be CSS color name, hex, or CSS class)
+- size: FontAwesome size (optional, e.g., "xs", "sm", "lg", "2x", "3x")
+- class: Additional CSS classes (optional)
+- title: Tooltip/accessibility title (optional)
+{% endcomment %}
+
+{% assign icon_style = include.style | default: "fas" %}
+{% assign icon_name = include.name %}
+{% assign icon_classes = icon_style | append: " " | append: icon_name %}
+
+{% if include.size %}
+  {% assign icon_classes = icon_classes | append: " fa-" | append: include.size %}
+{% endif %}
+
+{% if include.class %}
+  {% assign icon_classes = icon_classes | append: " " | append: include.class %}
+{% endif %}
+
+<i class="{{ icon_classes }}"{% if include.color %} style="color: {{ include.color }};"{% endif %}{% if include.title %} title="{{ include.title }}"{% endif %}></i>

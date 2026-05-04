@@ -1,0 +1,35 @@
+{% comment %}
+nDNA Title Template
+Usage: {% include ndna-title.liquid title="Your Page Title" %}
+Parameters:
+- title: The title text (required)
+- subtitle: Optional subtitle text
+{% endcomment %}
+
+{% assign heading_tag = include.size | default: "h1" %}
+{% assign logo_size = "2.5em" %}
+
+{% assign title_parts = include.title | split: "nDNA" %}
+{% assign before_ndna = title_parts[0] | strip %}
+{% assign after_ndna = title_parts[1] | strip %}
+
+{% capture h1_content %}
+<h1 class="page-title" style="margin-bottom: {% if include.subtitle %}0.5em{% else %}1em{% endif %}; font-family: 'Montserrat', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+  <span class="page-title-ndna">{{ before_ndna }}<img src="{{ '/assets/img/ndna_logo.jpg' | relative_url }}" alt="nDNA" style="height: {{ logo_size }}; vertical-align: middle; margin: 0 0.2em;"></span>
+  <span>{{ after_ndna }}</span>
+</h1>
+{% endcapture %}
+
+{% if include.video_id %}
+<div class="title-wrapper">
+  <div class="title-container">
+    {{ h1_content }}
+    {% include inspiration-video.liquid video_id=include.video_id %}
+  </div>
+</div>
+{% else %}
+{{ h1_content }}
+{% endif %}
+{% if include.subtitle %}
+<p style="font-size: 1.1em; color: #666; margin-top: 0; margin-bottom: 1.5em; font-style: italic;">{{ include.subtitle }}</p>
+{% endif %}

@@ -1,0 +1,54 @@
+/* Table styling for proper outlines and structure */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5em 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  table thead {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+  }
+  
+  table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+    border: 1px solid #34495e;
+  }
+  
+  table td {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+  
+  table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
+  }
+  
+  table tbody tr:hover {
+    background-color: rgba(52, 73, 94, 0.05);
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: rgba(248, 249, 250, 0.5);
+  }
+  
+  table td[style*="background-color"] {
+    border: 1px solid rgba(0,0,0,0.15) !important;
+  }
+  
+  table td strong {
+    font-weight: 700;
+    color: inherit;
+  }
+  

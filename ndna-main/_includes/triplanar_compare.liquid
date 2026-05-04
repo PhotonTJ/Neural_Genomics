@@ -1,0 +1,28 @@
+{% comment %}
+triplanar_compare.liquid
+- Renders a tri-planar comparison visualization
+- Includes a caption below the visualization
+- Parameters:
+  - html_path: Path to the interactive HTML file (relative to assets/html_plots/)
+  - title: Title for the visualization
+  - caption: Optional markdown caption text
+  - width: Optional width (default: 100%)
+  - height: Optional height (default: 550px)
+{% endcomment %}
+
+{% assign html_src = '/assets/html_plots/' | append: include.html_path | relative_url %}
+{% assign width = include.width | default: '100%' %}
+{% assign height = include.height | default: '550px' %}
+
+<div id="fig:triplanar_compare" style="width: {{ width }}; margin: 1em auto; overflow: auto;">
+  <div style="position: relative; width: 100%; min-height: {{ height }};">
+    <iframe src="{{ html_src }}" 
+            style="width: 100%; height: {{ height }}; border: none; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    </iframe>
+  </div>
+  
+  <figcaption style="margin-top: 8px; font-size: 0.85em; color: #444; text-align: left;">
+    {% if include.title %}<strong>{{ include.title }}</strong>{% endif %}
+    {% if include.caption %}{{ include.caption | markdownify }}{% endif %}
+  </figcaption>
+</div>

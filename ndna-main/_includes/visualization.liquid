@@ -1,0 +1,17 @@
+<figure style="text-align: center; margin: 1.5em 0;">
+  {% if include.image_path %}
+  <img src="{{ site.cdn_url }}/assets/{{ include.image_path }}" 
+    alt="{{ include.alt_text | default: include.title }}" 
+    style="max-width: 100%; height: {% if include.height %}{{ include.height }}{% else %}600px{% endif %}; object-fit: {% if include.cover_image %}cover{% else %}contain{% endif %}; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.08);"
+    onerror="this.onerror=null; this.src='{{ site.fallback_cdn }}/assets/{{ include.image_path }}';">
+  {% endif %}
+  {% if include.title or include.caption %}
+  <figcaption class="figure-caption" style="margin-top: 12px; font-size: 0.9em; line-height: 1.4; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left;">
+    {% if include.title %} <strong>{{ include.title }}</strong>{% endif %}
+    {% if include.caption %} {{ include.caption | markdownify }}{% endif %}
+  </figcaption>
+  {% endif %}
+  {% if include.metrics %}
+    <p style="margin-top: 8px; font-size: 0.85em; color: #666; font-style: italic;">{{ include.metrics }}</p>
+  {% endif %}
+</figure>

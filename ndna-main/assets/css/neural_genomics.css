@@ -1,0 +1,38 @@
+.custom-card {
+    background: #f9f9ff;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(40,50,90,0.13);
+    padding: 32px 28px;
+    margin: 24px 0;
+    border: 1.5px solid #e0e4ea;
+    position: relative;
+    transition: box-shadow 0.3s;
+  }
+  .custom-card:hover {
+    box-shadow: 0 10px 32px rgba(52, 100, 160, 0.22);
+  }
+  .custom-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 16px;
+    bottom: 16px;
+    width: 6px;
+    background: linear-gradient(135deg,#205090 60%,#3fc0f0 100%);
+    border-radius: 8px;
+  }
+  .custom-card ul {
+    margin: 0;
+    padding: 0 1em;
+    list-style: disc;
+  }
+  .custom-card li + li {
+    margin-top: 1em;
+  }
+  .custom-card strong {
+    color: #205090;
+  }
+  .custom-card em {
+    color: #576275;
+  }
+  

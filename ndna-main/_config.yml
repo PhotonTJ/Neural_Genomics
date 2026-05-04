@@ -1,0 +1,56 @@
+title: nDNA
+email: your-email@example.com
+baseurl: "/nDNA"
+url: "https://pragyaai.github.io"
+
+# CDN Configuration
+cdn_url: "https://cdn.jsdelivr.net/gh/pragyaai/cdn-assets"
+fallback_cdn: "https://pragyaai.github.io/cdn-assets"
+
+# Build settings
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  llm:
+    output: true
+    permalink: /:collection/:name/
+  mfm:
+    output: true
+    permalink: /:collection/:name/
+  nlp:
+    output: true
+    permalink: /:collection/:name/
+  t2i:
+    output: true
+    permalink: /:collection/:name/
+  diffusion:
+    output: true
+    permalink: /:collection/:name/
+  efm:
+    output: true
+    permalink: /:collection/:name/
+
+# Include pages
+include:
+  - _pages
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

@@ -1,0 +1,30 @@
+{% comment %}
+tof_tomography.liquid
+- Renders a time-of-flight tomography visualization
+- Includes a caption below the visualization
+- Parameters:
+  - html_path: Path to the interactive HTML file (relative to assets/html_plots/)
+  - title: Title for the visualization
+  - caption: Optional markdown caption text
+  - width: Optional width (default: 100%)
+  - height: Optional height (default: 1700px)
+{% endcomment %}
+
+{% assign html_src = '/assets/html_plots/' | append: include.html_path | relative_url %}
+{% assign width = include.width | default: '100%' %}
+{% assign height = include.height | default: '1700px' %}
+
+<div id="fig:tof_tomography" style="width: {{ width }}; margin: 1em auto; overflow: visible;">
+  <div style="position: relative; width: 100%; min-height: {{ height }};">
+    <iframe src="{{ html_src }}" 
+            style="width: 100%; height: {{ height }}; border: none; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    </iframe>
+  </div>
+  
+  <div style="margin-top: 16px; padding: 0 8px;">
+    <figcaption style="font-size: 0.9em; color: #444; text-align: left; line-height: 1.4;">
+      {% if include.title %}<strong>{{ include.title }}</strong>{% endif %}
+      {% if include.caption %}{{ include.caption | markdownify }}{% endif %}
+    </figcaption>
+  </div>
+</div>

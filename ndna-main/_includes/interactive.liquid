@@ -1,0 +1,106 @@
+{% comment %}
+wizuall.liquid (stacked: GIF first, HTML below)
+{% endcomment %}
+
+{% assign gif_src = site.cdn_url | append: '/assets/gifs/' | append: include.image_path %}
+{% if include.interactive_html %}
+  {% assign html_src = '/assets/html_plots/' | append: include.interactive_html | relative_url %}
+{% endif %}
+{% assign panel_bg = include.panel_bg | default: '#fff' %}
+{% assign panel_h  = include.height    | default: '720px' %}   {# a bit taller so plot isn’t cramped #}
+{% assign aspect   = include.aspect_ratio | default: '16/10' %}
+
+<figure class="wz-figure" style="text-align:center; margin:1.5em 0; position:relative;">
+  <div class="wz-outer">
+
+    <!-- GIF panel (top) -->
+    <a href="{{ gif_src }}" data-lightbox="gallery" data-title="{{ include.title }}" class="wz-panel wz-image">
+      <img src="{{ gif_src }}" alt="{{ include.title }}" class="wz-img" />
+    </a>
+
+    {% if include.interactive_html and include.interactive_html != "" %}
+      <!-- Interactive HTML panel (bottom) -->
+      <div class="wz-panel wz-html">
+        <div class="wz-iframe-wrap">
+          <iframe
+            src="{{ html_src }}"
+            title="{{ include.title }} - Interactive"
+            class="wz-iframe"
+            loading="lazy"
+            allowfullscreen
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          ></iframe>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+
+  <figcaption class="wz-caption">
+    {% if include.title %}<strong>{{ include.title }}</strong>{% endif %}
+    {% if include.caption %} {{ include.caption | markdownify }}{% endif %}
+  </figcaption>
+
+  {% if include.metrics %}
+    <p class="wz-metrics">{{ include.metrics }}</p>
+  {% endif %}
+
+  {% if include.interactive_html and include.interactive_html != "" %}
+    <div style="margin-top:1em; text-align:center;">
+      <a href="{{ html_src }}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+        <button class="wz-btn">📊 View Interactive Plot</button>
+      </a>
+    </div>
+  {% endif %}
+</figure>
+
+<style>
+  .wz-outer{ max-width:1200px; margin-inline:auto; display:grid; gap:20px; }
+
+  /* Unified panel box */
+  .wz-panel{
+    position:relative; width:100%;
+    overflow:hidden;
+    border-radius:10px;
+    background: {{ panel_bg }};
+    box-shadow:0 4px 8px rgba(0,0,0,0.08);
+    border:1px solid rgba(0,0,0,0.06);
+    display:block;
+  }
+
+  /* Image */
+  .wz-image{ height:auto; }
+  .wz-img{
+    width:100%; height:100%;
+    display:block; object-fit:contain; background: {{ panel_bg }};
+  }
+
+  /* Iframe wrapper: stable size so Plotly reads correct box */
+  .wz-html{ height: {{ panel_h }}; }                /* desktop/tablet height */
+  .wz-iframe-wrap{ width:100%; height:100%; }
+
+  @media (max-width:959.98px){
+    .wz-html{ height:auto; }                         /* stack and let ratio drive height */
+    .wz-iframe-wrap{ aspect-ratio: {{ aspect }}; }
+  }
+
+  .wz-iframe{
+    display:block; width:100%; height:100%;
+    border:0; background: {{ panel_bg }};
+    content-visibility:auto; contain-intrinsic-size: 960px 600px;
+  }
+
+  .wz-caption{
+    margin-top:12px; font-size:0.95em; line-height:1.4; color:#555;
+    max-width:1000px; margin-inline:auto; text-align:left;
+  }
+  .wz-metrics{
+    margin-top:8px; font-size:0.85em; color:#666; font-style:italic;
+    max-width:1000px; margin-inline:auto; text-align:left;
+  }
+  .wz-btn{
+    padding:10px 20px; font-size:0.875rem; font-weight:500; color:#fff;
+    background:#000; border:none; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.10);
+  }
+  .wz-btn:hover{ transform:translateY(-1px); }
+</style>

@@ -1,0 +1,17 @@
+{% comment %}
+Title Template
+{% endcomment %}
+
+{% assign heading_tag = include.size | default: "h1" %}
+{% assign logo_size = include.logo_size | default: "12rem" %}
+
+<h1 class="page-title" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; font-family: 'Montserrat', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 600; line-height: 1.2em;">
+  <img src="{{ include.title_image | relative_url }}" alt="{{ include.logo_alt }}" style="width: {{ logo_size }}; max-height: {{ logo_size }}; flex: 0 0;">
+  <span style="display: flex;flex-direction: column;gap: 0.5rem;">
+    <span style="display: flex; gap: 0.5rem; font-weight: 700;">
+        <span>-</span>
+        <span>{{ include.title }}</span>
+    </span>
+    <span>{{ include.sub_title }}</span>
+  </span>
+</h1>

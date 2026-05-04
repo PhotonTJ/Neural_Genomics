@@ -1,0 +1,26 @@
+{% comment %}
+Bracket component that creates a bracket structure around content
+Parameters:
+- direction: "up" (default) or "down" - controls bracket orientation
+{% endcomment %}
+
+{% assign direction = include.direction | default: "up" %}
+
+<div class="bracket-container" data-direction="{{ direction }}">
+  <div class="bracket-flex">
+    <!-- Left end curl (p1) -->
+    <span class="bracket-part bracket-left"></span>
+    
+    <!-- Straight line (p2) - first -->
+    <span class="bracket-part bracket-line-1"></span>
+    
+    <!-- Middle curl (p3) -->
+    <span class="bracket-part bracket-center"></span>
+    
+    <!-- Straight line (p2) - second -->
+    <span class="bracket-part bracket-line-2"></span>
+    
+    <!-- Right end curl (inverted p1) -->
+    <span class="bracket-part bracket-right"></span>
+  </div>
+</div>

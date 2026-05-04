@@ -1,0 +1,58 @@
+
+<figure style="text-align: center; margin: 1.5em 0;">
+  {% if include.image_path or include.interactive_html or include.video_path %}
+  <div class="visualization-html{% if include.full_width %} full-width{% endif %}">
+    {% if include.image_path %}
+    <img
+      class="vh-image {% if include.cover_image %}cover{% endif %}"
+      src="{{ site.cdn_url }}/assets/{{ include.image_path }}"
+      {% if include.image_height %} style="max-height: {{include.image_height}}"{% endif %}
+      alt="{{ include.alt_text | default: include.title }}" 
+      onerror="this.onerror=null; this.src='{{ site.fallback_cdn }}/assets/{{ include.image_path }}';"
+    >
+    {% endif %}
+    {% if include.video_path %}
+    <video 
+      src="{{ site.cdn_url }}/assets/{{ include.video_path }}" 
+      onerror="this.onerror=null; this.src='{{ site.fallback_cdn }}/assets/{{ include.video_path }}';"
+      alt="{{ include.alt_text | default: include.title }}" 
+      style="width: 100%;" 
+      autoplay controls muted playsinline></video>
+    {% endif %}
+    {% if include.interactive_html %}
+    <div class="interactive-plot-container vh-html">
+      <iframe src="{{ '/assets/html_plots/' | append: include.interactive_html | relative_url }}" 
+        style="width: 100%; height: 100%; background-color:#fff; border: none; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" 
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% capture interactive_buton %}
+    {% if include.interactive_html %}
+        <a class="view-interactive-html" href="{{ '/assets/html_plots/' | append: include.interactive_html | relative_url }}" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+        📊 View Interactive Plot
+        </a>
+    {% endif %}
+  {% endcapture %}
+  {% capture caption %}
+  {% if include.caption %}
+    <figcaption class="figure-caption">
+        {% if include.title %} <strong>{{ include.title }}</strong>{% endif %}
+        {% if include.caption %} {{ include.caption | markdownify }}{% endif %}
+    </figcaption>
+    {% endif %}
+    {% if include.metrics %}
+        <p style="margin-top: 8px; font-size: 0.85em; color: #666; font-style: italic;">{{ include.metrics }}</p>
+    {% endif %}
+  {% endcapture %}
+  {% if include.interactive_buton_first %}
+    {{ interactive_buton }}
+    {{ caption }}
+  {% else %}
+    {{ caption }}
+    {{ interactive_buton }}
+  {% endif %}
+</figure>

@@ -1,0 +1,64 @@
+<div class="detailed-threat-card">
+  <div class="detailed-threat-card-header">
+    <div class="detailed-threat-card-title">
+      {% include icon.liquid name=include.icon %} {{ include.title }}
+    </div>
+    <div class="detailed-threat-card-subtitle">
+      {{ include.subtitle }}
+    </div>
+  </div>
+
+  <div class="detailed-threat-card-section">
+    {% if include.strategy_title %}<p><b class="desc-title">Attack Strategy:</b><em>{{ include.strategy_title }}</em></p>{% endif %}
+    {% if include.threat_name %}<p><b class="desc-title">Threat Name:</b><span>{{ include.threat_name }}</span></p>{% endif %}
+    {% if include.core_insight %}<p>{{ include.core_insight }}</p>{% endif %}
+  </div>
+
+  {% if include.mechanisms %}
+  <div class="detailed-threat-card-section">
+    <h4>Manipulation Mechanisms:</h4>
+    <div class="detailed-threat-card-mechanisms">
+      {% if include.mechanism_data %}
+        {% for item in include.mechanism_data %}
+        <div class="detailed-threat-card-mechanism">
+          {% include mechanism-item.liquid icon=item.icon title=item.title description=item.description %}
+        </div>
+        {% endfor %}
+      {% else %}
+        {% for mechanism in include.mechanisms %}
+        <div class="detailed-threat-card-mechanism">
+          {{ mechanism }}
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if include.risks %}
+  <div class="detailed-threat-card-section">
+    <h4>Risk Profile:</h4>
+    <div class="detailed-threat-card-risks">
+      {% if include.risk_data %}
+        {% for item in include.risk_data %}
+        <div class="detailed-threat-card-risk">
+          {% include risk-item.liquid icon=item.icon color=item.color title=item.title description=item.description %}
+        </div>
+        {% endfor %}
+      {% else %}
+        {% for risk in include.risks %}
+        <div class="detailed-threat-card-risk">
+          {{ risk }}
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if include.defense %}
+  <div class="detailed-threat-card-defense">
+    {{ include.defense }}
+  </div>
+  {% endif %}
+</div>

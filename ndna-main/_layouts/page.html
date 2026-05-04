@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+  <meta name="base-url" content="{{ site.baseurl }}">
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+
+  <style>
+  /* Chromium/Safari: supported */
+  html { zoom: 0.8; }
+
+  /* Firefox fallback (zoom not supported) */
+  @-moz-document url-prefix() {
+    html { zoom: 1; }
+    body {
+      transform: scale(0.8);
+      transform-origin: 0 0;
+      width: calc(100% / 0.8); /* prevent layout from shrinking */
+    }
+  }
+  </style>
+
+  <script>
+  // Extra safety: set at runtime (helps some SPA setups)
+  (function () {
+  const isFirefox = navigator.userAgent.includes('Firefox');
+  if (!isFirefox) {
+  document.documentElement.style.zoom = '0.8';
+  } else {
+  const applyFF = () => {
+  const b = document.body.style;
+  b.transform = 'scale(0.8)';
+  b.transformOrigin = '0 0';
+  b.width = (100/0.8) + '%';
+  };
+  if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', applyFF);
+  } else {
+  applyFF();
+  }
+  }
+  })();
+  </script>
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <link rel="icon" type="image/png" href="{{ '/assets/img/nDNA_logo.png' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/threat-cards.css' | relative_url }}">
+  {% if page.css_files %}
+    {% for css_file in page.css_files %}
+      <link rel="stylesheet" href="{{ '/assets/css/' | append: css_file | relative_url }}">
+    {% endfor %}
+  {% endif %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  /* Menu divider styles */
+  .menu-divider {
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 10px 20px;
+    border-radius: 2px;
+  }
+  /* Improve math readability and mobile responsiveness */
+  .MathJax { 
+    font-size: 1.1em !important;
+    line-height: 1.5 !important;
+  }
+  /* Add horizontal scroll for long equations on small screens */
+  .MathJax_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+</style>
+
+<!-- Advanced MathJax Configuration -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['ams', 'textmacros']},
+      tags: 'ams' // Use AMS-style equation numbering
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+      ignoreHtmlClass: 'tex2jax_ignore',
+      processHtmlClass: 'tex2jax_process'
+    },
+    startup: {
+      // This function runs when MathJax is ready to start
+      ready: function() {
+        console.log('MathJax is starting up');
+        // The default startup sequence runs automatically
+        MathJax.startup.defaultReady();
+        // A promise that resolves when the initial typesetting is complete
+        MathJax.startup.promise.then(function() {
+          console.log('MathJax initial typeset complete');
+        }).catch(function(err) {
+          console.error('MathJax error:', err);
+        });
+      }
+    }
+  };
+</script>
+
+<!-- Load the MathJax library -->
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+  {% feed_meta %}
+  {% seo %}
+
+  <style>
+
+    button.open-btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #0b5cff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button.open-btn:hover {
+      background: #0948c9;
+    }
+
+    /* Overlay background */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    /* Modal container */
+    .modal {
+      background: #fff;
+      width: 90%;
+      height: 90%;
+      max-width: 960px; /* Added max-width for better desktop experience */
+      max-height: 720px; /* Added max-height */
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* Header */
+    .modal-header {
+      background: white; /* Changed to white */
+      color: #333; /* Adjusted text color for readability */
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee; /* Added a subtle border */
+    }
+    .modal-header h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: #333; /* Adjusted color for readability */
+      font-size: 20px;
+      cursor: pointer;
+      margin-left: 15px; /* Space between download link and close button */
+      padding: 0; /* Remove default button padding */
+    }
+
+    /* New styles for download button */
+    .header-actions {
+        display: flex;
+        align-items: center;
+    }
+    .download-btn {
+        text-decoration: none;
+        color: #0b5cff;
+        font-size: 14px;
+        padding: 6px 12px;
+        border: 1px solid #0b5cff;
+        border-radius: 6px;
+        transition: background 0.2s, color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 5px; /* Space for an optional icon */
+    }
+    .download-btn:hover {
+        background: #0b5cff;
+        color: white;
+    }
+    .download-btn svg {
+        fill: currentColor; /* Make icon color match text color */
+        width: 16px;
+        height: 16px;
+    }
+
+
+    /* Content area */
+    .modal-content {
+      flex: 1;
+      position: relative;
+    }
+    .fp-embed {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- LEFT COLUMN: Logo + Tabs -->
+  <div class="left-column">
+    <div class="logo-container">
+      <img src="{{ '/assets/img/ndna_logo.jpg' | relative_url }}" alt="nDNA Logo">
+    </div>
+    <div class="side-menu" id="leftTabs">
+      <a class="side-tab" data-view="LLM" href="{{ '/llm/' | relative_url }}">LLM</a>
+      <hr style="border:none;height:3px;background:#000080;margin:12px 20px;width:calc(100% - 40px);">
+      <a class="side-tab" data-view="MFM" href="{{ '/mfm/ndna/' | relative_url }}">MFM</a>
+      <a class="side-tab" data-view="T2I" href="{{ '/t2i/ndna/' | relative_url }}">T2I</a>
+      <a class="side-tab" data-view="Diffusion" href="{{ '/diffusion/ndna/' | relative_url }}">Diffusion LM</a>
+      <a class="side-tab" data-view="EFM" href="{{ '/efm/ndna/' | relative_url }}">EFM</a>
+      <hr style="border:none;height:3px;background:#000080;margin:12px 20px;width:calc(100% - 40px);">
+      <a class="side-tab" data-view="nDNAv2" href="{{ '/ndna-v2/' | relative_url }}">nDNA v2</a>
+      <hr style="border:none;height:3px;background:#000080;margin:12px 20px;width:calc(100% - 40px);">
+      <a class="side-tab" data-view="nDNAv2" href="{{ '/series/' | relative_url }}"> <i class="fa-solid fa-book" style="padding-right: 0.5rem;"></i>Series</a>
+    </div>
+    <a class="ndna-cover open-btn" id="open-btn" href="{{ site.baseurl }}/assets/nDNA_BOOK.pdf" style="text-decoration: none; display: block; cursor: pointer;">
+      <img src="{{ '/assets/img/cover_ndna.png' | relative_url }}" alt="nDNA Book Cover" class="ndna-cover-image">
+    </a>
+    <div class="paper-link">
+      <a class="btn btn-primary arxiv" href="https://arxiv.org/abs/2509.18216" title="arXiv - nDNA" target="_blank"><img style="height: 100%;" src="{{ '/assets/img/arxiv-logo-white.svg' | relative_url }}" alt="arXiv"></a>
+      <a class="btn btn-primary github" href="https://github.com/pragyaai/nDNA-v1" title="GitHub - nDNA" target="_blank"><i class="fab fa-github"></i><span style="padding-left: 0.5rem;">GitHub</span></a>
+      <a class="btn btn-primary youtube" href="https://www.youtube.com/watch?v=RE0OTQbuCrc&list=PLaE3N7Ax00P93HC0jxZ-b6c4tnLkldPOJ" title="YouTube - nDNA" target="_blank"><i class="fab fa-youtube"></i><span style="padding-left: 0.5rem;">YouTube</span></a>
+      <a class="btn btn-secondary" id="bib-open-btn" title="Open dialog for exporting citations" data-toggle="modal" data-target="#citeModal" href="#"><i class="fas fa-quote-left"></i><span style="padding-left: 0.5rem;">Cite</span></a>
+    </div>
+    <!-- The Modal Popup (remains unchanged, but is now triggered by the image above) -->
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>nDNA - the Semantic Helix of Artificial Cognition</h2>
+          <div class="header-actions">
+           
+            <button class="close-btn" id="closeBtn">&times;</button>
+          </div>
+        </div>
+        <div class="modal-content">
+          <iframe 
+            src="https://heyzine.com/flip-book/54f56134cf.html" 
+            style="width: 100%; height: 100%; border: none;" 
+            allowfullscreen 
+            title="Heyzine Flipbook">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <div class="overlay" id="bib-overlay">
+      <div class="modal" style="width: auto; height: auto;">
+        <div class="modal-header">
+          <h2>nDNA - the Semantic Helix of Artificial Cognition</h2>
+          <div class="header-actions">
+            <button class="close-btn" id="bib-closeBtn">&times;</button>
+          </div>
+        </div>
+        <div class="modal-content" style="padding: 1rem;">
+          <h4 style="margin-top: 0;">BibTex</h4>
+          <pre id="bibtex" style="padding: 1rem;background-color: #e9ecef;border: 1px solid #dee2e6;">@misc{das2025ndnasemantichelix,
+      title={nDNA -- the Semantic Helix of Artificial Cognition}, 
+      author={Amitava Das},
+      year={2025},
+      eprint={2509.18216},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2509.18216}, 
+}</pre>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-clipboard btn-primary" id="bib-clipboard-btn" data-clipboard-target="#bibtex"><i class="far fa-clipboard" style="margin-right: 0.5rem;"></i>Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT CONTENT -->
+  <div class="page-wrapper">
+    
+    <!-- TOP MENU -->
+    <div class="navbar">
+      <div class="navbar-content">
+        <div id="topMenu" class="top-menu"></div>
+        <div class="pragya-logo">
+          <a href="https://pragyaai.github.io/" target="_blank">
+            <img src="{{ '/assets/img/pragya.png' | relative_url }}" alt="Pragya Logo">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <div class="main-text" style="flex: 1;">
+        {% unless page.skip_title %}
+          {% if page.title %}
+            <h1 style="text-align: center; font-family: 'Montserrat', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">{{ page.title }}</h1>
+          {% endif %}
+        {% endunless %}
+        {{ content }}
+      </div>
+    </div>
+
+    <footer>
+      &copy; Copyright {{ 'now' | date: "%Y" }} प्रragya.
+      <p style="font-family: 'Montserrat';font-weight: 700;color: red;margin: 1rem auto 0;border: 4px dashed;padding: 4px 0 6px;">* As responsible AI researchers, we worry about misuse--non-profit use requires author's prior written consent.</p>
+
+    </footer>
+  </div>
+
+  <script src="{{ '/assets/js/ndna.js' | relative_url }}"></script>
+  <script async defer src="https://cdn-online.flowpaper.com/zine/3.9.2/js/embed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+
+  <!-- This script controls the opening and closing of your modal -->
+  <script>
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeBtn');
+    // The selector now finds the image link because we added the "open-btn" class to it
+    const openBtn = document.getElementById('open-btn');
+
+    openBtn.addEventListener('click', (e) => {
+      // This is IMPORTANT: It stops the link from opening a new tab.
+      e.preventDefault(); 
+      // This opens the modal popup.
+      overlay.style.display = 'flex';
+    });
+    
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+  
+    overlay.addEventListener('click', (e) => {
+      // This closes the modal if you click on the dark background area
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  </script>
+  <script>
+    const bibOverlay = document.getElementById('bib-overlay');
+    const bibCloseBtn = document.getElementById('bib-closeBtn');
+    const bibOpenBtn = document.getElementById('bib-open-btn');
+
+    bibOpenBtn.addEventListener('click', (e) => {
+      // This is IMPORTANT: It stops the link from opening a new tab.
+      e.preventDefault(); 
+      // This opens the modal popup.
+      bibOverlay.style.display = 'flex';
+    });
+
+    bibCloseBtn.addEventListener('click', () => {
+      bibOverlay.style.display = 'none';
+    });
+
+    bibOverlay.addEventListener('click', (e) => {
+      if (e.target === bibOverlay) {
+        bibOverlay.style.display = 'none';
+      }
+    });
+    const el = document.getElementById('bib-clipboard-btn');
+    // Initialize ClipboardJS
+    const clipboard = new ClipboardJS(el);
+
+    clipboard.on('success', (e) => {
+      el.classList.add('btn-success');
+      const iconEl = el.querySelector('i');
+      iconEl.classList.remove('far', 'fa-clipboard');
+      iconEl.classList.add('fas', 'fa-clipboard-check');
+      console.log('Text copied to clipboard:', e.text);
+      e.clearSelection();
+      setTimeout(() => {
+        el.classList.remove('btn-success');
+        el.style.backgroundColor = '';
+        iconEl.classList.remove('fas', 'fa-clipboard-check');
+        iconEl.classList.add('far', 'fa-clipboard');
+      }, 2000); // Reset after 2 seconds
+    });
+
+    clipboard.on('error', (e) => {
+      console.error('Error copying text:', e);
+    });
+  </script>
+</body>
+</html>

@@ -1,4 +1,42 @@
-# ndna (detailed CLI reference)
+<div align="center">
+
+# Neural Genomics & nDNA Hub
+#### Geometry-First Toolkit for Language Models
+
+**[15 LLMs](./ndna-main/_llm/15-llms.md) · [Aethers](./ndna-main/_llm/aethers.md) · [Alignment](./ndna-main/_llm/alignment.md) · [Civic](./ndna-main/_llm/civic.md) · [Collapse](./ndna-main/_llm/model-collapse.md) · [Cultural nDNA](./ndna-main/_llm/cultural-ndna.md) · [Distillation](./ndna-main/_llm/knowledge-distillation.md) · [Merging](./ndna-main/_llm/model-merging.md) · [nDNA Core](./ndna-main/_llm/ndna.md) · [Neural Genomics](./ndna-main/_llm/neural-genomics.md)**
+
+<br/>
+
+> *"Alignment is not just a loss function. It is a change in the shape of thought."*
+
+</div>
+
+---
+
+## 📚 Documentation Directory
+
+Explore our detailed documentation on the geometry of language models across various facets. These readmes follow an HTML page style structure to properly render all interactive charts, GIFs, and PNGs.
+
+<div align="center">
+
+| Module | Documentation Link |
+| :--- | :--- |
+| **15 LLMs** | [👉 15-llms.md](./ndna-main/_llm/15-llms.md) |
+| **Aethers** | [👉 aethers.md](./ndna-main/_llm/aethers.md) |
+| **Alignment** | [👉 alignment.md](./ndna-main/_llm/alignment.md) |
+| **Civic** | [👉 civic.md](./ndna-main/_llm/civic.md) |
+| **Collapse** | [👉 model-collapse.md](./ndna-main/_llm/model-collapse.md) |
+| **Cultural nDNA** | [👉 cultural-ndna.md](./ndna-main/_llm/cultural-ndna.md) |
+| **Knowledge Distillation** | [👉 knowledge-distillation.md](./ndna-main/_llm/knowledge-distillation.md) |
+| **Model Merging** | [👉 model-merging.md](./ndna-main/_llm/model-merging.md) |
+| **nDNA Core** | [👉 ndna.md](./ndna-main/_llm/ndna.md) |
+| **Neural Genomics** | [👉 neural-genomics.md](./ndna-main/_llm/neural-genomics.md) |
+
+</div>
+
+---
+
+## 🛠 ndna (detailed CLI reference)
 
 ---
 Use the provided setup script to configure your environment, install all dependencies, and set up authentication for GitHub and HuggingFace.
@@ -164,6 +202,9 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 ---
 
 ## Collapse driver (`scripts/run_collapse_from_zoo.py`)
+
+📖 **[Read the Model Collapse Documentation](./ndna-main/_llm/model-collapse.md)**
+
 - Purpose: Automate cross-breeding or inbreeding collapse trajectories across multiple models from the zoo. Each generation runs Alpaca Method-5 and spectral curvature using `ndna_lib.collapse.geometry_runner`.
 - Protocols: `--protocol cross` fine-tunes on human Alpaca pairs; `--protocol inbreed` generates synthetic Alpaca-style data with the current model and fine-tunes on it. Breeding hyperparameters follow `BreedingConfig` defaults unless overridden.
 - Run layout: `<base-run-dir>/<model_key>/<run_name>/gen0` holds base geometry; each subsequent `genX` contains `model/` (optional) and `metrics/{method5_unified.json, spectral_curvature.json}`.
@@ -199,6 +240,9 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 ---
 
 ## Fisher-weighted merging of adapters (`ndna_lib/merging/fisher_merge_lora.py`)
+
+📖 **[Read the Model Merging Documentation](./ndna-main/_llm/model-merging.md)**
+
 - Purpose: Merge multiple LoRA adapters into one adapter using Fisher weights as importance factors. Requires identical LoRA configs across adapters and matching Fisher files.
 - Inputs: `--adapters` list of adapter dirs, `--fishers` list of safetensors paths, optional `--alphas` weights (defaults to 1.0 each), numerical stability via `--eps` and `--fisher_floor`, optional Fisher normalization (`none` or `mean`).
 - Validation: checks presence of adapter_config.json and adapter_model.safetensors for each adapter; enforces identical canonicalized config across inputs; enforces matching keys in Fishers.
@@ -251,6 +295,9 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 ---
 
 ## SFT & DPO Workflows (`Alignment/`)
+
+📖 **[Read the Alignment Documentation](./ndna-main/_llm/alignment.md)**
+
 - Purpose: Fine-tune base models into instruction-following models (IT) and then align them using Direct Preference Optimization (DPO). 
 - Scripts: `llama3p1_IT.py`, `qwen2p5_IT.py`, `ministral3_IT.py`, `llama3p1_DPO.py`, `qwen2p5_DPO.py`, `ministral3_DPO.py`.
 - Features: Uses `trl` (SFTTrainer, DPOTrainer) and `peft` (LoRA). Patches special token embeddings (like `<|eot_id|>`) to avoid NaN gradients, configures exact chat templates, caches processed datasets, and outputs merged adapters.
@@ -259,6 +306,9 @@ These metrics are computed via `ndna_lib.geometry` and related helpers. Adapters
 ---
 
 ## Distillation Workflows (`distillation/`)
+
+📖 **[Read the Knowledge Distillation Documentation](./ndna-main/_llm/knowledge-distillation.md)**
+
 - Purpose: Transfer specific reasoning capabilities (like math) from a larger teacher model (e.g., Llama 3.1 8B) into a student model (e.g., Llama 3 8B).
 - Scripts: `distill_math_lora.py`, `llama_distillation.py`, `qwen_distillation.py`.
 - Features: Trains LoRA adapters on the student model while the teacher is frozen. Loss is a combination of supervised CE (on answer tokens) and KL divergence (using teacher's logits).
