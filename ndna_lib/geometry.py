@@ -162,14 +162,31 @@ class LlamaStyleAdapter(BaseAdapter):
         ):
             backbone = backbone.base_model
 
-        # 2) Find decoder/backbone module where blocks and norms live
-        if hasattr(backbone, "model"):
-            dec = backbone.model
-        elif hasattr(backbone, "transformer"):
-            dec = backbone.transformer
-        elif hasattr(backbone, "backbone"):
-            dec = backbone.backbone
-        else:
+        # 2) Find decoder/backbone module where blocks and norms live.
+        # Mistral3-style conditional-generation wrappers keep the text stack under
+        # language_model.model.layers rather than directly under .model.layers.
+        decoder_candidates = []
+        for cand in (
+            backbone,
+            getattr(backbone, "model", None),
+            getattr(backbone, "transformer", None),
+            getattr(backbone, "backbone", None),
+            getattr(backbone, "language_model", None),
+        ):
+            if cand is not None:
+                decoder_candidates.append(cand)
+
+        dec = None
+        for cand in decoder_candidates:
+            if hasattr(cand, "layers") or hasattr(cand, "h"):
+                dec = cand
+                break
+            nested_model = getattr(cand, "model", None)
+            if nested_model is not None and (hasattr(nested_model, "layers") or hasattr(nested_model, "h")):
+                dec = nested_model
+                break
+
+        if dec is None:
             dec = backbone
 
         self.raw = raw
@@ -1175,6 +1192,257 @@ def compute_fr_and_alignment_streaming(
 
     mean_total_fr = float(total_len_sum / max(1, total_tokens))
     return Delta, Alpha, Vnorm, mean_total_fr, total_tokens
+
+
+@torch.no_grad()
+def compute_two_belief_methods_streaming(
+    model: PreTrainedModel,
+    adapter: BaseAdapter,
+    loader: DataLoader,
+    *,
+    tau: float = 1.0,
+    keep_last_k: Optional[int] = None,
+    fr_norm: bool = True,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """
+    Compute two belief metrics with a single forward pass per batch.
+
+    Method A:
+        Vnorm-style norm of the mean theoretical belief push over all supervised
+        positions. This matches the belief quantity returned by
+        `compute_fr_and_alignment_streaming`, and has shape (L-1,).
+
+    Method B:
+        Concept-style belief field norm computed on the last-K supervised
+        positions per example, with tangent projection at the mean simplex point.
+        This matches `belief_field_for_dataset`, and has shape (L,).
+
+    Method C:
+        Same tangent-projected belief field norm as Method B, but computed over
+        all supervised positions rather than only the last-K positions. Shape (L,).
+
+    Args:
+        tau:
+            Softmax temperature for Method B. Method A is kept identical to the
+            existing FR/alignment path and therefore always uses tau=1 logic.
+        keep_last_k:
+            How many supervised positions per example to keep for Method B.
+            If None, all supervised positions are used.
+        fr_norm:
+            If True, Method B returns the FR-scaled norm 2*||v_tan||.
+
+    Returns:
+        method_a_vnorm: np.array shape (L-1,)
+        method_b_lastk_norms: np.array shape (L,)
+        method_c_alltokens_norms: np.array shape (L,)
+    """
+    model.eval()
+    if hasattr(model.config, "use_cache"):
+        model.config.use_cache = False
+
+    tau = float(max(1e-12, tau))
+    L = adapter.num_layers
+    V = model.get_input_embeddings().num_embeddings
+
+    # Method A accumulators (match compute_fr_and_alignment_streaming).
+    a_v_sum = torch.zeros(L - 1, V, device=DEVICE, dtype=torch.float32)
+    a_v_cnt = torch.zeros(L - 1, device=DEVICE, dtype=torch.float64)
+
+    # Method B accumulators (match belief_field_for_dataset on last-K positions).
+    b_v_sum = torch.zeros(L, V, device=DEVICE, dtype=torch.float32)
+    b_u_sum = torch.zeros(L, V, device=DEVICE, dtype=torch.float32)
+    b_cnt = torch.zeros(L, device=DEVICE, dtype=torch.float64)
+
+    # Method C accumulators (same tangent metric over all supervised tokens).
+    c_v_sum = torch.zeros(L, V, device=DEVICE, dtype=torch.float32)
+    c_u_sum = torch.zeros(L, V, device=DEVICE, dtype=torch.float32)
+    c_cnt = torch.zeros(L, device=DEVICE, dtype=torch.float64)
+
+    for batch in tqdm(loader, desc="Belief methods (single pass)", unit="batch"):
+        input_ids = batch["input_ids"].to(DEVICE, non_blocking=True)
+        labels = batch["labels"].to(DEVICE, non_blocking=True)
+        input_mask = batch["attention_mask"].to(DEVICE, non_blocking=True)
+
+        valid = labels != -100
+        valid_count = int(valid.sum().item())
+        if valid_count == 0:
+            continue
+
+        keep_mask = torch.zeros_like(valid, dtype=torch.bool)
+        if keep_last_k is None:
+            keep_mask = valid
+        else:
+            k = max(1, int(keep_last_k))
+            for b in range(valid.shape[0]):
+                valid_idx = valid[b].nonzero(as_tuple=False).squeeze(-1)
+                if valid_idx.numel() == 0:
+                    continue
+                take = valid_idx[-min(k, valid_idx.numel()):]
+                keep_mask[b, take] = True
+
+        mask_f = valid.float().unsqueeze(-1)
+
+        with torch.autocast(device_type="cuda", dtype=AMP_DTYPE, enabled=AMP_ON):
+            outputs = model(
+                input_ids=input_ids,
+                attention_mask=input_mask,
+                output_hidden_states=True,
+                use_cache=False,
+            )
+
+        hidden_states = outputs.hidden_states[1:]  # len = L
+
+        q_prev_a = None
+        u_prev_a = None
+
+        for ell in range(L):
+            with torch.autocast(device_type="cuda", dtype=AMP_DTYPE, enabled=AMP_ON):
+                logits = adapter.lens_logits(hidden_states[ell])
+            logits_f = logits.float()
+
+            # Method A distribution (tau fixed at 1.0 to preserve existing semantics).
+            q_a = F.softmax(logits_f, dim=-1).clamp_min(1e-12)
+            u_a = torch.sqrt(q_a)
+
+            # Method B distribution (temperature-adjusted).
+            if tau == 1.0:
+                q_b = q_a
+                u_b = u_a
+            else:
+                q_b = F.softmax(logits_f / tau, dim=-1).clamp_min(1e-12)
+                u_b = torch.sqrt(q_b)
+
+            # Method B: concept-style belief field norm on selected positions.
+            keep = keep_mask.view(-1)
+            if keep.any():
+                q_sel = q_b.view(-1, V)[keep]
+                u_sel = u_b.view(-1, V)[keep]
+                y_sel = labels.view(-1)[keep].clamp(min=0)
+
+                g_b = -q_sel / tau
+                add_b = torch.full(
+                    (y_sel.shape[0], 1),
+                    1.0 / tau,
+                    device=DEVICE,
+                    dtype=q_sel.dtype,
+                )
+                g_b.scatter_add_(dim=-1, index=y_sel.unsqueeze(-1), src=add_b)
+
+                ug_b = u_sel * g_b
+                s_b = (q_sel * g_b).sum(dim=-1, keepdim=True)
+                t_b = (ug_b - s_b * u_sel) / (2.0 * tau)
+
+                b_v_sum[ell] += t_b.sum(dim=0).to(b_v_sum.dtype)
+                b_u_sum[ell] += u_sel.sum(dim=0).to(b_u_sum.dtype)
+                b_cnt[ell] += float(t_b.shape[0])
+
+                del q_sel, u_sel, y_sel, g_b, add_b, ug_b, s_b, t_b
+
+            # Method C: same tangent-style belief field norm on all valid positions.
+            valid_flat = valid.view(-1)
+            if valid_flat.any():
+                q_sel_all = q_b.view(-1, V)[valid_flat]
+                u_sel_all = u_b.view(-1, V)[valid_flat]
+                y_sel_all = labels.view(-1)[valid_flat].clamp(min=0)
+
+                g_c = -q_sel_all / tau
+                add_c = torch.full(
+                    (y_sel_all.shape[0], 1),
+                    1.0 / tau,
+                    device=DEVICE,
+                    dtype=q_sel_all.dtype,
+                )
+                g_c.scatter_add_(dim=-1, index=y_sel_all.unsqueeze(-1), src=add_c)
+
+                ug_c = u_sel_all * g_c
+                s_c = (q_sel_all * g_c).sum(dim=-1, keepdim=True)
+                t_c = (ug_c - s_c * u_sel_all) / (2.0 * tau)
+
+                c_v_sum[ell] += t_c.sum(dim=0).to(c_v_sum.dtype)
+                c_u_sum[ell] += u_sel_all.sum(dim=0).to(c_u_sum.dtype)
+                c_cnt[ell] += float(t_c.shape[0])
+
+                del q_sel_all, u_sel_all, y_sel_all, g_c, add_c, ug_c, s_c, t_c
+
+            # Method A: Vnorm-style belief push on all supervised positions.
+            if ell > 0:
+                y = labels.clamp(min=0)
+                u_times_g = -(u_prev_a * q_prev_a)
+                u_y = u_prev_a.gather(-1, y.unsqueeze(-1)).squeeze(-1)
+                u_times_g.scatter_add_(-1, y.unsqueeze(-1), u_y.unsqueeze(-1))
+
+                q_sq = (q_prev_a * q_prev_a).sum(dim=-1)
+                q_y = q_prev_a.gather(-1, y.unsqueeze(-1)).squeeze(-1)
+                q_dot_g = q_y - q_sq
+
+                t_prev = 0.5 * (u_times_g - u_prev_a * q_dot_g.unsqueeze(-1))
+                t_prev = (t_prev * mask_f).float()
+
+                a_v_sum[ell - 1] += t_prev.sum(dim=(0, 1))
+                a_v_cnt[ell - 1] += float(valid_count)
+
+                del y, u_times_g, u_y, q_sq, q_y, q_dot_g, t_prev
+
+            q_prev_a = q_a
+            u_prev_a = u_a
+
+            del logits, logits_f, q_a, u_a
+            if tau != 1.0:
+                del q_b, u_b
+
+        del (
+            q_prev_a,
+            u_prev_a,
+            input_ids,
+            labels,
+            input_mask,
+            valid,
+            keep_mask,
+            mask_f,
+            hidden_states,
+            outputs,
+        )
+        _free_cuda()
+
+    a_v_mean = torch.stack(
+        [_safe_div(a_v_sum[i], a_v_cnt[i].clamp_min(EPS_DIV)) for i in range(L - 1)],
+        dim=0,
+    )
+    method_a_vnorm = torch.linalg.norm(a_v_mean, dim=-1).detach().cpu().numpy()
+
+    method_b: List[float] = []
+    for ell in range(L):
+        if float(b_cnt[ell].item()) <= 0.0:
+            method_b.append(0.0)
+            continue
+        v_avg = b_v_sum[ell] / b_cnt[ell].clamp_min(EPS_DIV)
+        u_avg = b_u_sum[ell] / b_cnt[ell].clamp_min(EPS_DIV)
+        u_norm = torch.linalg.norm(u_avg).clamp_min(1e-12)
+        u_bar = u_avg / u_norm
+        radial = torch.dot(u_bar, v_avg)
+        v_tan = v_avg - radial * u_bar
+        n = torch.linalg.norm(v_tan).item()
+        if fr_norm:
+            n *= 2.0
+        method_b.append(n)
+
+    method_c: List[float] = []
+    for ell in range(L):
+        if float(c_cnt[ell].item()) <= 0.0:
+            method_c.append(0.0)
+            continue
+        v_avg = c_v_sum[ell] / c_cnt[ell].clamp_min(EPS_DIV)
+        u_avg = c_u_sum[ell] / c_cnt[ell].clamp_min(EPS_DIV)
+        u_norm = torch.linalg.norm(u_avg).clamp_min(1e-12)
+        u_bar = u_avg / u_norm
+        radial = torch.dot(u_bar, v_avg)
+        v_tan = v_avg - radial * u_bar
+        n = torch.linalg.norm(v_tan).item()
+        if fr_norm:
+            n *= 2.0
+        method_c.append(n)
+
+    return method_a_vnorm, np.asarray(method_b, dtype=float), np.asarray(method_c, dtype=float)
 
 
 # ---------------------------------------------------------------------

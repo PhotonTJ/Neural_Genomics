@@ -1393,12 +1393,12 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Generate nDNA visualizations and similarity reports.")
     parser.add_argument(
         "--input-dir",
-        default=os.environ.get("NDNA_INPUT_DIR", "/Users/gauranga/Desktop/ndna/results/method5_generic/squad"),
+        default=os.environ.get("NDNA_INPUT_DIR", "/method5_generic/squad"),
         help="Directory containing .npz outputs.",
     )
     parser.add_argument(
         "--output-dir",
-        default=os.environ.get("NDNA_OUTPUT_DIR", "/Users/gauranga/Desktop/ndna/plots/method5_generic/squad_generic_reports"),
+        default=os.environ.get("NDNA_OUTPUT_DIR", "plots/method5_generic/squad_generic_reports"),
         help="Directory to place HTML reports (defaults to input dir).",
     )
     parser.add_argument("--resample-n", type=int, default=128, help="Resample points for MAE/MSE.")

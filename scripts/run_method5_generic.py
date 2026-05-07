@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import os
 import argparse
+import json
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
@@ -31,7 +32,12 @@ import torch
 from datasets import load_dataset, Dataset
 from datasets import concatenate_datasets, interleave_datasets
 from torch.utils.data import DataLoader
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, AutoModelForImageTextToText
+
+try:
+    from transformers import MistralCommonBackend
+except Exception:
+    MistralCommonBackend = None  # type: ignore
 
 # Optional quant config (don’t hard-crash older transformers)
 try:
@@ -732,6 +738,80 @@ def _safe_model_tag(model_name: str) -> str:
     return model_name.replace("/", "_").replace(":", "_").replace("@", "_").replace("-", "_")
 
 
+def _candidate_tokenizer_sources(model_name: str) -> List[str]:
+    sources: List[str] = [model_name]
+
+    if not os.path.isdir(model_name):
+        return sources
+
+    for filename in ("tokenizer_config.json", "config.json", "adapter_config.json"):
+        path = os.path.join(model_name, filename)
+        if not os.path.exists(path):
+            continue
+
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                payload = json.load(f)
+        except Exception:
+            continue
+
+        for key in ("name_or_path", "_name_or_path", "base_model_name_or_path"):
+            value = payload.get(key)
+            if isinstance(value, str) and value.strip() and value not in sources:
+                sources.append(value.strip())
+
+    return sources
+
+
+def _load_tokenizer_robust(model_name: str):
+    last_error = None
+    config = AutoConfig.from_pretrained(model_name, trust_remote_code=True)
+    model_type = str(getattr(config, "model_type", "") or "").lower()
+    sources = _candidate_tokenizer_sources(model_name)
+
+    if model_type == "mistral3" and MistralCommonBackend is not None:
+        for source in sources:
+            try:
+                print(f"[tokenizer] Loading MistralCommonBackend from {source}")
+                return MistralCommonBackend.from_pretrained(source)
+            except Exception as exc:
+                last_error = exc
+                print(f"[tokenizer] mistral-common load failed from {source}: {exc}")
+
+    for source in sources:
+        for use_fast in (True, False):
+            try:
+                print(f"[tokenizer] Loading tokenizer from {source} (use_fast={use_fast})")
+                return AutoTokenizer.from_pretrained(source, use_fast=use_fast, trust_remote_code=True)
+            except Exception as exc:
+                last_error = exc
+                print(f"[tokenizer] load failed from {source} (use_fast={use_fast}): {exc}")
+
+    raise RuntimeError(f"Failed to load tokenizer for model {model_name}") from last_error
+
+
+def _load_model_robust(model_name: str, model_kwargs: Dict[str, Any]):
+    config = AutoConfig.from_pretrained(model_name, trust_remote_code=True)
+    model_type = getattr(config, "model_type", "") or ""
+    print(f"[model] config={type(config).__name__} model_type={model_type}")
+
+    if str(model_type).lower() == "mistral3":
+        print("[model] Using AutoModelForImageTextToText for Mistral3/Ministral3 checkpoint")
+        mistral3_kwargs = dict(model_kwargs)
+        mistral3_kwargs.pop("use_cache", None)
+        return AutoModelForImageTextToText.from_pretrained(
+            model_name,
+            trust_remote_code=True,
+            **mistral3_kwargs,
+        )
+
+    return AutoModelForCausalLM.from_pretrained(
+        model_name,
+        trust_remote_code=True,
+        **model_kwargs,
+    )
+
+
 def _resolve_models(
     *,
     hf_models: Optional[List[str]],
@@ -804,7 +884,7 @@ def run_one(
     print(f"Samples: {len(ds_text)}")
     print(f"====================")
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
+    tokenizer = _load_tokenizer_robust(model_name)
     if tokenizer.pad_token is None:
         if tokenizer.eos_token is not None:
             tokenizer.pad_token = tokenizer.eos_token
@@ -823,7 +903,7 @@ def run_one(
             raise RuntimeError("Mxfp4Config not available in this transformers version. Use --no-mxfp4.")
         model_kwargs["quantization_config"] = Mxfp4Config(dequantize=True)
 
-    model = AutoModelForCausalLM.from_pretrained(model_name, **model_kwargs)
+    model = _load_model_robust(model_name, model_kwargs)
     model.eval()
 
     adapter = geo.make_adapter(model, model_name)
@@ -855,18 +935,16 @@ def run_one(
     print(f"  Mean total FR length/token: {mean_total_fr:.6e} rad")
 
     # 3) Belief field norms
-    print("\n[3] Belief field norms ||v_l|| ...")
-    belief_norms = geo.belief_field_for_dataset(
+    print("\n[3] Belief field norms ||v_l|| (belief_tangent_lastk) ...")
+    _, belief_tangent_lastk, _ = geo.compute_two_belief_methods_streaming(
         model=model,
         adapter=adapter,
-        tokenizer=tokenizer,
-        dataset=ds_text,
-        max_seq_len=max_len,
-        tokens_per_ex=tokens_per_ex,
-        batch_size=batch_size,
+        loader=make_loader(),
         tau=tau,
+        keep_last_k=tokens_per_ex,
         fr_norm=True,
     )
+    belief_norms = belief_tangent_lastk
 
     # 4) Kappa over (x,t) and nDNA_pred
     kappa = None
@@ -918,6 +996,7 @@ def run_one(
         mean_total_fr=np.array([mean_total_fr], dtype=np.float64),
         n_tokens=np.array([n_tokens], dtype=np.int64),
         belief_norms=belief_norms,
+        belief_tangent_lastk=belief_tangent_lastk,
         tau=np.array([tau], dtype=np.float64),
         max_len=np.array([max_len], dtype=np.int64),
         batch_size=np.array([batch_size], dtype=np.int64),
