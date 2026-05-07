@@ -29,100 +29,52 @@ All models are fine-tuned using Low-Rank Adaptation (LoRA) with rank 16, a batch
 A natural critique arises: *If LLaMA's pretraining already includes global English data (e.g., Wikipedia, CommonCrawl, CC-News), how much novel signal can cultural fine-tuning provide?* Prior work ([2] [3] [4] [5]) demonstrates that even modest, domain-specific fine-tuning can induce significant *representational drift*, overwriting pretraining attractors in both activation geometry and generation behavior. Recent studies ([6] [7] [8]) further show that targeted preference and instruction tuning reshape internal manifolds—especially in later layers (ℓ≥20)—embedding new epistemic alignments and latent biases. Our latent geometry diagnostics (e.g., κ<sub>ℓ</sub>, ℒ<sub>ℓ</sub>, |**v**<sub>ℓ</sub><sup>(c)</sup>|) provide direct evidence that cultural fine-tuning imprints distinctive, heritable signatures—what we term the model's *neural DNA (nDNA)*.
 ### Why Cultural nDNA Matters.
 By analyzing these eight culturally fine-tuned models, we reveal how fine-tuning on regionally grounded corpora leads to measurable divergence in latent geometry. Our diagnostics uncover zones of increased spectral curvature (latent manifold bending), thermodynamic length (epistemic effort), and belief vector field intensity (cultural directional pressure). This latent genomic structure offers a geometric fingerprint of cultural inheritance–demonstrating how models absorb, reframe, and propagate culturally specific epistemic priors even when built upon shared architectural foundations. Collectively, this experimental design enables a rigorous examination of how language models become vessels of culture–not just in their outputs, but deep within their hidden representations.
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA Africa](./images/llama_Africa_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_africa_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA Africa***
 
- Button below caption 
-
 📊 View Interactive Plot
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA Asia](./images/llama_Asia_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_asia_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA Asia***
 
- Button below caption 
-
 📊 View Interactive Plot
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA Australia](./images/llama_Australia_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_australia_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA Australia***
 
- Button below caption 
-
 📊 View Interactive Plot
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA China](./images/llama_China_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_china_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA China***
 
- Button below caption 
-
 📊 View Interactive Plot
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA Europe](./images/llama_Europe_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_europe_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA Europe***
 
- Button below caption 
-
 📊 View Interactive Plot
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA Latin America](./images/llama_LatinAmerica_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_latinamerica_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA Latin America***
 
- Button below caption 
-
 📊 View Interactive Plot
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA Middle East](./images/llama_MiddleEast_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_middleeast_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA Middle East***
 
- Button below caption 
-
 📊 View Interactive Plot
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA North America](./images/llama_NorthAmerica_rotation.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_northamerica_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA North America***
-
- Button below caption 
 
 📊 View Interactive Plot
 *Figure 1. **Cultural Fine-Tuning Trajectories of LLaMA: Latent Geometry Reorganization Across Cultures.**
@@ -150,12 +102,8 @@ Our analysis reveals **family-level clustering and divergence**:
 ### Beyond Surface Fairness: Latent Anatomy
 These nDNA trajectories align with calls to *audit foundation models* not only at the output level but also in their internal representations([16][17]).
 nDNA is a **semantic fingerprint**, enabling *latent audits* of ideological absorption and bias inheritance ([17][18][13]).
-Row: gif (left) + html (right). Collapses to stacked on small screens. 
- Left: GIF 
 ![LLaMA vs. Cultural nDNA Trajectories--Group-Tagged Latent Geometry.](./images/llama_vs_cultures_group_tagged_360.gif)
- Right: interactive HTML 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_cultures_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
- Shared caption (exact text preserved) 
 
 **LLaMA vs. Cultural nDNA Trajectories--Group-Tagged Latent Geometry.**
 
@@ -167,8 +115,6 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  In contrast, the *Rest* group (Africa, Asia, China) shows pronounced latent divergence, with κ<sub>ℓ</sub>≥0.7, ℒ<sub>ℓ</sub>≥0.8 in upper layers (ℓ>25), indicating high *epistemic strain* and *semantic reconfiguration*.
  *Latin America* and *Middle East* occupy intermediate regions, displaying oscillatory patterns and selective layer-specific drift.
  These trajectories reveal how cultural fine-tuning sculpts distinct latent genomic signatures, encoding zones of *inheritance*, *mutation*, and *ideological absorption* that define the neural DNA (nDNA) geometry of each model.**
-
- Button below caption 
 
 📊 View Interactive Plot
 ### Cultural nDNA as a Tool for Inclusive AI
