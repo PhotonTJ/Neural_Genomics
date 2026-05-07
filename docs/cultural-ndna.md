@@ -22,6 +22,7 @@ Each regional model builds upon the same LLaMA-3 8B base architecture [1], but i
 | **Africa** | Nigeria, Kenya, Ghana, Ethiopia | [AfriTvA (EN)](https://github.com/AI4D-Africa/african-corpora), [CC-News (Africa)](https://huggingface.co/datasets/cc_news), [Wikipedia (EN: Africa)](https://en.wikipedia.org/wiki/Africa) | English corpora capturing oral epistemologies, proverbs, civic rhetoric, and multilingual African worldviews. | 950M |
 | **Latin America** | Mexico, Brazil, Argentina | [OSCAR (EN LATAM)](https://huggingface.co/datasets/oscar), [WikiMatrix (EN LATAM)](https://github.com/facebookresearch/cc_net), [Wikipedia (EN LATAM)](https://en.wikipedia.org/wiki/Latin_America) | Authored-in-English texts discussing colonial history, syncretic belief systems, collectivist family structures. | 620M |
 | **Australia** | Australia | [OpenWebText (AU)](https://huggingface.co/datasets/openwebtext), [ABC News](https://about.abc.net.au/press-releases/), [AU Parliament Records](https://www.aph.gov.au/Parliamentary_Business/Hansard) | English corpora blending settler-colonial legacies with ecological narratives and Aboriginal cultural references. | 420M |
+
 **Table 1:** Culturally aligned English-language corpora representing diverse regional epistemic perspectives. Each corpus is natively authored in English, carefully selected to preserve authentic cultural nuances while minimizing translation artifacts.
 ### Fine-Tuning Protocol
 All models are fine-tuned using Low-Rank Adaptation (LoRA) with rank 16, a batch size of 256, and a learning rate of 1×10⁻⁴. We apply perplexity-based filters to exclude noisy or low-information documents, preserving high semantic density. The fine-tuning objective remains standard next-token prediction; however, the cultural signal is amplified through corpus design rather than objective modification. This protocol ensures that each model retains its original autoregressive capability while acquiring culturally distinctive latent adaptations.
@@ -33,6 +34,7 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  Left: GIF 
 [![LLaMA Africa](./images/llama_Africa_rotation.gif)](./Cultural nDNA - nDNA_files/llama_Africa_rotation.gif)
  Right: interactive HTML 
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_africa_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
@@ -45,6 +47,7 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  Left: GIF 
 [![LLaMA Asia](./images/llama_Asia_rotation.gif)](./Cultural nDNA - nDNA_files/llama_Asia_rotation.gif)
  Right: interactive HTML 
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_asia_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
@@ -56,7 +59,8 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
 Row: gif (left) + html (right). Collapses to stacked on small screens. 
  Left: GIF 
 [![LLaMA Australia](./images/llama_Australia_rotation.gif)](./Cultural nDNA - nDNA_files/llama_Australia_rotation.gif)
- Right: interactive HTML 
+ Right: interactive HTML
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_australia_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
@@ -69,6 +73,7 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  Left: GIF 
 [![LLaMA China](./images/llama_China_rotation.gif)](./Cultural nDNA - nDNA_files/llama_China_rotation.gif)
  Right: interactive HTML 
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_china_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
@@ -81,6 +86,7 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  Left: GIF 
 [![LLaMA Europe](./images/llama_Europe_rotation.gif)](./Cultural nDNA - nDNA_files/llama_Europe_rotation.gif)
  Right: interactive HTML 
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_europe_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
@@ -93,6 +99,7 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  Left: GIF 
 [![LLaMA Latin America](./images/llama_LatinAmerica_rotation.gif)](./Cultural nDNA - nDNA_files/llama_LatinAmerica_rotation.gif)
  Right: interactive HTML 
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_latinamerica_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
@@ -105,6 +112,7 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  Left: GIF 
 [![LLaMA Middle East](./images/llama_MiddleEast_rotation.gif)](./Cultural nDNA - nDNA_files/llama_MiddleEast_rotation.gif)
  Right: interactive HTML 
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_middleeast_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
@@ -117,6 +125,7 @@ Row: gif (left) + html (right). Collapses to stacked on small screens.
  Left: GIF 
 [![LLaMA North America](./images/llama_NorthAmerica_rotation.gif)](./Cultural nDNA - nDNA_files/llama_NorthAmerica_rotation.gif)
  Right: interactive HTML 
+ 
 > 📊 **[Open Interactive Chart](./charts/llama_vs_northamerica_interactive.html)** — *Interactive Plotly visualization; open locally after cloning.*
  Shared caption (exact text preserved) 
 
