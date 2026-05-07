@@ -8,7 +8,7 @@
   </a>
 </p>
 
-*▶ Video walkthrough: Cultural and Multilingual nDNA — Latent Genomics of Cultural Adaptations*
+*[▶ Video walkthrough: Cultural and Multilingual nDNA — Latent Genomics of Cultural Adaptations](https://www.youtube.com/watch?v=kibmAEkJJ9o&list=PLCNdl-HRUIllEx4MnXIw6NjYNZMGlCMCq)*
 Modern foundation models, trained on globally aggregated corpora, inevitably encode a homogenized epistemic perspective—one that reflects dominant data distributions rather than the pluralism of human cultures. To systematically probe how language models internalize and express distinct cultural priors, we construct **seven culturally–aligned LLMs**, each fine-tuned on a corpus curated to reflect the textual traditions, values, and discourse patterns of a specific geopolitical-cultural region: *Europe*, *Asia*, *Africa*, *North America*, *Latin America*, *the Middle East*, and *Australia*.
 ### Cultural Lineages and Corpus Design
 Each regional model builds upon the same LLaMA-3 8B base architecture [1], but is fine-tuned on culturally resonant English-language corpora. These datasets are carefully collected from sources such as local news outlets, parliamentary records, canonical literature, Wikipedia subsets, and digitized oral histories. We apply strict provenance filtering using publisher metadata, domain-specific heuristics, and named entity priors to ensure cultural fidelity. In doing so, we aim to align not only topic distributions but also epistemic style—what is emphasized, what is omitted, and how truth is framed. Sources of the dataset are summarized in Table 1.
