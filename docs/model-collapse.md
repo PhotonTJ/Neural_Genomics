@@ -10,7 +10,7 @@
 
 *[▶ Video walkthrough: Model Collapse as Latent Manifold Flattening](https://www.youtube.com/watch?v=KyfPTODOLuk&list=PLCNdl-HRUIllEx4MnXIw6NjYNZMGlCMCq)*
 
----
+
 > *“Collapse is not just degradation—it is the geometry of forgetting, written in the mathematics of diminishing returns.”*
 **Model collapse** denotes a **degenerative phenomenon** in large language models (LLMs) wherein the
  *expressivity*, *diversity*, and *semantic richness* of internal representations progressively deteriorate. Over time,
@@ -205,10 +205,7 @@ then its decay over time:
 
 d𝒱<sub>ℓ</sub><sup>(g)</sup>/dg < 0
 
- acts as a **differential signature of semantic collapse**—indicating that the model is losing curvature, exploratory capacity, or belief diversity across generations g. This simple composite measure may one day serve as the **“resting heart rate”** of a model's latent health.
+acts as a **differential signature of semantic collapse**—indicating that the model is losing curvature, exploratory capacity, or belief diversity across generations g. This simple composite measure may one day serve as the **“resting heart rate”** of a model's latent health.
 From a biological perspective, this parallels the emergence of **neurofunctional biomarkers** in cognitive aging or the **flattening of fitness landscapes** in inbred species: both mark a reduction in **adaptive complexity**, even before overt symptoms arise. Similarly, **geometric collapse** in models foreshadows a loss of **generalization power**, **resilience to distributional shifts**, and **responsiveness to nuanced prompts**.
 Ultimately, the rise of **neural genomics**—the spectral, thermodynamic, and vectorial tracking of a model's internal semantic scaffolding—may help cultivate foundation models that are not just powerful, but also **resilient**, **modular**, and capable of retaining **epistemic diversity** over time. This is not merely a refinement in evaluation; it is a **redefinition of model health**. We move from training systems to *perform*, toward growing systems that can **endure, adapt, and evolve**.
 **In the end, the geometry of collapse teaches us that what makes a model truly intelligent is not just what it knows—but how richly and diversely it thinks.***
----
----
- This script controls the opening and closing of your modal
