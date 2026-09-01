@@ -1,0 +1,9 @@
+.cache/
+logs/
+results/*.npz
+results/*.json
+figures/*.png
+figures/*.pdf
+tables/*.tex
+__pycache__/
+*.pyc

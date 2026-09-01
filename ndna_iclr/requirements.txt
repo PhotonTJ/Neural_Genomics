@@ -1,0 +1,17 @@
+# core geometry + IO (tests/test_core.py needs only these)
+numpy>=1.24
+scipy>=1.10
+scikit-learn>=1.3
+
+# model-dependent experiments
+torch>=2.1
+transformers>=4.44
+datasets>=2.18
+accelerate>=0.30
+safetensors>=0.4
+
+# exp11 / exp12 / exp14 (LoRA parents, merges, self-training loop)
+peft>=0.11
+
+# figures
+matplotlib>=3.7
