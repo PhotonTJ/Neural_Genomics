@@ -55,10 +55,11 @@ def patch_effects(model, tok, prompts, device, n_layers, bs=2, max_len=192, seed
         pos = am.sum(1) - 2
         if (pos < 0).any():
             continue
-        tgt = ids[torch.arange(ids.shape[0]), pos + 1]
+        rows = torch.arange(ids.shape[0], device=ids.device)
+        tgt = ids[rows, pos + 1]
 
         def logp(out):
-            lp = torch.log_softmax(out.logits[torch.arange(ids.shape[0]), pos].float(), -1)
+            lp = torch.log_softmax(out.logits[rows, pos].float(), -1)
             return lp.gather(-1, tgt.view(-1, 1)).squeeze(-1)
 
         base_lp = logp(model(**ec, use_cache=False))
@@ -70,7 +71,7 @@ def patch_effects(model, tok, prompts, device, n_layers, bs=2, max_len=192, seed
             def hook(_m, _in, out, l=l):
                 h = out[0] if isinstance(out, tuple) else out
                 h = h.clone()
-                h[:, pos] = donor[l + 1][:, pos].to(h.dtype)
+                h[rows, pos] = donor[l + 1][rows, pos].to(h.dtype)
                 store["h"] = h
                 return (h,) + out[1:] if isinstance(out, tuple) else h
 
@@ -88,7 +89,8 @@ def run(model_key, model_id, seed, args):
     prompts, _ = probes.load_probe(args.probe, n=min(args.n_prompts, args.n_patch),
                                    seed=seed, cache_dir=C.CACHE)
     tcfg = harness.triad_cfg(args)
-    m, tok = models.load(model_id, device=args.device, cache_dir=C.CACHE)
+    m, tok = models.load(model_id, device=args.device, cache_dir=C.CACHE,
+                         dtype=getattr(args, "dtype", "bfloat16"))
     prof = triad.profile_model(m, tok, prompts, tcfg, device=args.device)
     n_layers = m.config.num_hidden_layers
     eff = patch_effects(m, tok, prompts, args.device, n_layers,
