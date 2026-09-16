@@ -1,0 +1,82 @@
+{
+  "path": "exp07_patching__qwen3_4b__seed0.npz",
+  "written_utc": "2026-09-15T16:20:24Z",
+  "git": "e8ec9c5",
+  "notes": "activation patching vs triad; exclusion precision from the commitment bound",
+  "arrays": {
+    "layer": {
+      "shape": [
+        36
+      ],
+      "dtype": "int64"
+    },
+    "patch_effect": {
+      "shape": [
+        36
+      ],
+      "dtype": "float64"
+    },
+    "length": {
+      "shape": [
+        36
+      ],
+      "dtype": "float32"
+    },
+    "belief": {
+      "shape": [
+        36
+      ],
+      "dtype": "float32"
+    },
+    "tail_length": {
+      "shape": [
+        36
+      ],
+      "dtype": "float32"
+    },
+    "rho_length_vs_patch": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "rho_belief_vs_patch": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "rho_tail_vs_patch": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "commitment_eps": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "excluded_mask": {
+      "shape": [
+        36
+      ],
+      "dtype": "bool"
+    },
+    "exclusion_precision": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "commitment_depth": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "wall_seconds": {
+      "shape": [],
+      "dtype": "float64"
+    }
+  },
+  "config": {
+    "experiment": "exp07_patching",
+    "model_key": "qwen3_4b",
+    "model_id": "Qwen/Qwen3-4B",
+    "seed": 0,
+    "probe": "squad_v2",
+    "n_prompts": 256,
+    "curvature": "turn",
+    "keep_last_k": 8
+  }
+}

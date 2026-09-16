@@ -1,0 +1,163 @@
+{
+  "path": "exp13_compression_knee__pooled__seed0.npz",
+  "written_utc": "2026-09-15T16:13:07Z",
+  "git": "e8ec9c5",
+  "notes": "geometric knee vs behavioural knee, with cross-model transfer",
+  "arrays": {
+    "gemma3_1b_quant_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "gemma3_1b_quant_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "gemma3_1b_quant_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "gemma3_1b_quant_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "gemma3_1b_prune_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "gemma3_1b_prune_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "gemma3_1b_prune_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "gemma3_1b_prune_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_quant_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_quant_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_quant_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_quant_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_prune_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_prune_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_prune_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "llama31_8b_prune_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_quant_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_quant_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_quant_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_quant_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_prune_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_prune_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_prune_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_4b_prune_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_quant_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_quant_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_quant_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_quant_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_prune_knee_length": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_prune_knee_kappa": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_prune_knee_ppl": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "qwen3_8b_prune_offset": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "transfer_quant_pred": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "transfer_quant_true": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "transfer_quant_abs_error": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "transfer_prune_pred": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "transfer_prune_true": {
+      "shape": [],
+      "dtype": "int64"
+    },
+    "transfer_prune_abs_error": {
+      "shape": [],
+      "dtype": "int64"
+    }
+  },
+  "config": {
+    "experiment": "exp13_compression_knee"
+  }
+}

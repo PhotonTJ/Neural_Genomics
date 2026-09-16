@@ -1,0 +1,76 @@
+{
+  "path": "exp03_behavior_vs_geometry__llama31_8b__seed0.npz",
+  "written_utc": "2026-09-15T20:51:51Z",
+  "git": "e8ec9c5",
+  "notes": "x=behaviour, y=geometry; joint min-max normalisation over the set",
+  "arrays": {
+    "labels": {
+      "shape": [
+        5
+      ],
+      "dtype": "<U16"
+    },
+    "dtw_from_base": {
+      "shape": [
+        5
+      ],
+      "dtype": "float64"
+    },
+    "warp_from_base": {
+      "shape": [
+        5
+      ],
+      "dtype": "float64"
+    },
+    "delta_ppl": {
+      "shape": [
+        5
+      ],
+      "dtype": "float64"
+    },
+    "delta_surface": {
+      "shape": [
+        5,
+        3
+      ],
+      "dtype": "float64"
+    },
+    "surface_tasks": {
+      "shape": [
+        3
+      ],
+      "dtype": "<U13"
+    },
+    "base_ppl": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "base_surface": {
+      "shape": [
+        3
+      ],
+      "dtype": "float64"
+    },
+    "dtw_matrix": {
+      "shape": [
+        6,
+        6
+      ],
+      "dtype": "float64"
+    },
+    "wall_seconds": {
+      "shape": [],
+      "dtype": "float64"
+    }
+  },
+  "config": {
+    "experiment": "exp03_behavior_vs_geometry",
+    "model_key": "llama31_8b",
+    "model_id": "meta-llama/Llama-3.1-8B",
+    "seed": 0,
+    "probe": "squad_v2",
+    "n_prompts": 256,
+    "curvature": "turn",
+    "keep_last_k": 8
+  }
+}

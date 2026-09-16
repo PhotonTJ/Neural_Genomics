@@ -7,3 +7,6 @@ figures/*.pdf
 tables/*.tex
 __pycache__/
 *.pyc
+
+# converted plain-text results: committed on purpose, these replace the binary NPZ
+!results/*.data.json

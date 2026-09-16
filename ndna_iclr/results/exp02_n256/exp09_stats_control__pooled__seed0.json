@@ -1,0 +1,106 @@
+{
+  "path": "exp09_stats_control__pooled__seed0.npz",
+  "written_utc": "2026-09-12T13:40:01Z",
+  "git": "e8ec9c5",
+  "notes": "paired Wilcoxon across matched folds + matched-k PCA control",
+  "arrays": {
+    "acc_triad": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "f1_triad": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "acc_pca_triad": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "wilcoxon_triad_vs_kappa_only": {
+      "shape": [
+        3
+      ],
+      "dtype": "float64"
+    },
+    "acc_kappa_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "f1_kappa_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "acc_pca_kappa_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "wilcoxon_triad_vs_length_only": {
+      "shape": [
+        3
+      ],
+      "dtype": "float64"
+    },
+    "acc_length_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "f1_length_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "acc_pca_length_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "wilcoxon_triad_vs_belief_only": {
+      "shape": [
+        3
+      ],
+      "dtype": "float64"
+    },
+    "acc_belief_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "f1_belief_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "acc_pca_belief_only": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "pca_k": {
+      "shape": [],
+      "dtype": "int64"
+    }
+  },
+  "config": {
+    "experiment": "exp09_stats_control",
+    "pca_k": 8
+  }
+}
