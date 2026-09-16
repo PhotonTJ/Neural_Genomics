@@ -1,0 +1,89 @@
+{
+  "path": "exp04_task_stability__qwen3_4b__seed0.npz",
+  "written_utc": "2026-09-15T18:21:40Z",
+  "git": "e8ec9c5",
+  "notes": "task prototypes and lifecycle variants normalised jointly",
+  "arrays": {
+    "task_names": {
+      "shape": [
+        10
+      ],
+      "dtype": "<U13"
+    },
+    "task_dtw": {
+      "shape": [
+        10,
+        10
+      ],
+      "dtype": "float64"
+    },
+    "task_pairs": {
+      "shape": [
+        90
+      ],
+      "dtype": "float64"
+    },
+    "task_median": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "task_mean": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "theta": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "threshold_q": {
+      "shape": [],
+      "dtype": "float64"
+    },
+    "variant_names": {
+      "shape": [
+        4
+      ],
+      "dtype": "<U16"
+    },
+    "variant_dtw_from_base": {
+      "shape": [
+        4
+      ],
+      "dtype": "float64"
+    },
+    "variant_exceeds_theta": {
+      "shape": [
+        4
+      ],
+      "dtype": "bool"
+    },
+    "warp_extent": {
+      "shape": [
+        15,
+        15
+      ],
+      "dtype": "float64"
+    },
+    "joint_matrix": {
+      "shape": [
+        15,
+        15
+      ],
+      "dtype": "float64"
+    },
+    "wall_seconds": {
+      "shape": [],
+      "dtype": "float64"
+    }
+  },
+  "config": {
+    "experiment": "exp04_task_stability",
+    "model_key": "qwen3_4b",
+    "model_id": "Qwen/Qwen3-4B",
+    "seed": 0,
+    "probe": "squad_v2",
+    "n_prompts": 256,
+    "curvature": "turn",
+    "keep_last_k": 8
+  }
+}

@@ -23,7 +23,7 @@ def knee(y, x=None):
     y = np.asarray(y, float)
     if len(y) < 3:
         return 0
-    y = (y - y.min()) / (y.ptp() + 1e-12)
+    y = (y - y.min()) / (np.ptp(y) + 1e-12)
     d2 = np.abs(np.diff(y, 2))
     return int(np.argmax(d2)) + 1
 
