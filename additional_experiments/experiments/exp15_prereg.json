@@ -1,0 +1,78 @@
+{
+  "name": "exp15_matched_comparisons",
+  "purpose": "Matched comparison of nDNA profiles and the logit-trajectory representation (Jung and Jung, ACL 2026) on checkpoint identification and related-checkpoint retrieval, with identical prompts, positions, readout, scaling, DTW and scoring; plus a test of the belief-field direction.",
+  "families": {
+    "llama31_8b": {
+      "base": "meta-llama/Llama-3.1-8B",
+      "instruct": "meta-llama/Llama-3.1-8B-Instruct"
+    },
+    "qwen3_4b": {
+      "base": "Qwen/Qwen3-4B-Base",
+      "instruct": "Qwen/Qwen3-4B-Instruct-2507"
+    },
+    "gemma3_1b": {
+      "base": "google/gemma-3-1b-pt",
+      "instruct": "google/gemma-3-1b-it"
+    }
+  },
+  "revisions": {},
+  "readout": {
+    "lens": "logit lens: final norm + output head on every hidden state; the final node is the model's own output logits",
+    "nodes": "embedding output + all block outputs (L+1 nodes, L steps)",
+    "tau": 1.0,
+    "prob_floor": 1e-12,
+    "keep_last_k": 8,
+    "max_length": 384,
+    "padding_side": "right",
+    "truncation_side": "left",
+    "dtype": "bfloat16",
+    "batch_size": 8
+  },
+  "prompt_sets": {
+    "squad": {
+      "dataset": "rajpurkar/squad_v2",
+      "split": "train",
+      "one_question_per_context": true,
+      "seed": 20261010,
+      "n_a": 1000,
+      "n_b": 2500,
+      "note": "A and B use disjoint contexts"
+    },
+    "field_tasks": {
+      "tasks": ["squad_v2", "gsm8k", "cnn_dailymail", "mnli", "imdb"],
+      "n": 512,
+      "seed": 7,
+      "exact_field": true
+    }
+  },
+  "methods": {
+    "nDNA length": ["length"],
+    "nDNA length+field": ["length", "field"],
+    "LT magnitude": ["lt_mag"],
+    "LT coherence": ["lt_coh"],
+    "LT rotation": ["lt_rot"],
+    "LT combined": ["lt_mag", "lt_coh", "lt_rot"]
+  },
+  "primary": {
+    "identification": {"method": "nDNA length", "query_set": "squad_A", "candidate_set": "squad_B"},
+    "retrieval": {"method": "nDNA length+field", "set": "squad_B"},
+    "comparison_reference": "LT combined"
+  },
+  "scoring": {
+    "scaling": "per profile and channel, min-max to [0.05, 1]",
+    "dtw": "aligned mean squared cost, band 0.2 in relative depth",
+    "channel_grid": "channels with a different node count are linearly interpolated onto the step grid of length",
+    "identification": ["top-1 hit", "median and minimum margin"],
+    "retrieval": ["nearest neighbour is a relative", "mean reciprocal rank", "per-query AUC", "per-query chance and expected MRR from candidate composition"],
+    "uncertainty": "bootstrap over queries (10000) and over families (cluster bootstrap); paired bootstrap of differences against the comparison reference; permutation p for the nearest-neighbour rate (shuffled family labels)"
+  },
+  "field_direction": {
+    "tests": [
+      "split-half reliability: cosine between the projected field on even and odd prompts of the same task, against different tasks",
+      "task identification from field direction against task identification from field norm",
+      "within-family direction: cosine between base and instruct fields on the same task, against the split-half ceiling",
+      "target alignment: share of the positive mass of the final-node field on the task's 50 most frequent target tokens, against chance",
+      "exact against projected field: angle per node"
+    ]
+  }
+}
